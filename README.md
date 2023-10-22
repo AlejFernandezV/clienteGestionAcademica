@@ -1,5 +1,3 @@
-[![version][version-badge]][CHANGELOG]
-
 ## Terminal Commands
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0 and angular 4.x.
@@ -13,6 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Package
 
+```
 clienteGestionAcademica
 ├── CHANGELOG.md
 ├── LICENSE.md
