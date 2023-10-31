@@ -96,169 +96,24 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            Electiva - Bodega de Datos A
-                                        </td>
-                                        <td>
-                                            Docencia
-                                        </td>
-                                        <td>
-                                            64
-                                        </td>
-                                        <td>
-                                            Ingeniería de Sistemas Obligatoria 2023
-                                        </td>
-                                        <td>
-                                            X
-                                        </td>
-                                        <td>
-                                            Sep - 06 - 2022
-                                        </td>
-                                        <td>
-                                            Feb - 10 - 2023
-                                        </td>
-                                        <td>
-                                            <select id="estado" name="estado">
-                                                <option value="" selected disabled hidden>Seleccione...</option>
-                                                <option value="ejecucion">Ejecución</option>
-                                                <option value="terminado">Terminado</option>
-                                                <option value="suspendido">Suspendido</option>
-                                            </select>
-                                        </td>
-                                        <td>
+                                    <tr *ngFor="let evaluacion of evaluaciones; let i = index">
 
-                                        </td>
-                                        <td>
-                                            0,0
-                                        </td>
+                                        <td>{{ i + 1 }}</td>
+                                        <td>{{ evaluacion.lab_nombre }}</td>
+                                        <td>{{ evaluacion.tl_descripcion }}</td>
+                                        <td>{{ evaluacion.lab_horas }}</td>
+                                        <td>Ingeniería de sistemas Obligatoria 2023 </td>
+                                        <td>X</td>
+                                        <td>{{ evaluacion.per_fecha_inicio | date:'yyyy-MM-dd'}}</td>
+                                        <td>{{ evaluacion.per_fecha_fin | date:'yyyy-MM-dd' }}</td>
+                                        <td>{{ evaluacion.eva_estado }}</td>
+                                        <td>{{ evaluacion.eva_resultado }}</td>
+                                        <td>{{ evaluacion.eva_puntaje}}</td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            Laboratorio de Programación Orientada a Objetos
-                                        </td>
-                                        <td>
-                                            Docencia
-                                        </td>
-                                        <td>
-                                            32
-                                        </td>
-                                        <td>
-                                            Ingeniería de Sistemas Obligatoria 2023
-                                        </td>
-                                        <td>
-                                            X
-                                        </td>
-                                        <td>
-                                            Sep - 06 - 2022
-                                        </td>
-                                        <td>
-                                            Feb - 10 - 2023
-                                        </td>
-                                        <td>
-                                            <select id="estado" name="estado">
-                                                <option value="" selected disabled hidden>Seleccione...</option>
-                                                <option value="ejecucion">Ejecución</option>
-                                                <option value="terminado">Terminado</option>
-                                                <option value="suspendido">Suspendido</option>
-                                            </select>
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-                                            0,0
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            3
-                                        </td>
-                                        <td>
-                                            Laboratorio de Ingeniería de Software III A
-                                        </td>
-                                        <td>
-                                            Docencia
-                                        </td>
-                                        <td>
-                                            32
-                                        </td>
-                                        <td>
-                                            Ingeniería de Sistemas Obligatoria 2023
-                                        </td>
-                                        <td>
-                                            X
-                                        </td>
-                                        <td>
-                                            Sep - 06 - 2022
-                                        </td>
-                                        <td>
-                                            Feb - 10 - 2023
-                                        </td>
-                                        <td>
-                                            <select id="estado" name="estado">
-                                                <option value="" selected disabled hidden>Seleccione...</option>
-                                                <option value="ejecucion">Ejecución</option>
-                                                <option value="terminado">Terminado</option>
-                                                <option value="suspendido">Suspendido</option>
-                                            </select>
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-                                            0,0
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            4
-                                        </td>
-                                        <td>
-                                            Ingeniería de Software III B
-                                        </td>
-                                        <td>
-                                            Docencia
-                                        </td>
-                                        <td>
-                                            64
-                                        </td>
-                                        <td>
-                                            Ingeniería de Sistemas Obligatoria 2023
-                                        </td>
-                                        <td>
-                                            X
-                                        </td>
-                                        <td>
-                                            Sep - 06 - 2022
-                                        </td>
-                                        <td>
-                                            Feb - 10 - 2023
-                                        </td>
-                                        <td>
-                                            <select id="estado" name="estado">
-                                                <option value="" selected disabled hidden>Seleccione...</option>
-                                                <option value="ejecucion">Ejecución</option>
-                                                <option value="terminado">Terminado</option>
-                                                <option value="suspendido">Suspendido</option>
-                                            </select>
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-                                            0,0
-                                        </td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td colspan="3" style="text-align: right;"> TOTAL</td>
-                                        <td> 192</td>
+                                        <td> {{ totalHoras }}</td>
                                     </tr>
                                 </tbody>
                             </table>
