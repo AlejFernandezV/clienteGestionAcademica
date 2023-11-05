@@ -18,7 +18,13 @@
                                             Periodo
                                         </th>
                                         <td>
-                                            2021-1
+                                            <div class="input-group no-border example-full-width">
+                                                <input type="text" value="" class="form-control" matInput placeholder="Ej: 2021-1">
+                                                <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                                  <i class="material-icons">search</i>
+                                                  <div class="ripple-container"></div>
+                                                </button>
+                                              </div>
                                         </td>
                                         <td rowspan="3" style="text-align: center;">
                                             Para cada uno de los ítems presentados a continuación<br>
@@ -45,7 +51,13 @@
                                             Identificación
                                         </th>
                                         <td>
-                                            123456789
+                                            <div class="input-group no-border example-full-width">
+                                                <input type="text" value="" class="form-control" matInput placeholder="Ej: 123456789">
+                                                <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                                  <i class="material-icons">search</i>
+                                                  <div class="ripple-container"></div>
+                                                </button>
+                                              </div>
                                         </td>
                                     </tr>
 
@@ -103,7 +115,9 @@
                                         <td>{{ evaluacion.tl_descripcion }}</td>
                                         <td>{{ evaluacion.lab_horas }}</td>
                                         <td>Ingeniería de sistemas Obligatoria 2023 </td>
-                                        <td>X</td>
+                                        <center>
+                                            <td>X</td>
+                                        </center>
                                         <td>{{ evaluacion.per_fecha_inicio | date:'yyyy-MM-dd'}}</td>
                                         <td>{{ evaluacion.per_fecha_fin | date:'yyyy-MM-dd' }}</td>
                                         <td>{{ evaluacion.eva_estado }}</td>
