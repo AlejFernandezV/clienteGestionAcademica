@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsuarioI } from 'app/models/usuario/usuario.interface';
+import { UsuariosService } from 'app/services/usuarios.service';
 
 @Component({
   selector: 'app-create-docente',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateDocenteComponent implements OnInit {
 
-  constructor() { }
+  docente: UsuarioI = {
+    usu_identificacion: null,
+    usu_tipoId: '',
+    usu_email: '',
+    usu_password: '',
+    usu_rol: 'Docente',
+    usu_nombres: '',
+    usu_apellidos: '',
+    usu_genero: '',
+    usu_estudio: ''
+  }
+  generos = ["Masculino", "Femenino","Otro"];
+  tipoDocentes = ["Tiempo Completo", "Planta", "Catedra"];
+  tipoIds:string[] = ["CC", "Pasaporte","Otro"];
+
+
+  constructor(private UsuarioService: UsuariosService, private router:Router) { }
 
   ngOnInit(): void {
+  }
+  createDocente(){
+    this.UsuarioService.createUsuario(this.docente).subscribe();
+    this.router.navigate(['/list-docente']);
   }
 
 }

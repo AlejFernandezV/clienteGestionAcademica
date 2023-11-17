@@ -5,138 +5,41 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Lista Docentes</h4>
-                        <p class="card-category"> Informacion</p>
-                        
+                        <p class="card-category"> Informacion</p>                        
                     </div>
                     <div class="card-body">
                         <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/create-docente">Crear Docente</button>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <th>
-                                        ID
-                                    </th>
-                                    <th>
-                                        Tipo Docente
-                                    </th>
-                                    <th>
-                                        Nombres
-                                    </th>
-                                    <th>
-                                        Apellidos
-                                    </th>
-                                    <th>
-                                        Email
-                                    </th>
-                                    <th>
-                                        Ultimo Titulo
-                                    </th>
-                                    <th>
-
-                                    </th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            1062776983
-                                        </td>
-                                        <td>
-                                            Catedra
-                                        </td>
-                                        <td>
-                                            Juan Manuel
-                                        </td>
-                                        <td>
-                                            Sanchez
-                                        </td>
-                                        <td >
-                                            jmanuel01@ gmail.com
-                                        </td>
-                                        <td>
-                                            Ingeniero
-                                        </td>
-                                        <td>
-                                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Inactivar</button>
-                                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/update-docente">Editar</button>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            1062723573
-                                        </td>
-                                        <td>
-                                            Catedra
-                                        </td>
-                                        <td>
-                                            Diana
-                                        </td>
-                                        <td>
-                                            Carvajal
-                                        </td>
-                                        <td >
-                                            dcarvajal@ gmail.com
-                                        </td>
-                                        <td>
-                                            Ingeniera
-                                        </td>
-                                        <td>
-                                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Inactivar</button>
-                                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/update-docente">Editar</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            1003651092
-                                        </td>
-                                        <td>
-                                            Catedra
-                                        </td>
-                                        <td>
-                                            Alexis
-                                        </td>
-                                        <td>
-                                            Rodriguez
-                                        </td>
-                                        <td >
-                                            arodriguez@ gmail.com
-                                        </td>
-                                        <td>
-                                            Ingeniero
-                                        </td>
-                                        <td>
-                                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Inactivar</button>
-                                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/update-docente">Editar</button>
-                                        </td>
-                                    </tr>                                  
-                                    
-                                    <tr>
-                                        <td>
-                                            1006145950
-                                        </td>
-                                        <td>
-                                            Catedra
-                                        </td>
-                                        <td>
-                                            Sofia
-                                        </td>
-                                        <td>
-                                            Cocoro
-                                        </td>
-                                        <td >
-                                            scocoro@ gmail.com
-                                        </td>
-                                        <td>
-                                            Contadora
-                                        </td>
-                                        <td>
-                                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Inactivar</button>
-                                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/update-docente">Editar</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>Tipo Identificacion</th>
+                                <th>Identificacion</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Genero</th>
+                                <th>Ultimo Titulo</th>
+                                <th>Email</th>                                
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let usuario of usuarios">
+                                <td>{{ usuario.tipoId }}</td> 
+                                <td>{{ usuario.identificacion}}</td>
+                                <td>{{ usuario.nombres }}</td>
+                                <td>{{ usuario.apellidos }}</td> 
+                                <td>{{ usuario.genero }}</td> 
+                                <td>{{ usuario.ultimoTitulo }}</td>
+                                <td>{{ usuario.email }}</td>  
+                                <td>
+                                  <button class="btn btn-primary btn-sm" (click)="updateDocente(usuario.identificacion)">Editar</button>
+                                  <button class="btn btn-danger btn-sm" (click)="deleteDocente(usuario.identificacion)">Eliminar</button>
+                                </td>
+                              </tr>                          
+                            
+                            </tbody>
+                          </table>                     
+                        
                     </div>
                 </div>
             </div>
