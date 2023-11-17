@@ -1,0 +1,94 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+
+    <div class="main-content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header card-header-danger">
+                <h4 class="card-title">Lista Autoevaluacion</h4>
+                <p class="card-category">Informacion</p>
+              </div>
+              <div class="card-body">
+                <!-- <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/crear">Crear Labor</button> -->
+                <button
+                  mat-raised-button
+                  class="btn btn-danger pull-right"
+                  routerLink="/autoevaluacion"
+                >
+                  Crear Autoevaluacion
+                </button>
+
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="text-primary">
+                      <th>Periodo</th>
+                      <th>Nombre Docente</th>
+                      <th>Nombre Labor</th>
+                      <th>Tipo Labor</th>
+                      <th>Horas</th>
+                      <th>Descripcion</th>
+                      <th>Acto</th>
+                      <th>Estado</th>
+                      <th>Evaluacion</th>
+                      <th>Fecha Inicio</th>
+                      <th>Fecha Fin</th>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="
+                          let autoevaluacion of lautoevaluacion;
+                          let i = index
+                        "
+                      >
+                        <td>
+                          {{ autoevaluacion.a_periodo }}
+                        </td>
+                        <td>
+                          {{ autoevaluacion.a_NombreD }}
+                        </td>
+                        <td>
+                          {{ autoevaluacion.a_NombreL }}
+                        </td>
+                        <td>
+                          {{ autoevaluacion.a_TipoL }}
+                        </td>
+                        <td>
+                          {{ autoevaluacion.a_horas }}
+                        </td>
+                        <td>
+                          {{ autoevaluacion.a_Descripcion }}
+                        </td>
+                        <td>
+                          {{ autoevaluacion.a_Acto }}
+                        </td>
+                        <td>
+                          {{ autoevaluacion.a_Estado }}
+                        </td>
+                        <td>
+                          {{ autoevaluacion.a_Evaluacion }}
+                        </td>
+                        <td>
+                          {{ autoevaluacion.a_fechaInicio }}
+                        </td>
+                        <td>
+                          {{ autoevaluacion.a_fechaFin }}
+                        </td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Button trigger modal -->
+  </div>
+</div>

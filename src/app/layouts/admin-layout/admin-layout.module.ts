@@ -23,6 +23,13 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
+import { CrearComponent } from 'app/l_docente/crear/crear.component';
+import { ActualizarComponent } from 'app/l_docente/actualizar/actualizar.component';
+import { ConsultarComponent } from 'app/l_docente/consultar/consultar.component';
+import { ListarLaborComponent } from 'app/l_docente/listar-labor/listar-labor.component';
+import {AutoevaluacionComponent} from 'app/autoevaluacion/autoevaluacion.component';
+import { LAutoevaluacionComponent } from 'app/autoevaluacion/l-autoevaluacion/l-autoevaluacion.component';
+
 
 @NgModule({
   imports: [
@@ -41,12 +48,7 @@ import {MatSelectModule} from '@angular/material/select';
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,
-    ListDocentesComponent,
-    CreateDocenteComponent,
-    UpdateDocenteComponent,
-    ListarPeriodoComponent,
-    CrearPeriodoComponent,
-    ActualizarPeriodoComponent,
+
     /*TypographyComponent,
     IconsComponent,
     MapsComponent,

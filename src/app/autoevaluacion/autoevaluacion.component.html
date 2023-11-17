@@ -1,0 +1,144 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Gestionar Autoevaluación</h4>
+            <p class="card-category">Ingrese los datos</p>
+          </div>
+          <div class="card-body">
+            <form #myForm>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>Periodo Academico</mat-label>
+                    <select matNativeControl required name="a_periodo"  [(ngModel)]="newAutoevaluacion.a_periodo">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>Nombre Docente</mat-label>
+                    <select matNativeControl required name="a_NombreD"  [(ngModel)]="newAutoevaluacion.a_NombreD">
+                      <option selected>seleccione</option>
+                      <option value="pepito">pepito</option>
+                      <option value="Perez">perez</option>
+                    </select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>Nombre Labor</mat-label>
+                    <select matNativeControl required name="a_NombreL"  [(ngModel)]="newAutoevaluacion.a_NombreL">
+                      <option value="Tesis">Tesis</option>
+                      <option value="Maestría">MaestrIa</option>
+                      <option value="Trabajo de Grado">Trabajo</option>
+                    </select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>Tipo Labor</mat-label>
+                    <select matNativeControl required name="a_TipoL"  [(ngModel)]="newAutoevaluacion.a_TipoL">
+                      <option selected>seleccione</option>
+                      <option value="Maestria">Maestria</option>
+                      <option value="Trabajos Docencia">Trabajos Docencia</option>
+                      <option value="Proyectos Investigación">Proyectos Investigación</option>
+                      <option value="Trabajos Investigación">Trabajos Investigación</option>
+                      <option value="Administracción">Administracción</option>
+                      <option value="Asesoría">Asesoría</option>
+                      <option value="Servicios">Servicios</option>
+                      <option value="Extensión">Extensión</option>
+                      <option value="Capacitación">Capacitación</option>
+                      <option value="Otros servicios">Otros servicios</option>
+                    </select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                  <h6>Horas</h6>
+                  <input type="number"name="a_horas" class="form-control"
+                    arial-describedby="a_horas"
+                    [(ngModel)]="newAutoevaluacion.a_horas"
+
+                  />
+                </div>
+
+                <div class="col-md-6">
+                  <h6>Descripcion</h6>
+                  <input
+                    type="text"
+                    name="a_Descripcion"
+                    class="form-control"
+                    arial-describedby="a_Descripcion"
+
+                    [(ngModel)]="newAutoevaluacion.a_Descripcion"
+
+                  />
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>Acto</mat-label>
+                    <select matNativeControl required name="a_Acto"  [(ngModel)]="newAutoevaluacion.a_Acto">
+                      <option value="si">si</option>
+                      <option value="no">no</option>
+                    </select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>Estado</mat-label>
+                    <select matNativeControl required name="a_Estado"  [(ngModel)]="newAutoevaluacion.a_Estado">
+                      <option value="En ejecución">En ejecución</option>
+                      <option value="Terminado">Terminado</option>
+                      <option value="Suspendido">Suspendido</option>
+                    </select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                  <h6>Evaluación</h6>
+                  <input
+                    type="number"
+                    class="form-control"
+                    arial-describedby="a_Evaluacion"
+                    name="a_Evaluacion"
+                    [(ngModel)]="newAutoevaluacion.a_Evaluacion"
+                  />
+                </div>
+
+                <div class="col-md-6">
+                  <h6>Fecha Inicio</h6>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="a_fechaInicio"
+                    arial-describedby="a_fechaInicio"
+                    [(ngModel)]="newAutoevaluacion.a_fechaInicio"
+
+                  />
+                </div>
+
+                <div class="col-md-6">
+                    <h6>Fecha Fin</h6>
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="a_fechaFin"
+                      arial-describedby="a_fechaFin"
+                      [(ngModel)]="newAutoevaluacion.a_fechaFin"
+                    />
+                  </div>
+              </div>
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="agregarAutoevaluacion()" routerLink="/l-autoevaluacion">Crear Autoevaluacion</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
