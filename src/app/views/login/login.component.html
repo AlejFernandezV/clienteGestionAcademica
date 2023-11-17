@@ -1,0 +1,44 @@
+<!-- <div class="input-group-append">
+  <button id="show_password" class="btn btn-primary" type="button" (click)="showPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+</div> -->
+<div #container class="container" id="container">
+  <div class="form-container sign-up-container">
+    
+  </div>
+  <div class="form-container sign-in-container">
+    <form [formGroup]="loginForm" (ngSubmit) = "onLoginUser(loginForm.value)">
+      <h1>Iniciar Sesión</h1>
+      <input
+        type="string"
+        placeholder="Correo Electronico"
+        formControlName="usu_email"
+        id="email_usuario"
+      />
+      <input
+        type="password"
+        placeholder="Contraseña"
+        formControlName="usu_password"
+        id="password_usuario"
+      />
+      <!-- <a href="#">Olvidaste Tu Contraseña?</a> -->
+      <button id="usuario" type="submit">Ingresar</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      
+      <div class="overlay-panel overlay-right">
+        <div class="logo-img">
+          <img src="../../../assets/img/logoB.png"/>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading" class="load-wrapp col-12 d-flex justify-content-center align-items-center">
+  <div class="load-4 d-flex">
+    <div class="ring-1"></div>
+  </div>
+</div>

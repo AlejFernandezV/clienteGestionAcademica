@@ -15,6 +15,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 //import { ListDocentesComponent } from './docente/list-docentes/list-docentes.component';
 //import { CreateDocenteComponent } from './docente/create-docente/create-docente.component';
 
+import { LoginComponent } from './views/login/login.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-
+    LoginComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
