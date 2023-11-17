@@ -11,6 +11,12 @@ import { TableListComponent } from '../../table-list/table-list.component';
 //import { MapsComponent } from '../../maps/maps.component';
 //import { NotificationsComponent } from '../../notifications/notifications.component';
 //import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { ListDocentesComponent } from '../../docente/list-docentes/list-docentes.component';
+import { CreateDocenteComponent } from '../../docente/create-docente/create-docente.component';
+import { UpdateDocenteComponent } from '../../docente/update-docente/update-docente.component';
+import { ListarPeriodoComponent } from '../../Periodo/listar-periodo/listar-periodo.component';
+import { CrearPeriodoComponent } from '../../Periodo/crear-periodo/crear-periodo.component';
+import { ActualizarPeriodoComponent } from '../../Periodo/actualizar-periodo/actualizar-periodo.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatRippleModule} from '@angular/material/core';
@@ -35,6 +41,12 @@ import {MatSelectModule} from '@angular/material/select';
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,
+    ListDocentesComponent,
+    CreateDocenteComponent,
+    UpdateDocenteComponent,
+    ListarPeriodoComponent,
+    CrearPeriodoComponent,
+    ActualizarPeriodoComponent,
     /*TypographyComponent,
     IconsComponent,
     MapsComponent,
