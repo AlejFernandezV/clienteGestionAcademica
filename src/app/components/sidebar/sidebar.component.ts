@@ -12,6 +12,9 @@ export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
     { path: '/user-profile', title: 'Perfil',  icon:'person', class: '' },
     { path: '/table-list', title: 'Evaluación',  icon:'content_paste', class: '' },
+    { path: '/listar_labor', title: 'Labor Docente',  icon:'person', class: '' },
+    { path: '/autoevaluacion', title: 'Autoevaluacion', icon:'person', class:''}
+    
     
     //{ path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
 ];

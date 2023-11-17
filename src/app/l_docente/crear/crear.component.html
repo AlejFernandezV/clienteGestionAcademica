@@ -1,0 +1,60 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+    
+
+      <div class="row">
+          <div class="col-md-8">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title">Crear Labor Docente</h4>
+                      <p class="card-category">Ingrese los datos</p>
+                  </div>
+                  <div class="card-body">
+                   
+                      <form #myForm>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <mat-form-field>
+                                <mat-label>Nombre Labor</mat-label>
+                                <select matNativeControl required name="lb_Nombre"  [(ngModel)]="newDocente.lb_Nombre">
+                                  <option value="Tesis">Tesis</option>
+                                  <option value="Maestría">MaestrIa</option>
+                                  <option value="Trabajo de Grado">Trabajo</option>
+                                </select>
+                              </mat-form-field>
+                            </div>
+                            
+                              <div class="col-md-6">
+                                <mat-form-field>
+                                  <mat-label>Tipo Labor</mat-label>
+                                  <select matNativeControl required name="lb_Tipo"  [(ngModel)]="newDocente.lb_Tipo">
+                                    <option selected>seleccione</option>
+                                    <option value="Maestria">Maestria</option>
+                                    <option value="Trabajos Docencia">Trabajos Docencia</option>
+                                    <option value="Proyectos Investigación">Proyectos Investigación</option>
+                                    <option value="Trabajos Investigación">Trabajos Investigación</option>
+                                    <option value="Administracción">Administracción</option>
+                                    <option value="Asesoría">Asesoría</option>
+                                    <option value="Servicios">Servicios</option>
+                                    <option value="Extensión">Extensión</option>
+                                    <option value="Capacitación">Capacitación</option>
+                                    <option value="Otros servicios">Otros servicios</option>
+                                  </select>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <h6>Horas</h6>
+                                <input type="number" class="form-control" name="lb_Horas" arial-describedby="lb_Horas"
+                                [(ngModel)]="newDocente.lb_Horas">
+                              </div>
+                             
+                          </div>
+                          <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="agregarLabor()" routerLink="/listar_labor">Crear Labor Docente</button>
+                      </form>
+                  </div>
+              </div>
+          </div>          
+      </div>
+  </div>
+</div>
