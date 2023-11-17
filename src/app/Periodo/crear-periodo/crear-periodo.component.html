@@ -1,0 +1,52 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Crear Periodo</h4>
+                        <p class="card-category">Complete la Informacion</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input [(ngModel)]="periodo.per_nombre" name="nombre" matInput placeholder="Nombre">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input  name="año" matInput placeholder="Año">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input  name="semestre" matInput placeholder="Semestre">
+                                    </mat-form-field>
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input  name="fechaI" matInput placeholder="Fecha Inicio">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input  name="feFin" matInput placeholder="Fecha Fin">
+                                    </mat-form-field>
+                                </div>                                
+                            </div>
+                            
+                            <button (click)="creaPeriodo()" mat-raised-button type="submit"
+                                class="btn btn-danger pull-right">Crear Periodo</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
