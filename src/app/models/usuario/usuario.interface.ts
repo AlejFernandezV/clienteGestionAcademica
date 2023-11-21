@@ -1,6 +1,5 @@
 export interface UsuarioI{    
     usu_identificacion: number;
-    usu_tipoId: string;
     usu_email: string;
     usu_password: string;
     usu_rol: string;

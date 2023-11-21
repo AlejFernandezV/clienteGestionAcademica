@@ -3,16 +3,18 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-danger">
+                    <div class="card-header card-header-danger" style="display: flex; justify-content: space-between; align-items: center;">
+                      <div>
                         <h4 class="card-title ">Lista Docentes</h4>
-                        <p class="card-category"> Informacion</p>                        
+                        <p class="card-category"> Informacion</p>
+                      </div> 
+                      <button mat-raised-button type="submit" class="btn btn-accent pull-right" routerLink="/create-docente">Crear Docente</button>
                     </div>
                     <div class="card-body">
-                        <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/create-docente">Crear Docente</button>
+                        
                         <table class="table table-striped">
                             <thead>
                               <tr>
-                                <th>Tipo Identificacion</th>
                                 <th>Identificacion</th>
                                 <th>Nombres</th>
                                 <th>Apellidos</th>
@@ -24,7 +26,6 @@
                             </thead>
                             <tbody>
                               <tr *ngFor="let usuario of usuarios">
-                                <td>{{ usuario.tipoId }}</td> 
                                 <td>{{ usuario.identificacion}}</td>
                                 <td>{{ usuario.nombres }}</td>
                                 <td>{{ usuario.apellidos }}</td> 

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
@@ -43,11 +44,24 @@ import { LAutoevaluacionComponent } from 'app/autoevaluacion/l-autoevaluacion/l-
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatIconModule,
   ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,
+    ListDocentesComponent,
+    CreateDocenteComponent,
+    UpdateDocenteComponent,
+    ListarPeriodoComponent,
+    CrearPeriodoComponent,
+    ActualizarPeriodoComponent,
+    CrearComponent,
+    ConsultarComponent,
+    ActualizarComponent,
+    ListarLaborComponent,
+    AutoevaluacionComponent,
+    LAutoevaluacionComponent,
 
     /*TypographyComponent,
     IconsComponent,
