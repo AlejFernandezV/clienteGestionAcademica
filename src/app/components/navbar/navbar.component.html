@@ -1,6 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
     <div class="container-fluid">
         <div class="navbar-wrapper">
+            <a class="mt-4 ml-4 text-white" href="javascript:void(0)" (click)="goBack()">
+              <i class="material-icons">arrow_back</i>
+            </a>
+        </div>
+        <div class="navbar-wrapper">
           <a class="navbar-brand" style="color: white;" href="javascript:void(0)">{{getTitle()}}</a>
         </div>
         <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">

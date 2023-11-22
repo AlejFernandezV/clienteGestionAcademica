@@ -127,4 +127,8 @@ export class NavbarComponent implements OnInit {
         this.logoutService.logout();
       }
       
+    
+    goBack(){
+        window.history.back();
+    }
 }
