@@ -11,6 +11,7 @@ export class EvaluationsService {
   constructor(private http: HttpClient) {}
 
   getEvaluation() : Observable<ResponseI> {
-    return this.http.get<ResponseI>('https://nvxv3pn0-3333.use2.devtunnels.ms/evaluaciones?idDocente=1&nombrePeriodo=2024-1');
+    //return this.http.get<ResponseI>('https://nvxv3pn0-3333.use2.devtunnels.ms/evaluaciones?idDocente=1&nombrePeriodo=2024-1');
+    return this.http.get<ResponseI>('https://tw0l7qqd-3333.use2.devtunnels.ms/evaluaciones?idDocente=1&nombrePeriodo=2024-1')
   }
 }

@@ -1,132 +1,139 @@
 <div class="main-content">
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                  <div class="card-header card-header-danger card-header-icon">
-                      <div class="card-icon">
-                          <i class="material-icons">settings</i>
-                      </div>
-                      <p class="card-category">Configuración</p>
-                      <h3 class="card-title">Gestión Periodo
-                      </h3>
-                  </div>
-                  <div class="card-footer">
-                    <div class="stats">
-                        <i class="material-icons">date_range</i>
-                        <a href="javascript:void(0)">Periodo</a>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">settings</i>
+                        </div>
+                        <p class="card-category">Configuración</p>
+                        <h3 class="card-title">Gestión Periodo
+                        </h3>
                     </div>
-                </div>
-                  <!--<div class="card-footer">
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">date_range</i>
+                            <a routerLink="/Periodo/listar-periodo">Periodo</a>
+                        </div>
+                    </div>
+                    <!--<div class="card-footer">
                       <div class="stats">
                           <i class="material-icons text-danger">warning</i>
                           <a href="javascript:void(0)">Get More Space...</a>
                       </div>
                   </div>-->
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                  <div class="card-header card-header-danger card-header-icon">
-                      <div class="card-icon">
-                          <i class="material-icons">group</i>
-                      </div>
-                      <p class="card-category">Docentes</p>
-                      <h3 class="card-title">Gestión Docente</h3>
-                  </div>
-                  <div class="card-footer">
-                      <div class="stats">
-                          <i class="material-icons">person_add</i> Gestionar Docentes
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                  <div class="card-header card-header-danger card-header-icon">
-                      <div class="card-icon">
-                          <i class="material-icons">list_alt</i>
-                      </div>
-                      <p class="card-category">Labor</p>
-                      <h3 class="card-title">Gestión Labor</h3>
-                  </div>
-                  <div class="card-footer">
-                      <div class="stats">
-                          <i class="material-icons">add_circle</i> Gestionar labor docente
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                  <div class="card-header card-header-danger card-header-icon">
-                      <div class="card-icon">
-                        <i class="material-icons">quiz</i>
-                      </div>
-                      <p class="card-category">Evaluación</p>
-                      
-                      <h3 class="card-title">Gestión Evaluación</h3>
-                  </div>
-                  <div class="card-footer">
-                      <div class="stats">
-                          <i class="material-icons">add_circle</i> Gestionar Evaluación
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-md-4">
-              <div class="card card-chart">
-                  <div class="card-header card-header-success">
-                      <div class="ct-chart" id="dailySalesChart"></div>
-                  </div>
-                  <div class="card-body">
-                      <h4 class="card-title">Evaluciones Terminadas</h4>
-                      <p class="card-category">
-                          <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> de docentes han realizado su autoevalución.</p>
-                  </div>
-                  <div class="card-footer">
-                      <div class="stats">
-                          <i class="material-icons">access_time</i> actualizado hace 4 minutos
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-4">
-              <div class="card card-chart">
-                  <div class="card-header card-header-warning">
-                      <div class="ct-chart" id="websiteViewsChart"></div>
-                  </div>
-                  <div class="card-body">
-                      <h4 class="card-title">Evaluciones Pendientes</h4>
-                      <p class="card-category"><span class="text-warning"><i class="fa fa-minus-square"></i> 55% </span> de docentes tienen su autoevalución pendiente.</p>
-                  </div>
-                  <div class="card-footer">
-                      <div class="stats">
-                          <i class="material-icons">access_time</i> actualizado hace 2 días
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-4">
-              <div class="card card-chart">
-                  <div class="card-header card-header-danger">
-                      <div class="ct-chart" id="completedTasksChart"></div>
-                  </div>
-                  <div class="card-body">
-                      <h4 class="card-title">Evaluaciones No Terminadas</h4>
-                      <p class="card-category"><span class="text-danger"><i class="fa fa-window-close"></i> 55% </span> de docentes no han realizado su autoevalución.</p>
-                  </div>
-                  <div class="card-footer">
-                      <div class="stats">
-                          <i class="material-icons">access_time</i> actualizado hace 2 días
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">group</i>
+                        </div>
+                        <p class="card-category">Docentes</p>
+                        <h3 class="card-title">Gestión Docente</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">person_add</i>
+                            <a routerLink="/docente">Gestionar Docentes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">list_alt</i>
+                        </div>
+                        <p class="card-category">Labor</p>
+                        <h3 class="card-title">Gestión Labor</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">add_circle</i>
+                            <a routerLink="/l_docente/listar-labor">Gestionar labor docente</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">quiz</i>
+                        </div>
+                        <p class="card-category">Evaluación</p>
+
+                        <h3 class="card-title">Gestión Evaluación</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">add_circle</i>
+                            <a routerLink="/autoevaluacion">Gestionar Evaluación</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <div class="ct-chart" id="dailySalesChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Evaluciones Terminadas</h4>
+                        <p class="card-category">
+                            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> de docentes han
+                            realizado su autoevalución.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> actualizado hace 4 minutos
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-chart">
+                    <div class="card-header card-header-warning">
+                        <div class="ct-chart" id="websiteViewsChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Evaluciones Pendientes</h4>
+                        <p class="card-category"><span class="text-warning"><i class="fa fa-minus-square"></i> 55%
+                            </span> de docentes tienen su autoevalución pendiente.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> actualizado hace 2 días
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-chart">
+                    <div class="card-header card-header-danger">
+                        <div class="ct-chart" id="completedTasksChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Evaluaciones No Terminadas</h4>
+                        <p class="card-category"><span class="text-danger"><i class="fa fa-window-close"></i> 55%
+                            </span> de docentes no han realizado su autoevalución.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> actualizado hace 2 días
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="row">
           <div class="col-lg-6 col-md-12">
               <div class="card">
                   <div class="card-header card-header-tabs card-header-primary">
@@ -416,6 +423,6 @@
                   </div>
               </div>
           </div>
-      </div>
-  </div>
+      </div>-->
+    </div>
 </div>

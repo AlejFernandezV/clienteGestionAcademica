@@ -3,7 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { LoginService } from '../../services/login.service'
 import Swal from 'sweetalert2';
-import { login } from 'app/models/login/login.interface';
+import { LoginI } from 'app/models/login/login.interface';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-login',
@@ -35,11 +36,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     //this.checkLocalStorage()
-  
   }
 
   async onLoginUser(form: any) {
-    let formdefinitive: login = {
+    let formdefinitive: LoginI = {
       usu_email: form.usu_email.toString(),
       usu_password: form.usu_password
     }
@@ -47,10 +47,13 @@ export class LoginComponent implements OnInit {
     this.api.postLogin(formdefinitive).subscribe(data => {
       if (data.status == 'success') {
         this.loading = false
-        localStorage.setItem('id_user', data.results.id)//save the id of user in localStorage
+        console.log("Rol de usuario: ", data.results.rol_description)
+        localStorage.setItem('usu_id', data.results.id)//save the id of user in localStorage
+        localStorage.setItem('usu_rol', data.results.rol_description)
         // this.cookies.set('id_user', data.results.id)//save the token in cookie service
-        // this.redirectTo(data)
-        this.functionRedirigido()
+        //this.redirectTo(data)
+        //this.functionRedirigido()
+        this.checkUserRole()
       } else {
         Swal.fire({
           position: 'center',
@@ -61,6 +64,17 @@ export class LoginComponent implements OnInit {
         })
       }
     })
+  }
+
+  checkUserRole(){
+    let userRole = localStorage.getItem('usu_rol')
+    if(userRole === 'Planta tiempo completo'){
+      this.router.navigate(['autoevaluacion'])
+    }else if ( userRole === 'Coordinador'){
+      this.router.navigate(['user-profile'])
+    } else if (userRole === 'Docente'){
+      this.router.navigate(['evaluacion'])
+    }
   }
 
   onLoginAprendiz(form: any) {
@@ -94,7 +108,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  showPassword() {//ocualtar password
+  showPassword() {//ocultar password
     const change = document.getElementById('password') as HTMLInputElement
     if (change.type === 'password') {
       change.type = 'text'
@@ -104,7 +118,7 @@ export class LoginComponent implements OnInit {
   }
 
   redirectTo(data) {
-    localStorage.setItem('token', data.results.token)//save the token in localStorage
+    //localStorage.setItem('token', data.results.token)//save the token in localStorage
     // this.cookies.set('token', data.results.token)//save the token in cookie service
     localStorage.setItem('perfil_id', data.results.perfil_id)//save the id of user in localStorage
     // this.cookies.set('perfil_id', data.results.perfil_id)//save the token in cookie service
@@ -141,4 +155,9 @@ export class LoginComponent implements OnInit {
       'dashboard'
     ])
   }
+
+  /*onLogOut(){
+    localStorage.clear()
+    this.router.navigate(['login']);
+  }*/
 }

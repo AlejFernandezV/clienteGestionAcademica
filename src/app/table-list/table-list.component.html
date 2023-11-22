@@ -35,6 +35,12 @@
                                             <br>
                                             Si lo desea también hay una sección de Sugerencias y recomendaciones al fina
                                             de esta tabla
+                                            
+                                            <div>
+                                                <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/autoevaluacion">Crear Autoevaluación</button>
+                                                
+                                            </div>
+                                            
                                         </td>
                                     </tr>
                                     <tr>
@@ -53,11 +59,11 @@
                                         <td>
                                             <div class="input-group no-border example-full-width">
                                                 <input type="text" value="" class="form-control" matInput placeholder="Ej: 123456789">
-                                                <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                                <button mat-raised-button class="btn btn-white btn-round btn-just-icon">
                                                   <i class="material-icons">search</i>
                                                   <div class="ripple-container"></div>
                                                 </button>
-                                              </div>
+                                            </div>
                                         </td>
                                     </tr>
 
@@ -121,7 +127,15 @@
                                         <td>{{ evaluacion.per_fecha_inicio | date:'yyyy-MM-dd'}}</td>
                                         <td>{{ evaluacion.per_fecha_fin | date:'yyyy-MM-dd' }}</td>
                                         <td>{{ evaluacion.eva_estado }}</td>
-                                        <td>{{ evaluacion.eva_resultado }}</td>
+                                        <td>{{ evaluacion.eva_resultado }} 
+                                            <div class="col-md-12">
+                                                <label for="pdfFile">Subir archivo PDF: </label>
+                                                <input type="file"  id="pdfFile" name="pdfFile" accept=".jpg .png .pdf ">
+                                            </div>                        
+                                          <!--<div class="clearfix"></div>
+                                          <button mat-raised-button type="submit" class="btn btn-danger pull-right">Subir Archivo</button>
+                                          <div class="clearfix"></div>-->
+                                        </td>
                                         <td>{{ evaluacion.eva_puntaje}}</td>
                                     </tr>
                                     
@@ -133,11 +147,43 @@
                             </table>
                         </div>
                     </div>
+                                     
+                   <!-- <div class="clearfix"></div>
                     <div class="card-header card-header-danger">
                         <h4 class="card-title mt-0" style="text-align: center;"> Sugerencias y recomendaciones para
                             mejorar el funcionamiento y proyección de nuestro Departamento: </h4>
+                    </div>-->
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header card-header-danger">
+                    <h4 class="card-title " style="text-align: center;">Sugerencias y recomendaciones para
+                        mejorar el funcionamiento y proyección de nuestro Departamento:</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="">
+                                <tr>
+                                    <td>
+                                        <div class="input-group no-border example-full-width">
+                                            <input type="text" value="" class="form-control" matInput placeholder="Escriba aquí sus sugerencias.">
+                                            <!--<button mat-raised-button class="btn btn-white btn-round btn-just-icon">
+                                              <i class="material-icons">search</i>
+                                              <div class="ripple-container"></div>
+                                            </button>-->
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </thead>
+                        </table>
                     </div>
                 </div>
+            </div>
+            <div>
+                <button mat-raised-button (click)="onFileSelected($event)" class="btn btn-danger pull-left">Enviar Autoevaluación</button>
             </div>
         </div>
     </div>
