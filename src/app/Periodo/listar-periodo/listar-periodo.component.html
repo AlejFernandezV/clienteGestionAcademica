@@ -1,40 +1,45 @@
 <div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Lista Periodos</h4>
-                        <p class="card-category"> Informacion</p>                        
-                    </div>
-                    <div class="card-body">
-                        <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/crear-periodo">Crear Periodo</button>
-                        <table class="table table-striped">
-                            <thead>
-                              <tr>
-                                <th>Nombre</th>
-                                <th>Fecha Inicio</th>
-                                <th>Fecha Fin</th>                                                               
-                                <th>Acciones</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor="let periodo of periodos">
-                                <td>{{ periodo.nombre }}</td> 
-                                <td>{{ periodo.fechaInicio}}</td>
-                                <td>{{ periodo.fechaFin }}</td>                                  
-                                <td>
-                                  <button class="btn btn-primary btn-sm" (click)="updatePeriodo(periodo.nombre)">Editar</button>
-                                  <button class="btn btn-danger btn-sm" (click)="deletePeriodo(periodo.nombre)">Eliminar</button>
-                                </td>
-                              </tr>                          
-                            
-                            </tbody>
-                          </table>                     
-                        
-                    </div>
-                </div>
-            </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          
+          <div class="card-header card-header-danger" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 class="card-title ">Lista Periodos</h4>
+              <p class="card-category"> Informacion</p>
+            </div> 
+            <button mat-raised-button type="submit" class="btn btn-accent pull-right" routerLink="/crear-periodo">Crear Periodo</button>
+          </div>
+          
+          <div class="card-body">
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Fecha Inicio</th>
+                  <th>Fecha Fin</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let periodo of periodos">
+                  <td>{{ periodo.nombre }}</td>
+                  <td>{{ periodo.fechaInicio}}</td>
+                  <td>{{ periodo.fechaFin }}</td>
+                  <td>
+                    <button class="btn btn-primary btn-sm" (click)="updatePeriodo(periodo.nombre)">Editar</button>
+                    <button class="btn btn-danger btn-sm" (click)="deletePeriodo(periodo.nombre)">Eliminar</button>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+
+          </div>
         </div>
+      </div>
     </div>
   </div>
+</div>

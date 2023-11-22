@@ -12,7 +12,6 @@ export class UpdateDocenteComponent implements OnInit {
 
   docente: UsuarioI = {
     usu_identificacion: 0,
-    usu_tipoId: '',
     usu_email: '',
     usu_password: '',
     usu_rol: 'Docente',
@@ -23,7 +22,6 @@ export class UpdateDocenteComponent implements OnInit {
   }
   generos = ["Masculino", "Femenino", "Otro"];
   tipoDocentes = ["Tiempo Completo", "Planta", "Catedra"];
-  tipoIds: string[] = ["CC", "Pasaporte", "Otro"];
 
   constructor(private UsurioService: UsuariosService,
     private router: Router,
