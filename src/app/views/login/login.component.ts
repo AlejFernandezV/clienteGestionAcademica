@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    //this.checkLocalStorage()
+    this.checkLocalStorage()
   }
 
   async onLoginUser(form: any) {
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('usu_id', data.results.id)//save the id of user in localStorage
         localStorage.setItem('usu_rol', data.results.rol_description)
         // this.cookies.set('id_user', data.results.id)//save the token in cookie service
-        //this.redirectTo(data)
+        this.redirectTo(data)
         //this.functionRedirigido()
         this.checkUserRole()
       } else {
@@ -118,7 +118,7 @@ export class LoginComponent implements OnInit {
   }
 
   redirectTo(data) {
-    //localStorage.setItem('token', data.results.token)//save the token in localStorage
+    localStorage.setItem('token', data.results.token)//save the token in localStorage
     // this.cookies.set('token', data.results.token)//save the token in cookie service
     localStorage.setItem('perfil_id', data.results.perfil_id)//save the id of user in localStorage
     // this.cookies.set('perfil_id', data.results.perfil_id)//save the token in cookie service
@@ -150,11 +150,11 @@ export class LoginComponent implements OnInit {
     })
   }*/
 
-  functionRedirigido() {
+  /*functionRedirigido() {
     this.router.navigate([
       'dashboard'
     ])
-  }
+  }*/
 
   /*onLogOut(){
     localStorage.clear()

@@ -123,15 +123,12 @@ export class NavbarComponent implements OnInit {
       }
       return 'Dashboard';
     }
-<<<<<<< HEAD
     onLogout() {        
         this.logoutService.logout();
       }
       
-=======
     
     goBack(){
         window.history.back();
     }
->>>>>>> 0296cfe (login con rol)
 }
