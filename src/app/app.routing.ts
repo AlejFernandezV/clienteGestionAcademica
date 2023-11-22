@@ -17,10 +17,15 @@ const routes: Routes =[
     
   }, {
     path: '',
+    /*loadChildren: () => 
+        import('./layouts/admin-layout/admin-layout.module')
+          .then(m => m.AdminLayoutModule)*/
     component: AdminLayoutComponent,
     children: [{
       path: '',
-      loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
+      loadChildren: () => 
+        import('./layouts/admin-layout/admin-layout.module')
+          .then(m => m.AdminLayoutModule)
     }]
   }
 ];
