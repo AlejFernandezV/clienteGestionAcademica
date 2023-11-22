@@ -47,9 +47,9 @@ export class LoginComponent implements OnInit {
     this.api.postLogin(formdefinitive).subscribe(data => {
       if (data.status == 'success') {
         this.loading = false
-        console.log("Rol de usuario: ", data.results.rol_description)
+        console.log("Rol de usuario: ", data.results.rol_descripcion)
         localStorage.setItem('usu_id', data.results.id)//save the id of user in localStorage
-        localStorage.setItem('usu_rol', data.results.rol_description)
+        localStorage.setItem('usu_rol', data.results.rol_descripcion)
         // this.cookies.set('id_user', data.results.id)//save the token in cookie service
         this.redirectTo(data)
         //this.functionRedirigido()
@@ -68,13 +68,13 @@ export class LoginComponent implements OnInit {
 
   checkUserRole(){
     let userRole = localStorage.getItem('usu_rol')
-    if(userRole === 'Planta tiempo completo'){
-      this.router.navigate(['autoevaluacion'])
-    }else if ( userRole === 'Coordinador'){
+    if(userRole === 'Coordinador' ||  userRole === 'Decano') {
+      this.router.navigate(['dashboard'])
+    }else if ( userRole === 'Planta tiempo completo'){
       this.router.navigate(['user-profile'])
-    } else if (userRole === 'Docente'){
+    }/* else if (userRole === 'Docente'){
       this.router.navigate(['evaluacion'])
-    }
+    }*/
   }
 
   onLoginAprendiz(form: any) {
@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
     })*/
   }
   checkLocalStorage() {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('token')){
       this.router.navigate(['dashboard']);
     }
   }

@@ -3,21 +3,22 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ResponseI } from 'app/models/response.interface';
 import { Observable, throwError, Subject } from "rxjs";
 import { LoginI } from 'app/models/login/login.interface';
+import { API_BASE_URL } from 'app/api-constants/api-constants.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  private apiURL: string = `${API_BASE_URL}`;
+
   constructor(private http: HttpClient) {}
 
-  postLogin(form: LoginI) : Observable<ResponseI> {
-    //return this.http.post<ResponseI>('https://nvxv3pn0-3333.use2.devtunnels.ms/login', form); pc de mesa
-    //return this.http.post<ResponseI>('https://tw0l7qqd-3333.use2.devtunnels.ms/login', form); // portatil
-    return this.http.post<ResponseI>('http://127.0.0.1:3333/login', form)
+  postLogin(form: LoginI): Observable<ResponseI> {
+    return this.http.post<ResponseI>(`${this.apiURL}login`, form);
   }
 
-  onLogout(token: any): Observable<ResponseI>{
-    return this.http.post<ResponseI>('https://nvxv3pn0-3333.use2.devtunnels.ms/logout', token.token);
+  onLogout(token: any): Observable<ResponseI> {
+    return this.http.post<ResponseI>(`${this.apiURL}logout`, token.token);
   }
 }
