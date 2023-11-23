@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CanActivate } from '@angular/router';
+import { AuthGuard } from 'app/guards/auth.guard';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -28,7 +30,6 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
-  public rol: String;
 
   constructor() { }
   
@@ -44,8 +45,9 @@ export class SidebarComponent implements OnInit {
   };
 
   checkUserRol(){
-    this.rol = localStorage.getItem('usu_rol')
-    if(this.rol === 'Coordinador' || this.rol === 'Decano'){
+    let rol = localStorage.getItem('usu_rol')
+    let token = localStorage.getItem('token')
+    if(token && (rol === 'Coordinador' || rol === 'Decano')){
       for(let i = 0; i < this.menuItems.length; i++){
         console.log(this.menuItems[i].path);  
         this.menuItems[i].status = 1;

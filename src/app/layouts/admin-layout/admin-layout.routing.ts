@@ -16,24 +16,25 @@ import { CrearPeriodoComponent } from '../../Periodo/crear-periodo/crear-periodo
 import { ActualizarPeriodoComponent } from '../../Periodo/actualizar-periodo/actualizar-periodo.component';
 import { AutoevaluacionComponent } from 'app/autoevaluacion/autoevaluacion.component';
 import { LAutoevaluacionComponent } from 'app/autoevaluacion/l-autoevaluacion/l-autoevaluacion.component';
+import { AuthGuard } from 'app/guards/auth.guard';
 
 export const AdminLayoutRoutes: Routes = [
     
-    { path: 'dashboard',      component: DashboardComponent },
+    { path: 'dashboard',      component: DashboardComponent, canActivate:[AuthGuard], },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
-    { path: 'list-docentes',  component: ListDocentesComponent},
-    { path: 'create-docente', component: CreateDocenteComponent},
-    { path: 'update-docente', component: UpdateDocenteComponent},
-    { path: 'listar-periodo', component: ListarPeriodoComponent},
-    { path: 'crear-periodo',  component: CrearPeriodoComponent},
-    { path: 'actualizar-periodo', component: ActualizarPeriodoComponent},
-    { path: 'listar-labor', component: ListarLaborComponent},
-    { path: 'crear', component: CrearComponent},
-    { path: 'consultar', component: ConsultarComponent},
-    { path: 'actualizar', component: ActualizarComponent},
-    { path: 'autoevaluacion', component: AutoevaluacionComponent},
-    { path: 'lautoevaluacion', component: LAutoevaluacionComponent},
+    { path: 'list-docentes',  component: ListDocentesComponent, canActivate:[AuthGuard],},
+    { path: 'create-docente', component: CreateDocenteComponent, canActivate:[AuthGuard],},
+    { path: 'update-docente', component: UpdateDocenteComponent, canActivate:[AuthGuard],},
+    { path: 'listar-periodo', component: ListarPeriodoComponent, canActivate:[AuthGuard],},
+    { path: 'crear-periodo',  component: CrearPeriodoComponent, canActivate:[AuthGuard],},
+    { path: 'actualizar-periodo', component: ActualizarPeriodoComponent, canActivate:[AuthGuard],},
+    { path: 'listar-labor', component: ListarLaborComponent, canActivate:[AuthGuard],},
+    { path: 'crear', component: CrearComponent, canActivate:[AuthGuard],},
+    { path: 'consultar', component: ConsultarComponent, canActivate:[AuthGuard], },
+    { path: 'actualizar', component: ActualizarComponent, canActivate:[AuthGuard],},
+    { path: 'autoevaluacion', component: AutoevaluacionComponent, canActivate:[AuthGuard],},
+    { path: 'lautoevaluacion', component: LAutoevaluacionComponent, canActivate:[AuthGuard],},
 
 
     

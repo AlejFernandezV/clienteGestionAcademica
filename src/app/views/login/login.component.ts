@@ -5,6 +5,7 @@ import { LoginService } from '../../services/login.service'
 import Swal from 'sweetalert2';
 import { LoginI } from 'app/models/login/login.interface';
 import { data } from 'jquery';
+import { log } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -70,11 +71,7 @@ export class LoginComponent implements OnInit {
     let userRole = localStorage.getItem('usu_rol')
     if(userRole === 'Coordinador' ||  userRole === 'Decano') {
       this.router.navigate(['dashboard'])
-    }else if ( userRole === 'Planta tiempo completo'){
-      this.router.navigate(['user-profile'])
-    }/* else if (userRole === 'Docente'){
-      this.router.navigate(['evaluacion'])
-    }*/
+    }else this.router.navigate(['user-profile'])
   }
 
   onLoginAprendiz(form: any) {
