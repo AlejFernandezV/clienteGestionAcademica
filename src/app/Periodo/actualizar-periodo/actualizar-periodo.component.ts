@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PeriodoI } from '../../models/periodo/periodo.interface';
 import { PeriodosService } from '../../services/periodos.service';
@@ -15,6 +16,10 @@ export class ActualizarPeriodoComponent implements OnInit {
     per_fechainicio: null,
     per_fechafin: null
   }
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
 
   constructor(private PeriodoService: PeriodosService,
     private router: Router,
@@ -34,6 +39,8 @@ export class ActualizarPeriodoComponent implements OnInit {
     }
   }
   updatePeriodo() {
+    this.periodo.per_fechainicio = this.range.get('start').value;
+    this.periodo.per_fechafin = this.range.get('end').value;
     this.PeriodoService.updatePeriodo(this.periodo.per_nombre, this.periodo).subscribe(
       res => {
         console.log(res);
