@@ -20,8 +20,8 @@ export class CreateDocenteComponent implements OnInit {
     usu_genero: '',
     usu_estudio: ''
   }
-  generos = ["Masculino", "Femenino","Otro"];
-  tipoDocentes = ["Tiempo Completo", "Planta", "Catedra"];
+  generos = ["Masculino", "Femenino"];
+  tipoDocentes = ["Planta tiempo completo", "Planta medio tiempo", "Catedra tiempo completo", "Catedra tiempo completo"];
 
 
   constructor(private UsuarioService: UsuariosService, private router:Router) { }

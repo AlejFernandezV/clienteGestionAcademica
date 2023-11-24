@@ -4,7 +4,8 @@ import { EvaluationI } from 'app/models/evaluations/evaluations.interface';
 import { DocumentsService } from 'app/services/documents.service';
 import { data } from 'jquery';
 import { log } from 'console';
-
+import { catchError, throwError } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-table-list',
@@ -19,7 +20,10 @@ export class TableListComponent implements OnInit {
   buttonFile: number = 0;
   //identificacion?: string;
 
-  constructor(private evalutionsService: EvaluationsService, private documentoService: DocumentsService) { }
+  constructor(
+    private evalutionsService: EvaluationsService, 
+    private documentoService: DocumentsService
+  ) { }
 
   ngOnInit() {
     this.getEvaluation()
