@@ -31,13 +31,13 @@ export class UpdateDocenteComponent implements OnInit {
     const id_e = <number>this.activeRoute.snapshot.params.id;
 
     if (id_e) {
-      this.UsurioService.getUsuario(id_e).subscribe(
+      /*this.UsurioService.getUsuario(id_e).subscribe(
         res => {
           this.docente = res[0];
           console.log(res[0]);
         },
         err => console.log(err)
-      );
+      );*/
     }
   }
   updateDocente() {

@@ -17,27 +17,25 @@ import { ActualizarPeriodoComponent } from '../../Periodo/actualizar-periodo/act
 import { AutoevaluacionComponent } from 'app/autoevaluacion/autoevaluacion.component';
 import { LAutoevaluacionComponent } from 'app/autoevaluacion/l-autoevaluacion/l-autoevaluacion.component';
 import { AuthGuard } from 'app/guards/auth.guard';
+import { RolDocenteGuard } from 'app/guards/roles/docente/rol-docente.guard';
+import { RolGuard } from 'app/guards/rol/rol.guard';
+import { RolDecanoGuard } from 'app/guards/roles/decano/rol-decano.guard';
 
 export const AdminLayoutRoutes: Routes = [
     
-    { path: 'dashboard',      component: DashboardComponent, canActivate:[AuthGuard], },
-    { path: 'user-profile',   component: UserProfileComponent },
-    { path: 'table-list',     component: TableListComponent },
-    { path: 'list-docentes',  component: ListDocentesComponent, canActivate:[AuthGuard],},
-    { path: 'create-docente', component: CreateDocenteComponent, canActivate:[AuthGuard],},
-    { path: 'update-docente', component: UpdateDocenteComponent, canActivate:[AuthGuard],},
-    { path: 'listar-periodo', component: ListarPeriodoComponent, canActivate:[AuthGuard],},
-    { path: 'crear-periodo',  component: CrearPeriodoComponent, canActivate:[AuthGuard],},
-    { path: 'actualizar-periodo', component: ActualizarPeriodoComponent, canActivate:[AuthGuard],},
-    { path: 'listar-labor', component: ListarLaborComponent, canActivate:[AuthGuard],},
-    { path: 'crear', component: CrearComponent, canActivate:[AuthGuard],},
-    { path: 'consultar', component: ConsultarComponent, canActivate:[AuthGuard], },
-    { path: 'actualizar', component: ActualizarComponent, canActivate:[AuthGuard],},
-    { path: 'autoevaluacion', component: AutoevaluacionComponent, canActivate:[AuthGuard],},
-    { path: 'lautoevaluacion', component: LAutoevaluacionComponent, canActivate:[AuthGuard],},
-
-
-    
-
-   // { path: 'notifications',  component: NotificationsComponent },
+    { path: 'dashboard',      component: DashboardComponent, canActivate:[AuthGuard, RolDecanoGuard], },
+    { path: 'user-profile',   component: UserProfileComponent, canActivate:[AuthGuard, RolGuard],  },
+    { path: 'table-list',     component: TableListComponent, canActivate:[AuthGuard, RolGuard], },
+    { path: 'list-docentes',  component: ListDocentesComponent, canActivate:[AuthGuard, RolDecanoGuard],},
+    { path: 'create-docente', component: CreateDocenteComponent, canActivate:[AuthGuard, RolDecanoGuard],},
+    { path: 'update-docente', component: UpdateDocenteComponent, canActivate:[AuthGuard, RolDecanoGuard],},
+    { path: 'listar-periodo', component: ListarPeriodoComponent, canActivate:[AuthGuard, RolDecanoGuard],},
+    { path: 'crear-periodo',  component: CrearPeriodoComponent, canActivate:[AuthGuard, RolDecanoGuard],},
+    { path: 'actualizar-periodo', component: ActualizarPeriodoComponent, canActivate:[AuthGuard, RolDecanoGuard],},
+    { path: 'listar-labor', component: ListarLaborComponent, canActivate:[AuthGuard, RolDecanoGuard],},
+    { path: 'crear', component: CrearComponent, canActivate:[AuthGuard, RolDecanoGuard],},
+    { path: 'consultar', component: ConsultarComponent, canActivate:[AuthGuard, RolDecanoGuard], },
+    { path: 'actualizar', component: ActualizarComponent, canActivate:[AuthGuard, RolDecanoGuard],},
+    { path: 'autoevaluacion', component: AutoevaluacionComponent, canActivate:[AuthGuard, RolDecanoGuard],},
+    { path: 'lautoevaluacion', component: LAutoevaluacionComponent, canActivate:[AuthGuard, RolDecanoGuard],},
 ];

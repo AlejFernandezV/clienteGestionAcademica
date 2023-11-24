@@ -13,8 +13,8 @@ export class UsuariosService {
 
   constructor(private http: HttpClient) { }
 
-  getUsuario(id: number): Observable<ResponseI> {
-    return this.http.get<ResponseI>(`${this.apiUrl}/usuarios/${id}`);
+  getUsuario(nombre: string, apellido: string): Observable<ResponseI> {
+    return this.http.get<ResponseI>(`${this.apiUrl}/usuarios/buscar_por_nombre?nombre=${nombre}&apellido=${apellido}`);
   }
   getUsuarios(): Observable<ResponseI> {
     return this.http.get<ResponseI>(`${this.apiUrl}/usuarios`);

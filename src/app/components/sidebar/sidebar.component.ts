@@ -14,10 +14,10 @@ export const ROUTES: RouteInfo[] = [
   
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '', status: 0 },
     { path: '/user-profile', title: 'Perfil',  icon:'person', class: '', status: 0 },
-    { path: '/table-list', title: 'Evaluación',  icon:'content_paste', class: '', status: 0 },
+    { path: '/table-list', title: 'Autoevaluación',  icon:'content_paste', class: '', status: 0 },
     { path: '/list-docentes', title: 'Docente',  icon:'person', class: '', status: 0 },
     { path: '/listar-periodo', title: 'Periodo', icon: 'person', class: '', status: 0},
-    { path: '/autoevaluacion', title: 'Autoevaluacion', icon: 'content_paste', class: '', status: 0},
+    //{ path: '/autoevaluacion', title: 'Autoevaluacion', icon: 'content_paste', class: '', status: 0},
     { path: '/listar-labor', title: 'Labor docente', icon: 'content_paste', class: '', status: 0}
     
     //{ path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
@@ -49,7 +49,7 @@ export class SidebarComponent implements OnInit {
     let token = localStorage.getItem('token')
     if(token && (rol === 'Coordinador' || rol === 'Decano')){
       for(let i = 0; i < this.menuItems.length; i++){
-        console.log(this.menuItems[i].path);  
+        console.log(this.menuItems[i].path);
         this.menuItems[i].status = 1;
       }
       
