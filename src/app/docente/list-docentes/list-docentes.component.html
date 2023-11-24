@@ -1,50 +1,53 @@
 <div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-danger" style="display: flex; justify-content: space-between; align-items: center;">
-                      <div>
-                        <h4 class="card-title ">Lista Docentes</h4>
-                        <p class="card-category"> Informacion</p>
-                      </div> 
-                      <button mat-raised-button type="submit" class="btn btn-accent pull-right" routerLink="/create-docente">Crear Docente</button>
-                    </div>
-                    <div class="card-body">
-                        
-                        <table class="table table-striped">
-                            <thead>
-                              <tr>
-                                <th>Identificacion</th>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Genero</th>
-                                <th>Ultimo Titulo</th>
-                                <th>Email</th>                                
-                                <th>Acciones</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor="let usuario of usuarios">
-                                <td>{{ usuario.identificacion}}</td>
-                                <td>{{ usuario.nombres }}</td>
-                                <td>{{ usuario.apellidos }}</td> 
-                                <td>{{ usuario.genero }}</td> 
-                                <td>{{ usuario.ultimoTitulo }}</td>
-                                <td>{{ usuario.email }}</td>  
-                                <td>
-                                  <button class="btn btn-primary btn-sm" (click)="updateDocente(usuario.identificacion)">Editar</button>
-                                  <button class="btn btn-danger btn-sm" (click)="deleteDocente(usuario.identificacion)">Eliminar</button>
-                                </td>
-                              </tr>                          
-                            
-                            </tbody>
-                          </table>                     
-                        
-                    </div>
-                </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger"
+            style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 class="card-title ">Lista Docentes</h4>
+              <p class="card-category"> Informacion</p>
             </div>
+            <button type="submit" class="btn btn-custom pull-right" routerLink="/create-docente" title="Crear docente"><mat-icon>person_add
+              </mat-icon></button>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Identificacion</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Genero</th>
+                    <th>Ultimo Titulo</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let usuario of usuarios">
+                    <td>{{ usuario.usu_num_doc}}</td>
+                    <td>{{ usuario.usu_nombre }}</td>
+                    <td>{{ usuario.usu_apellido }}</td>
+                    <td>{{ usuario.usu_genero }}</td>
+                    <td>{{ usuario.usu_estudio }}</td>
+                    <td>{{ usuario.usu_email }}</td>
+                    <td>
+                      <button class="btn btn-warning btn-sm"
+                        (click)="updateDocente(usuario.identificacion)" title="Editar"><mat-icon>edit</mat-icon></button>
+                      <button class="btn btn-danger btn-sm"
+                        (click)="deleteDocente(usuario.identificacion)" title="Eliminar"><mat-icon>delete</mat-icon></button>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
-  
+</div>

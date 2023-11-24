@@ -1,7 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">Crear Periodo</h4>
@@ -44,10 +44,12 @@
 
                                 </div>
                             </div>
-
-                            <button (click)="creaPeriodo()" mat-raised-button type="submit"
+                            <div class="pull-right">
+                                <button (click)="creaPeriodo()" mat-raised-button type="submit"
                                 class="btn btn-danger pull-right">Crear Periodo</button>
                             <div class="clearfix"></div>
+                            </div>
+                            
                         </form>
                     </div>
                 </div>

@@ -17,7 +17,7 @@ export class UsuariosService {
     return this.http.get<ResponseI>(`${this.apiUrl}/usuarios/buscar_por_nombre?nombre=${nombre}&apellido=${apellido}`);
   }
   getUsuarios(): Observable<ResponseI> {
-    return this.http.get<ResponseI>(`${this.apiUrl}/usuarios`);
+    return this.http.get<ResponseI>(`${this.apiUrl}/usuarios/listar_pd`);
   }
   deleteUsuario(id: number): Observable<ResponseI> {
     return this.http.delete<ResponseI>(`${this.apiUrl}/usuarios/${id}`);

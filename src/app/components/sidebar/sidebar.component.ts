@@ -16,8 +16,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/user-profile', title: 'Perfil',  icon:'person', class: '', status: 0 },
     { path: '/table-list', title: 'Autoevaluación',  icon:'content_paste', class: '', status: 0 },
     { path: '/list-docentes', title: 'Docente',  icon:'person', class: '', status: 0 },
-    { path: '/listar-periodo', title: 'Periodo', icon: 'person', class: '', status: 0},
-    //{ path: '/autoevaluacion', title: 'Autoevaluacion', icon: 'content_paste', class: '', status: 0},
+    { path: '/listar-periodo', title: 'Periodo', icon: 'date_range', class: '', status: 0},
+    { path: '/autoevaluacion', title: 'Autoevaluacion', icon: 'content_paste', class: '', status: 0},
     { path: '/listar-labor', title: 'Labor docente', icon: 'content_paste', class: '', status: 0}
     
     //{ path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
