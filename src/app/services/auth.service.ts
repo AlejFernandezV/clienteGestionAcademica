@@ -9,9 +9,8 @@ export class AuthService {
   constructor() { }
 
   getAuthToken(): Observable<Boolean>{
-    let rol = localStorage.getItem('usu_rol')
     let token = localStorage.getItem('token')
-    if(token && (rol === 'Coordinador' || rol === 'Decano')){
+    if(token){
       return new Observable<Boolean>(observer => {
         observer.next(true);
       });
@@ -20,5 +19,11 @@ export class AuthService {
         observer.next(false);
       });
     }
+  }
+
+ getRol(): string{
+    let rol = localStorage.getItem('usu_rol') 
+    console.log("rol auth",rol)
+    return rol
   }
 }

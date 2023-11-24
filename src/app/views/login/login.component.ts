@@ -4,8 +4,6 @@ import { Router } from '@angular/router'
 import { LoginService } from '../../services/login.service'
 import Swal from 'sweetalert2';
 import { LoginI } from 'app/models/login/login.interface';
-import { data } from 'jquery';
-import { log } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -48,9 +46,11 @@ export class LoginComponent implements OnInit {
     this.api.postLogin(formdefinitive).subscribe(data => {
       if (data.status == 'success') {
         this.loading = false
-        console.log("Rol de usuario: ", data.results.rol_descripcion)
-        localStorage.setItem('usu_id', data.results.id)//save the id of user in localStorage
+        localStorage.setItem('usu_nombre', data.results.usu_nombre)//save the id of user in localStorage
+        localStorage.setItem('usu_num_doc', data.results.usu_num_doc)
+        localStorage.setItem('usu_apellido', data.results.usu_apellido)
         localStorage.setItem('usu_rol', data.results.rol_descripcion)
+        localStorage.setItem('usu_email', data.results.usu_email)
         // this.cookies.set('id_user', data.results.id)//save the token in cookie service
         this.redirectTo(data)
         //this.functionRedirigido()

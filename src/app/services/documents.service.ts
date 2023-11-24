@@ -18,7 +18,7 @@ export class DocumentsService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<ResponseI>( `${this.apiURL}upload`, data);
+    return this.http.post<ResponseI>( `${this.apiURL}/upload`, data);
   }
 
 }

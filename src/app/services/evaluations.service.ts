@@ -13,6 +13,6 @@ export class EvaluationsService {
   constructor(private http: HttpClient) {}
 
   getEvaluation() : Observable<ResponseI> {
-    return this.http.get<ResponseI>(`${this.apiURL}evaluaciones?idDocente=1&nombrePeriodo=2024-1`)
+    return this.http.get<ResponseI>(`${this.apiURL}/evaluaciones?idDocente=1&nombrePeriodo=2024-1`)
   }
 }

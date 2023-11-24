@@ -15,10 +15,10 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   postLogin(form: LoginI): Observable<ResponseI> {
-    return this.http.post<ResponseI>(`${this.apiURL}login`, form);
+    return this.http.post<ResponseI>(`${this.apiURL}/login`, form);
   }
 
   onLogout(token: any): Observable<ResponseI> {
-    return this.http.post<ResponseI>(`${this.apiURL}logout`, token.token);
+    return this.http.post<ResponseI>(`${this.apiURL}/logout`, token.token);
   }
 }
