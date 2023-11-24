@@ -19,6 +19,7 @@ export class CrearPeriodoComponent implements OnInit {
     per_fecha_inicio: null,
     per_fecha_fin: null
   }
+  semestres = [1, 2];
 
   formPeriodo = new FormGroup({
     per_nombre: new FormControl(),

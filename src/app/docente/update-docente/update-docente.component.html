@@ -10,6 +10,15 @@
           <div class="card-body">
             <form [formGroup]="actualizarDocenteForm" (ngSubmit)="actualizarDocente(actualizarDocenteForm.value)">
               <div class="row">
+                <div class="col-md-2">                  
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Tipo ID</mat-label>
+                    <select matNativeControl  [(ngModel)]="docente.usu_tipo_doc" name="tipoId">
+                      <option value="" selected></option>
+                      <option *ngFor="let tipo of tiposId" [value]="tipo"> {{tipo}}</option>                      
+                    </select>
+                  </mat-form-field>
+                </div>
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
                     <input type="number" 
@@ -28,7 +37,7 @@
                     </select>
                   </mat-form-field>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <mat-form-field class="example-full-width">
                     <mat-label>Genero</mat-label>
                     <select matNativeControl  type="string" formControlName="usu_genero" name="gen">
@@ -51,7 +60,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <mat-form-field class="example-full-width">
                     <input matInput type="string" placeholder="Ultimo titulo academico" formControlName="usu_estudio">
                   </mat-form-field>
@@ -59,6 +68,15 @@
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
                     <input matInput type="string"  placeholder="Email" formControlName="usu_email">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Estado</mat-label>
+                    <select matNativeControl  [(ngModel)]="docente.usu_estado" name="estado">
+                      <option value="" selected></option>
+                      <option *ngFor="let estado of estados" [value]="estado"> {{estado}}</option>                      
+                    </select>
                   </mat-form-field>
                 </div>
 

@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
 export class ListDocentesComponent implements OnInit {
 
   usuarios: UsuarioI[] = [];
-
   constructor(private usuarioService: UsuariosService, private router: Router) { }
 
   ngOnInit(): void {
