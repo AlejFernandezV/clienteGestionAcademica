@@ -11,6 +11,8 @@ import { PeriodosService } from 'app/services/periodos.service';
 export class ListarPeriodoComponent implements OnInit {
 
   periodos: PeriodoI[] = [];
+  
+  
 
   constructor(private periodoService: PeriodosService, private router: Router) { }
 
@@ -18,6 +20,13 @@ export class ListarPeriodoComponent implements OnInit {
     this.listPeriodos();
   }
   listPeriodos(){
+    /* this.periodoService.getPeriodos().subscribe(
+      res => {
+        console.log(res);
+        this.periodos =<any>res.results;        
+      },
+      err => console.log(err)
+    ); */
     this.periodoService.getPeriodos().subscribe(
       res => {
         this.periodos = res.results;
@@ -39,5 +48,7 @@ export class ListarPeriodoComponent implements OnInit {
   updatePeriodo(id: string){
     this.router.navigate(['/actualizar-periodo'+id]);
   }
+  
+
 
 }

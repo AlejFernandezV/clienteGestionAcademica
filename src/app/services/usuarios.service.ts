@@ -26,7 +26,6 @@ export class UsuariosService {
   deleteUsuario(id: number): Observable<ResponseI> {
     return this.http.delete<ResponseI>(`${this.apiUrl}/usuarios/eliminar?num_doc=${id}`);
   }
-
   createUsuario(usuario: UsuarioI): Observable<ResponseI> {
     return this.http.post<ResponseI>(`${this.apiUrl}/usuarios/crear`, usuario);
   }
