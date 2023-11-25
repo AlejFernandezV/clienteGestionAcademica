@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from 'app/services/login.service';
 import * as Chartist from 'chartist';
 
 @Component({
@@ -8,7 +10,8 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+  
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -65,7 +68,16 @@ export class DashboardComponent implements OnInit {
 
       seq2 = 0;
   };
+  public rol: String
   ngOnInit() {
+    
+    this.rol = localStorage.getItem('usu_rol')
+    console.log("ayuda, me dañé")
+    if(this.rol === 'Planta tiempo completo'){
+      console.log("ayuda, me dañé")
+      this.router.navigate(['dashboard'])
+    }
+
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {

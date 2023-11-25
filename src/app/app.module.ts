@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
+import { MatIconModule } from '@angular/material/icon';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 //import { CrearPeriodoComponent } from './periodo/crear-periodo/crear-periodo.component';
 //import { ListarPeriodoComponent } from './periodo/listar-periodo/listar-periodo.component';
@@ -14,6 +15,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 //import { ListDocentesComponent } from './docente/list-docentes/list-docentes.component';
 //import { CreateDocenteComponent } from './docente/create-docente/create-docente.component';
 
+import { LoginComponent } from './views/login/login.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 @NgModule({
   imports: [
@@ -23,12 +26,14 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     HttpClientModule,
     ComponentsModule,
     RouterModule,
+    MatIconModule,
     AppRoutingModule,
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-
+    LoginComponent,
+    InicioComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

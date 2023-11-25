@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor() { }
+  nombre = localStorage.getItem('usu_nombre')
+  documento = localStorage.getItem('usu_num_doc')
+  rol = localStorage.getItem('usu_rol')
+  email = localStorage.getItem('usu_email')
+  userName: string
 
-  ngOnInit() {
+  constructor() { }
+  
+  ngOnInit() {  
+    this.getUsernameFromEmail()  
+  }
+
+  getUsernameFromEmail() {
+    if (this.email) {
+      this.userName = this.email.split('@')[0];
+    } else {
+      console.log('No hay correo electrónico');
+    }
   }
 
 }

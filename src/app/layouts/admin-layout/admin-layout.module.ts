@@ -30,7 +30,9 @@ import { ConsultarComponent } from 'app/l_docente/consultar/consultar.component'
 import { ListarLaborComponent } from 'app/l_docente/listar-labor/listar-labor.component';
 import {AutoevaluacionComponent} from 'app/autoevaluacion/autoevaluacion.component';
 import { LAutoevaluacionComponent } from 'app/autoevaluacion/l-autoevaluacion/l-autoevaluacion.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   imports: [
@@ -45,6 +47,9 @@ import { LAutoevaluacionComponent } from 'app/autoevaluacion/l-autoevaluacion/l-
     MatSelectModule,
     MatTooltipModule,
     MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMenuModule,    
   ],
   declarations: [
     DashboardComponent,
