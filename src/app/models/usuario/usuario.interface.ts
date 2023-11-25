@@ -1,11 +1,12 @@
-export interface UsuarioI{    
-    usu_identificacion: number;
+export interface UsuarioI{   
+    usu_num_doc: number;
+    usu_tipo_doc: string;
     usu_email: string;
     usu_password: string;
-    usu_rol: string;
-    usu_nombres: string;
-    usu_apellidos: string;
+    rol_id: number;
+    usu_nombre: string;
+    usu_apellido: string;
     usu_genero: string;
     usu_estudio: string;
-    
+    usu_estado:string;
 }

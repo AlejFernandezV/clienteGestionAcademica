@@ -19,14 +19,18 @@ export class UsuariosService {
   getUsuarios(): Observable<ResponseI> {
     return this.http.get<ResponseI>(`${this.apiUrl}/usuarios/listar_pd`);
   }
+  getUsuarioPorId(id:string): Observable<ResponseI>{
+    return this.http.get<ResponseI>(`${this.apiUrl}/usuarios/buscar_por_num_doc?num_doc=${id}`);
+  }
   deleteUsuario(id: number): Observable<ResponseI> {
-    return this.http.delete<ResponseI>(`${this.apiUrl}/usuarios/${id}`);
+    return this.http.delete<ResponseI>(`${this.apiUrl}/usuarios/buscar_por_num_doc?num_doc=${id}`);
   }
 
   createUsuario(usuario: UsuarioI): Observable<ResponseI> {
-    return this.http.post<ResponseI>(`${this.apiUrl}/usuarios`, usuario);
+    return this.http.post<ResponseI>(`${this.apiUrl}/usuarios/crear`, usuario);
   }
-  updateUsuario(id: number, updateUsuario: UsuarioI): Observable<ResponseI> {
-    return this.http.put<ResponseI>(`${this.apiUrl}/usuarios/${id}`, updateUsuario);
+  
+  updateUsuario(updateUsuario: UsuarioI): Observable<ResponseI> {
+    return this.http.put<ResponseI>(`${this.apiUrl}/usuarios/actualizar`, updateUsuario);
   }
 }

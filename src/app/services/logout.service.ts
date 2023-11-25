@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { ResponseI } from 'app/models/response.interface';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import Swal from 'sweetalert2';
@@ -18,12 +15,10 @@ export class LogoutService {
 
   logout(){
     let token = localStorage.getItem('token')
-    //this.api.onLogout(token);
-    localStorage.removeItem('token');
-        this.router.navigate(['/login']);/*.subscribe(data =>{
+    this.api.onLogout(token).subscribe(data =>{
       if (data.status == 'success'){
         localStorage.removeItem('token');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/inicio']);
       }else {
         Swal.fire({
           position: 'center',
@@ -33,7 +28,7 @@ export class LogoutService {
           showConfirmButton: true,
         })
       }
-    });*/
+    });
 
     
   }

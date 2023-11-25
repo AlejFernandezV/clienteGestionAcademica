@@ -5,21 +5,22 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './views/login/login.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 const routes: Routes =[
   {  
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'inicio',
     pathMatch: 'full',
   },{
     path: 'login',
     component: LoginComponent,
     
+  },{
+    path:'inicio',
+    component: InicioComponent,
   }, {
     path: '',
-    /*loadChildren: () => 
-        import('./layouts/admin-layout/admin-layout.module')
-          .then(m => m.AdminLayoutModule)*/
     component: AdminLayoutComponent,
     children: [{
       path: '',

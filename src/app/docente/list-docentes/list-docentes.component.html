@@ -36,7 +36,7 @@
                     <td>{{ usuario.usu_email }}</td>
                     <td>
                       <button class="btn btn-warning btn-sm"
-                        (click)="updateDocente(usuario.identificacion)" title="Editar"><mat-icon>edit</mat-icon></button>
+                        [routerLink]="['/update-docente/', usuario.usu_num_doc]" title="Editar"><mat-icon>edit</mat-icon></button>
                       <button class="btn btn-danger btn-sm"
                         (click)="deleteDocente(usuario.identificacion)" title="Eliminar"><mat-icon>delete</mat-icon></button>
                     </td>
