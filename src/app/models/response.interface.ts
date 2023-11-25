@@ -4,6 +4,6 @@ export interface ResponseI {
     show: string;
     message: string | any;
     delay: any;
-    code: string;
+    code: number;
     results?: any;
 }

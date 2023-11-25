@@ -7,15 +7,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RolDocenteGuard implements CanActivate {
-
+  rol = this.authService.getRol()
   constructor(private authService: AuthService) { }
+
   checkPermisos(){
-    let rol = this.authService.getRol()
-    if(rol == 'Planta tiempo completo'){
+    let rol = this.getRolUsuario(this.rol)
+    if(rol == 'Pla' || rol == 'Cat'){
       return true
     }else{
       return false
     }
+  }
+
+  getRolUsuario(rol : string){
+    if (rol) {
+      rol = rol.substring(0, 3);
+    }
+    return rol;
   }
 
   canActivate(

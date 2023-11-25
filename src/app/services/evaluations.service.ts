@@ -12,7 +12,7 @@ export class EvaluationsService {
   private apiURL: String = `${API_BASE_URL}`;
   constructor(private http: HttpClient) {}
 
-  getEvaluation() : Observable<ResponseI> {
-    return this.http.get<ResponseI>(`${this.apiURL}/evaluaciones?idDocente=1&nombrePeriodo=2024-1`)
+  getEvaluation(num_doc: string) : Observable<ResponseI> {
+    return this.http.get<ResponseI>(`${this.apiURL}/evaluaciones/listar_por_docente?num_doc=${num_doc}`)
   }
 }

@@ -36,7 +36,7 @@
                                             Si lo desea también hay una sección de Sugerencias y recomendaciones al fina
                                             de esta tabla
                                             
-                                            <div *ngIf="userRol()">
+                                            <div *ngIf="getUserRol()">
                                                 <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/autoevaluacion">Crear Autoevaluación</button>
                                                 
                                             </div>
@@ -128,7 +128,7 @@
                                         <td>{{ evaluacion.per_fecha_fin | date:'yyyy-MM-dd' }}</td>
                                         <td>{{ evaluacion.eva_estado }}</td>
                                         <td>{{ evaluacion.eva_resultado }} 
-                                            <div *ngIf="userDocente()" class="col-md-12">
+                                            <div *ngIf="getUserTipoDocente()" class="col-md-12">
                                                 <label for="pdfFile">Subir archivo PDF: </label>
                                                 <input type="file"  id="pdfFile" name="pdfFile" accept=".jpg .png .pdf ">
                                             </div>                        
