@@ -13,7 +13,7 @@
                 <div class="col-md-2">                  
                   <mat-form-field class="example-full-width">
                     <mat-label>Tipo ID</mat-label>
-                    <select matNativeControl  [(ngModel)]="docente.usu_tipo_doc" name="tipoId">
+                    <select matNativeControl formControlName="usu_tipo_doc" name="tipoId">
                       <option value="" selected></option>
                       <option *ngFor="let tipo of tiposId" [value]="tipo"> {{tipo}}</option>                      
                     </select>
@@ -81,7 +81,7 @@
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
                     <mat-label>Estado</mat-label>
-                    <select matNativeControl  [(ngModel)]="docente.usu_estado" name="estado">
+                    <select matNativeControl formControlName="usu_estado" name="estado">
                       <option value="" selected></option>
                       <option *ngFor="let estado of estados" [value]="estado"> {{estado}}</option>                      
                     </select>
