@@ -1,24 +1,28 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-danger">
             <h4 class="card-title">Actualizar Perfil Docente</h4>
             <p class="card-category">Complete su perfil</p>
           </div>
           <div class="card-body">
-            <form>
+            <form [formGroup]="actualizarDocenteForm" (ngSubmit)="actualizarDocente(actualizarDocenteForm.value)">
               <div class="row">
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
-                    <input [(ngModel)]="docente.usu_identificacion" name="identificacion" matInput placeholder="Identificacion">
+                    <input type="number" 
+                    matInput
+                    placeholder="Identificacion"
+                    formControlName="usu_num_doc"
+                    id="identificacion_usu"/>
                   </mat-form-field>
                 </div>
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
                     <mat-label>Tipo Docente</mat-label>
-                    <select matNativeControl  [(ngModel)]="docente.usu_rol" name="rol">
+                    <select matNativeControl type="string" formControlName="rol_descripcion">
                       <option value="" selected></option>
                       <option *ngFor="let rols of tipoDocentes" [value]="rols"> {{rols}}</option>                      
                     </select>
@@ -27,7 +31,7 @@
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
                     <mat-label>Genero</mat-label>
-                    <select matNativeControl  [(ngModel)]="docente.usu_genero" name="gen">
+                    <select matNativeControl  type="string" formControlName="usu_genero" name="gen">
                       <option value="" selected></option>
                       <option *ngFor="let gens of generos" [value]="gens"> {{gens}}</option>                      
                     </select>
@@ -35,36 +39,36 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-3">
+                <!--<div class="col-md-3">
                   <mat-form-field class="example-full-width">
-                    <input  [(ngModel)]="docente.usu_password" name="pass" matInput placeholder="Contraseña" type="password">
+                    <input   matInput type="string" placeholder="Contraseña" formControlName="usu_password">
+                  </mat-form-field>
+                </div>-->
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput type="string"  placeholder="Nombres" formControlName="usu_nombre">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input  [(ngModel)]="docente.usu_nombres" name="nombres" matInput placeholder="Nombres" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input [(ngModel)]="docente.usu_apellidos" name="apellidos" matInput placeholder="Apellidos" type="text">
+                    <input matInput type="string" placeholder="Apellidos" formControlName="usu_apellido">
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input [(ngModel)]="docente.usu_estudio" name="ultimoTitulo" matInput placeholder="Ultimo titulo academico" type="text">
+                    <input matInput type="string" placeholder="Ultimo titulo academico" formControlName="usu_estudio">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input [(ngModel)]="docente.usu_email" name="email" matInput placeholder="Email" type="Email">
+                    <input matInput type="string"  placeholder="Email" formControlName="usu_email">
                   </mat-form-field>
                 </div>
 
               </div>
-              <button (click)="updateDocente()" mat-raised-button type="submit" class="btn btn-danger pull-right">Actualizar Perfil</button>
+              <button  mat-raised-button type="submit" class="btn btn-danger pull-right">Actualizar Perfil</button>
               <div class="clearfix"></div>
             </form>
           </div>

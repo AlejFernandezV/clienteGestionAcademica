@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../services/usuarios.service';
 import { UsuarioI } from 'app/models/usuario/usuario.interface';
 import { Router } from '@angular/router';
+import { DateRange } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-list-docentes',
@@ -37,9 +38,4 @@ export class ListDocentesComponent implements OnInit {
       err=> console.log(err)
     );
   }
-
-  updateDocente(id: number){
-    this.router.navigate(['/update-docente'+id]);
-  }
-
 }

@@ -45,12 +45,9 @@ export class LoginComponent implements OnInit {
     console.log("Email ", formdefinitive)
     this.api.postLogin(formdefinitive).subscribe(data => {
       if (data.status == 'success') {
-        this.loading = false
-        localStorage.setItem('usu_nombre', data.results.usu_nombre)//save the id of user in localStorage
+        this.loading = false//save the id of user in localStorage
         localStorage.setItem('usu_num_doc', data.results.usu_num_doc)
-        localStorage.setItem('usu_apellido', data.results.usu_apellido)
         localStorage.setItem('usu_rol', data.results.rol_descripcion)
-        localStorage.setItem('usu_email', data.results.usu_email)
         // this.cookies.set('id_user', data.results.id)//save the token in cookie service
         this.redirectTo(data)
         //this.functionRedirigido()
