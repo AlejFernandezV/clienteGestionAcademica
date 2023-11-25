@@ -1,22 +1,17 @@
-<app-listar-labor></app-listar-labor>
-        <div class="modal fade" id="editmodall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <h1>hola</h1>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
+<div *ngIf="docente">
+    <h2>Actualizar Docente</h2>
+    <form (ngSubmit)="actualizarDocente()">
+      <label for="lab_nombre">Nombre del laboratorio:</label>
+      <input type="text" id="lab_nombre" name="lab_nombre" [(ngModel)]="docente.lab_nombre" required><br><br>
   
+      <label for="lab_horas">Horas:</label>
+      <input type="number" id="lab_horas" name="lab_horas" [(ngModel)]="docente.lab_horas" required><br><br>
   
+      <label for="tl_descripcion">Descripción:</label>
+      <textarea id="tl_descripcion" name="tl_descripcion" [(ngModel)]="docente.tl_descripcion" required></textarea><br><br>
+  
+      <!-- Resto de campos del formulario... -->
+  
+      <button type="submit">Actualizar</button>
+    </form>
+  </div>

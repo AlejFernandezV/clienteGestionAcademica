@@ -36,6 +36,7 @@ export class ListarPeriodoComponent implements OnInit {
       err=> console.log(err)
     );
   }
+  
   updatePeriodo(id: string){
     this.router.navigate(['/actualizar-periodo'+id]);
   }

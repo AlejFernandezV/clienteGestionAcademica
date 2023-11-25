@@ -1,54 +1,37 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { l_docente } from '../models/l_docente/docente';
+import { L_docente } from '../models/l_docente/docente';
+import { Observable } from 'rxjs';
 
-
-const listDocente =[
-  { "id": 1, 
-    "lb_Tipo": "Tiempo completo", 
-    "lb_Nombre": "Juan Pérez", 
-    "lb_Horas": 40 
-  },
-  { "id": 2, 
-    "lb_Tipo": "Tiempo ", 
-    "lb_Nombre": "Juan ", 
-    "lb_Horas": 6 
-  },
-   
-]
 @Injectable({
   providedIn: 'root'
 })
-
-
-
-
 export class LDocenteService {
 
-  constructor() { }
+  private apiUrl = 'https://apigestionacademica-b4jp.onrender.com';
 
+  constructor(private http: HttpClient) { }
 
-  obtenerDocentes() {
-    return listDocente;
+  getldocentes(lab_id: string) {
+    return this.http.get(`${this.apiUrl}/labores/${lab_id}`);
+  }
+  getldocente(){
+    return this.http.get(`${this.apiUrl}/labores`);
+  }
+  deleteldocente(lab_nombre: string):Observable<any>{
+    return this.http.delete(`${this.apiUrl}/labores?nombre=${lab_nombre}`);
+  }
+  obtenerDocentePorNombre(nombre: string): Observable<L_docente[]> {
+    return this.http.get<L_docente[]>(`${this.apiUrl}/labores?nombre=${nombre}`);
+  }
+  actualizarDocentePorNombre(nombre: string, docenteActualizado: L_docente): Observable<L_docente> {
+    return this.http.put<L_docente>(`${this.apiUrl}/labores?nombre=${nombre}`, docenteActualizado);
   }
 
-  agregarDocente(L_docente: l_docente) {
-    listDocente.push(L_docente);
+  createldocente(l_docente: L_docente){
+    return this.http.post(`${this.apiUrl}/labores`, l_docente);
   }
-
-  editDocente(docenteEditado :l_docente){
-    const index =listDocente.findIndex(L_docente =>L_docente.id ===docenteEditado.id)
-    listDocente[index] = docenteEditado;
+  updateldocente(lab_nombre: string, updatePeriodo: L_docente): Observable<any>{
+    return this.http.put(`${this.apiUrl}/labores?nombre=${lab_nombre}`, updatePeriodo);
   }
-
- 
-  
-
-  eliminarLaborDocente(id: number) {
-    const indice = listDocente.findIndex(docente => docente.id === id);
-  
-    if (indice !== -1) {
-      listDocente.splice(indice, 1);
-    }
-  }
-
 }
