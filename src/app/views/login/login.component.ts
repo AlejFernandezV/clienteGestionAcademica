@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { LoginService } from '../../services/login.service'
 import Swal from 'sweetalert2';
 import { LoginI } from 'app/models/login/login.interface';
+import { log } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -47,7 +48,9 @@ export class LoginComponent implements OnInit {
       if (data.status == 'success') {
         this.loading = false//save the id of user in localStorage
         localStorage.setItem('usu_num_doc', data.results.usu_num_doc)
+        console.log("num_doc: ", localStorage.getItem('usu_num_doc'))
         localStorage.setItem('usu_rol', data.results.rol_descripcion)
+        console.log("rol: ", data.results.rol_descripcion)
         // this.cookies.set('id_user', data.results.id)//save the token in cookie service
         this.redirectTo(data)
         //this.functionRedirigido()

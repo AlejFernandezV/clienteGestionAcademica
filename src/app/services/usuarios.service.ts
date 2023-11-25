@@ -4,6 +4,7 @@ import { ResponseI } from 'app/models/response.interface';
 import { Observable, throwError, Subject } from "rxjs";
 import { UsuarioI } from '../models/usuario/usuario.interface';
 import { API_BASE_URL } from 'app/api-constants/api-constants.component';
+import { UsuarioUpdateI } from 'app/models/usuario/usuarioUpdate.iterface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +24,14 @@ export class UsuariosService {
     return this.http.get<ResponseI>(`${this.apiUrl}/usuarios/buscar_por_num_doc?num_doc=${id}`);
   }
   deleteUsuario(id: number): Observable<ResponseI> {
-    return this.http.delete<ResponseI>(`${this.apiUrl}/usuarios/buscar_por_num_doc?num_doc=${id}`);
+    return this.http.delete<ResponseI>(`${this.apiUrl}/usuarios/eliminar?num_doc=${id}`);
   }
 
   createUsuario(usuario: UsuarioI): Observable<ResponseI> {
     return this.http.post<ResponseI>(`${this.apiUrl}/usuarios/crear`, usuario);
   }
   
-  updateUsuario(updateUsuario: UsuarioI): Observable<ResponseI> {
+  updateUsuario(updateUsuario: UsuarioUpdateI): Observable<ResponseI> {
     return this.http.put<ResponseI>(`${this.apiUrl}/usuarios/actualizar`, updateUsuario);
   }
 }
