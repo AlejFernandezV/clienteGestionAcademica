@@ -13,14 +13,10 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
   
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '', status: 0 },
-    { path: '/user-profile', title: 'Perfil',  icon:'person', class: '', status: 0 },
     { path: '/table-list', title: 'Autoevaluación',  icon:'content_paste', class: '', status: 0 },
     { path: '/list-docentes', title: 'Docente',  icon:'person', class: '', status: 0 },
     { path: '/listar-periodo', title: 'Periodo', icon: 'date_range', class: '', status: 0},
-    { path: '/autoevaluacion', title: 'Autoevaluacion', icon: 'content_paste', class: '', status: 0},
-    { path: '/listar-labor', title: 'Labor docente', icon: 'content_paste', class: '', status: 0}
-    
-    //{ path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
+    { path: '/listar-labor', title: 'Labor docente', icon: 'content_paste', class: '', status: 0},
 ];
 
 @Component({
@@ -53,7 +49,6 @@ export class SidebarComponent implements OnInit {
       }
       
     } else{
-      this.menuItems[1].status = 1;
       this.menuItems[2].status = 1;
     }
   }
