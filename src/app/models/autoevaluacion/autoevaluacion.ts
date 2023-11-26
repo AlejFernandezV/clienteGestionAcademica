@@ -4,6 +4,6 @@ export interface l_autoevaluacion{
    per_id:number,
    usa_id:number,
    eva_estado:string,
-   eva_puntaje:string,
+   eva_puntaje:number,
    eva_resultado:string,
 }

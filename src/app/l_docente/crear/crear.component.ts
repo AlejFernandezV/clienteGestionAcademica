@@ -13,7 +13,7 @@ export class CrearComponent {
   newDocente:L_docente ={
     lab_id:0,
     lab_horas: 0,
-    tl_descripcion: '',
+    tl_descripcion: 'ninguna',
     lab_nombre: '',
     tl_codigo:'',
     tl_id:0,

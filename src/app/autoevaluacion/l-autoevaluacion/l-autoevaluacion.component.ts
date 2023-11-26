@@ -15,10 +15,19 @@ lautoevaluacion: l_autoevaluacion[] = [];
 
 
   ngOnInit(): void {
-
+this.listAutoevaluaciones();
   }
 
- 
+  listAutoevaluaciones(){
+    this.autoevaluacionService.getlAutoevaluacion().subscribe(
+      res => {
+        this.lautoevaluacion = res.results;
+        console.log(this.lautoevaluacion)
+      },
+      err => console.log(err)
+    );
+
+  }
 
 
 }

@@ -1,37 +1,34 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { L_docente } from '../models/l_docente/docente';
+import { ResponseI } from 'app/models/response.interface';
 import { Observable } from 'rxjs';
+import { API_BASE_URL } from 'app/api-constants/api-constants.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LDocenteService {
 
-  private apiUrl = 'https://apigestionacademica-b4jp.onrender.com';
+  private apiUrl = `${API_BASE_URL}`;
+
 
   constructor(private http: HttpClient) { }
 
-  getldocentes(lab_id: string) {
-    return this.http.get(`${this.apiUrl}/labores/${lab_id}`);
-  }
-  getldocente(){
-    return this.http.get(`${this.apiUrl}/labores`);
-  }
-  deleteldocente(lab_nombre: string):Observable<any>{
-    return this.http.delete(`${this.apiUrl}/labores?nombre=${lab_nombre}`);
-  }
-  obtenerDocentePorNombre(nombre: string): Observable<L_docente[]> {
-    return this.http.get<L_docente[]>(`${this.apiUrl}/labores?nombre=${nombre}`);
-  }
-  actualizarDocentePorNombre(nombre: string, docenteActualizado: L_docente): Observable<L_docente> {
-    return this.http.put<L_docente>(`${this.apiUrl}/labores?nombre=${nombre}`, docenteActualizado);
+  getldocente():Observable<ResponseI> {
+    return this.http.get<ResponseI>(`${this.apiUrl}/labores/listar`);
   }
 
-  createldocente(l_docente: L_docente){
-    return this.http.post(`${this.apiUrl}/labores`, l_docente);
+  getldocentes(lab_id: string):Observable<ResponseI> {
+    return this.http.get<ResponseI>(`${this.apiUrl}/labores/${lab_id}`);
   }
-  updateldocente(lab_nombre: string, updatePeriodo: L_docente): Observable<any>{
-    return this.http.put(`${this.apiUrl}/labores?nombre=${lab_nombre}`, updatePeriodo);
+  createldocente(l_docente: L_docente):Observable<ResponseI>{
+    return this.http.post<ResponseI>(`${this.apiUrl}/labores/crear`, l_docente);
+  }
+  deleteldocente(lab_nombre: string):Observable<ResponseI>{
+    return this.http.delete<ResponseI>(`${this.apiUrl}/labores/eliminar?nombre=${lab_nombre}`);
+  }
+  updateldocente(nombre: string, updatePeriodo: L_docente): Observable<ResponseI>{
+    return this.http.put<ResponseI>(`${this.apiUrl}/labores/actualizar${nombre}`, updatePeriodo);
   }
 }
