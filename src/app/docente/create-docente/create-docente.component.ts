@@ -51,7 +51,6 @@ export class CreateDocenteComponent implements OnInit {
       usu_estado: 'Activo',
     }
     this.getGenero(docente)
-    console.log(docente)
     this.UsuarioService.createUsuario(docente).subscribe(data =>{
       if(data.status == 'success'){
         this.loading = false

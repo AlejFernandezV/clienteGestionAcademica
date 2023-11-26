@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuariosService } from 'app/services/usuarios.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,24 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  nombre = localStorage.getItem('usu_nombre')
-  documento = localStorage.getItem('usu_num_doc')
   rol = localStorage.getItem('usu_rol')
-  email = localStorage.getItem('usu_email')
-  userName: string
+  documento = localStorage.getItem('usu_num_doc')
+  name:string = ""
+  userName: string = ""
 
-  constructor() { }
+  constructor(private usuario: UsuariosService) { }
   
   ngOnInit() {  
-    this.getUsernameFromEmail()  
+    this.getUser()  
   }
 
-  getUsernameFromEmail() {
-    if (this.email) {
-      this.userName = this.email.split('@')[0];
-    } else {
-      console.log('No hay correo electrónico');
-    }
+  getUsernameFromEmail(user: string) {
+    if (user) {
+      return this.userName = user.split('@')[0];
+    } 
+  }
+  getUser(){
+    this.usuario.getUsuarioPorId(this.documento).subscribe(data => {
+      if(data.status== 'success'){
+        this.name = data.results.usu_nombre + " " + data.results.usu_apellido
+        this.userName = data.results.usu_email
+        this.getUsernameFromEmail(this.userName)
+      }
+    })
   }
 
 }
