@@ -14,11 +14,11 @@ export class DocumentsService {
 
   constructor(private http: HttpClient) { }
 
-  uploadFile(data: FormData): Observable<ResponseI> {
+  uploadFile(num_doc: number, eva_id:number, data: FormData): Observable<ResponseI> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<ResponseI>( `${this.apiURL}/upload`, data);
+    return this.http.post<ResponseI>( `${this.apiURL}/upload?usu_id=${num_doc}&eva_id=${eva_id}`, data);
   }
 
 }

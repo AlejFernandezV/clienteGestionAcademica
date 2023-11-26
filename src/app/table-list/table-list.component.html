@@ -17,14 +17,31 @@
                                         <th>
                                             Periodo
                                         </th>
-                                        <td>
-                                            <div class="input-group no-border example-full-width">
-                                                <input type="text" value="" class="form-control" matInput placeholder="Ej: 2021-1">
-                                                <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                                  <i class="material-icons">search</i>
-                                                  <div class="ripple-container"></div>
-                                                </button>
-                                              </div>
+                                        <td *ngIf="getUserRolDocente()">
+                                            <div>
+                                                <form [formGroup]="buscarPorNomPerNumDocForm" (ngSubmit) = "getEvaluationPorNomPerNumDoc(buscarPorNomPerNumDocForm.value)">
+                                                    <div class="input-group no-border example-full-width">
+                                                        <input type="string" formControlName="per_nombre_doc" value="" class="form-control" matInput placeholder="Ej: 2021-1">
+                                                        <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                                          <i class="material-icons">search</i>
+                                                          <div class="ripple-container"></div>
+                                                        </button>
+                                                      </div>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        <td *ngIf="getUserRol()" >
+                                            <div>
+                                                <form [formGroup]="buscarPorPeriodoForm" (ngSubmit) = "getEvaluacionPorPeriodo(buscarPorPeriodoForm.value)">
+                                                    <div class="input-group no-border example-full-width">
+                                                        <input type="string" formControlName="per_nombre" value="" class="form-control" matInput placeholder="Ej: 2021-1">
+                                                        <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                                          <i class="material-icons">search</i>
+                                                          <div class="ripple-container"></div>
+                                                        </button>
+                                                      </div>
+                                                </form>
+                                            </div>
                                         </td>
                                         <td rowspan="3" style="text-align: center;">
                                             Para cada uno de los ítems presentados a continuación<br>
@@ -36,7 +53,7 @@
                                             Si lo desea también hay una sección de Sugerencias y recomendaciones al fina
                                             de esta tabla
                                             
-                                            <div *ngIf="userRol()">
+                                            <div *ngIf="getUserRol()">
                                                 <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/autoevaluacion">Crear Autoevaluación</button>
                                                 
                                             </div>
@@ -48,21 +65,26 @@
                                             Nombre
                                         </th>
                                         <td>
-                                            Francisco Obando
+                                            {{name}}
                                         </td>
 
                                     </tr>
-                                    <tr>
+                                    <tr *ngIf="getUserRol()">
                                         <th>
                                             Identificación
                                         </th>
                                         <td>
-                                            <div class="input-group no-border example-full-width">
-                                                <input type="text" value="" class="form-control" matInput placeholder="Ej: 123456789">
-                                                <button mat-raised-button class="btn btn-white btn-round btn-just-icon">
-                                                  <i class="material-icons">search</i>
-                                                  <div class="ripple-container"></div>
-                                                </button>
+                                            <div>
+                                                <form [formGroup]="buscarPorIdentificacionForm" (ngSubmit) = "searchByIdentification(buscarPorIdentificacionForm.value)">
+                                                    <div class="input-group no-border example-full-width">
+                                                        <input type="number" formControlName="usu_num_doc" value="" class="form-control" matInput placeholder="Ej: 123456789">
+                                                        <button  mat-raised-button title="Buscar docente por numero documento"  class="btn btn-white btn-round btn-just-icon" type="submit">
+                                                            <i class="material-icons">search</i>
+                                                            <div class="ripple-container"></div>
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                                
                                             </div>
                                         </td>
                                     </tr>
@@ -127,16 +149,29 @@
                                         <td>{{ evaluacion.per_fecha_inicio | date:'yyyy-MM-dd'}}</td>
                                         <td>{{ evaluacion.per_fecha_fin | date:'yyyy-MM-dd' }}</td>
                                         <td>{{ evaluacion.eva_estado }}</td>
-                                        <td>{{ evaluacion.eva_resultado }} 
-                                            <div *ngIf="userDocente()" class="col-md-12">
-                                                <label for="pdfFile">Subir archivo PDF: </label>
-                                                <input type="file"  id="pdfFile" name="pdfFile" accept=".jpg .png .pdf ">
+                                        <td>
+                                            <div>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput type="string">
+                                                  </mat-form-field>
+                                            </div>
+                                            <div *ngIf="getUserTipoDocente()" class="col-md-12">
+                                                <label for="pdfFile"> </label>
+                                                <input type="file" id="pdfFile" name="pdfFile" accept=".jpg .png .pdf ">
                                             </div>                        
                                           <!--<div class="clearfix"></div>
                                           <button mat-raised-button type="submit" class="btn btn-danger pull-right">Subir Archivo</button>
                                           <div class="clearfix"></div>-->
                                         </td>
-                                        <td>{{ evaluacion.eva_puntaje}}</td>
+                                        <td><div>
+                                            <mat-form-field class="example-full-width">
+                                              <input 
+                                              matInput
+                                              type="number"
+                                              id="identificacion_usu"/>
+                                            </mat-form-field>
+                                              
+                                          </div></td>
                                     </tr>
                                     
                                     <tr>

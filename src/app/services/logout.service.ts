@@ -18,6 +18,8 @@ export class LogoutService {
     this.api.onLogout(token).subscribe(data =>{
       if (data.status == 'success'){
         localStorage.removeItem('token');
+        localStorage.removeItem('usu_rol');
+        localStorage.removeItem('usu_num_doc');
         this.router.navigate(['/inicio']);
       }else {
         Swal.fire({

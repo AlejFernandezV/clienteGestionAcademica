@@ -72,9 +72,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     
     this.rol = localStorage.getItem('usu_rol')
-    console.log("ayuda, me dañé")
-    if(this.rol === 'Planta tiempo completo'){
-      console.log("ayuda, me dañé")
+    if(this.rol === 'Planta tiempo completo' || this.rol == 'Planta medio tiempo' || this.rol == 'Ocasional tiempo completo' || this.rol == 'Ocasional medio tiempo'){
       this.router.navigate(['dashboard'])
     }
 

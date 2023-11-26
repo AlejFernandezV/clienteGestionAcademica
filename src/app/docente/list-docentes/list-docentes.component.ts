@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../services/usuarios.service';
 import { UsuarioI } from 'app/models/usuario/usuario.interface';
 import { Router } from '@angular/router';
-import { DateRange } from '@angular/material/datepicker';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-docentes',
@@ -29,11 +29,27 @@ export class ListDocentesComponent implements OnInit {
 
   }
   
-  deleteDocente(id: number){
-    this.usuarioService.deleteUsuario(id).subscribe(
+  deleteDocente(num_doc: number){
+    this.usuarioService.deleteUsuario(num_doc).subscribe(
       res=>{
-        console.log('Docente eliminado');
-        this.listDocentes();
+        if(res.code === 200){
+          Swal.fire({
+            title: 'Docente eliminado',
+            icon: 'success',
+            timer: 2000,
+          });
+
+          this.listDocentes();
+        }else{
+          Swal.fire({
+            title: 'Error al eliminar docente',
+            icon: 'error',
+            text: res.message,
+            timer: 2000,
+          });
+
+          this.listDocentes();
+        }
       },
       err=> console.log(err)
     );

@@ -23,7 +23,6 @@ export class AuthService {
 
  getRol(): string{
     let rol = localStorage.getItem('usu_rol') 
-    console.log("rol auth",rol)
     return rol
   }
 }

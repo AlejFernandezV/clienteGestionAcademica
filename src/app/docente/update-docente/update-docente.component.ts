@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioI } from 'app/models/usuario/usuario.interface';
+import { UsuarioUpdateI } from 'app/models/usuario/usuarioUpdate.iterface';
 import { UsuariosService } from 'app/services/usuarios.service';
 import Swal from 'sweetalert2';
 
@@ -36,10 +37,8 @@ export class UpdateDocenteComponent implements OnInit {
   }
 
   getUsuario(id: string){
-    console.log("id de docente", id )
     this.UsuarioService.getUsuarioPorId(id).subscribe(data =>{
-      console.log("datos: ", data)
-      this.actualizarDocenteForm.setValue({
+      this.actualizarDocenteForm.patchValue({
         usu_num_doc: data.results.usu_num_doc,
         usu_tipo_doc: data.results.usu_tipo_doc,
         usu_email: data.results.usu_email,
@@ -56,11 +55,11 @@ export class UpdateDocenteComponent implements OnInit {
   async actualizarDocente(form: any){
     this.getIdRol(form.rol_descripcion)
     
-    let docente:  UsuarioI = {
-      usu_num_doc: form.usu_num_doc,
+    let docente:  UsuarioUpdateI = {
+      usu_num_doc_old: form.usu_num_doc,
+      usu_num_doc_new: form.usu_num_doc,
       usu_tipo_doc: 'C.C',
       usu_email: form.usu_email,
-      usu_password: form.usu_password,
       rol_id: this.id_rol,
       usu_nombre: form.usu_nombre,
       usu_apellido: form.usu_apellido,
@@ -69,9 +68,8 @@ export class UpdateDocenteComponent implements OnInit {
       usu_estado: 'Activo',
     }
     this.getGenero(docente)
-    console.log(docente)
     this.UsuarioService.updateUsuario(docente).subscribe(data =>{
-      if(data.status == 'success'){
+      if(data.status == 'Success'){
         this.loading = false
         Swal.fire({
           position: 'center',
@@ -108,7 +106,7 @@ export class UpdateDocenteComponent implements OnInit {
     }
   }
 
-  getGenero(docente: UsuarioI) {
+  getGenero(docente: UsuarioUpdateI) {
     if (docente.usu_genero == 'Masculino'){
       docente.usu_genero = docente.usu_genero.substring(0,1)
     }else{

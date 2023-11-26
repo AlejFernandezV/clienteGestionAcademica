@@ -49,7 +49,6 @@ export class SidebarComponent implements OnInit {
     let token = localStorage.getItem('token')
     if(token && (rol === 'Coordinador' || rol === 'Decano')){
       for(let i = 0; i < this.menuItems.length; i++){
-        console.log(this.menuItems[i].path);
         this.menuItems[i].status = 1;
       }
       

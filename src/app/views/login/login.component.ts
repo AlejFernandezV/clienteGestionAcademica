@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { LoginService } from '../../services/login.service'
 import Swal from 'sweetalert2';
 import { LoginI } from 'app/models/login/login.interface';
+import { log } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -42,7 +43,6 @@ export class LoginComponent implements OnInit {
       usu_email: form.usu_email.toString(),
       usu_password: form.usu_password
     }
-    console.log("Email ", formdefinitive)
     this.api.postLogin(formdefinitive).subscribe(data => {
       if (data.status == 'success') {
         this.loading = false//save the id of user in localStorage

@@ -14,7 +14,7 @@ export class CreateDocenteComponent implements OnInit {
 
   loading: any = true;
   generos = ["Masculino", "Femenino"];
-  tipoDocentes = ["Planta tiempo completo", "Planta medio tiempo", "Catedra tiempo completo", "Catedra tiempo completo"];
+  tipoDocentes = ["Planta tiempo completo", "Planta medio tiempo", "Catedra tiempo completo", "Catedra medio tiempo"];
   id_rol: number 
 
   constructor(private UsuarioService: UsuariosService, private router:Router) { }
@@ -51,7 +51,6 @@ export class CreateDocenteComponent implements OnInit {
       usu_estado: 'Activo',
     }
     this.getGenero(docente)
-    console.log(docente)
     this.UsuarioService.createUsuario(docente).subscribe(data =>{
       if(data.status == 'success'){
         this.loading = false
