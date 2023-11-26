@@ -146,68 +146,13 @@
                                         <td>{{ evaluacion.per_fecha_fin | date:'yyyy-MM-dd' }}</td>
                                         <td>{{ evaluacion.eva_estado }}</td>
                                         <td>
-                                            <button *ngIf="getUserRol()==0" class="btn btn-success btn-sm" (click)="open(content)" title="Realizar">
+                                            <button *ngIf="getUserRol()==0" class="btn btn-success btn-sm" (click)="pendiente" title="Realizar">
                                                 Realizar
                                             </button>
                                             <button *ngIf="getUserRol()" class="btn btn-info btn-sm" (click)="pendiente" title="Ver">
                                                 <mat-icon>visibility</mat-icon>
                                             </button>
                                         </td>
-
-                                        <ng-template #content let-modal>
-                                            <div class="modal-header d-flex">
-                                                <h4 class="" id="modal-basic-title text-azul-sena">
-                                                    Información de contacto del aprendiz
-                                                </h4>
-                                                <div class="cursor-pointer" aria-label="Close" (click)="modal.dismiss('Back click')">
-                                                    <i class="material-icons">close</i>
-                                                </div>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="container">
-                                                    <div class="row justify-content-around">
-                                                        <div class="col-sm-6 col-md-4 col-lg-4 p-2">
-                                                            <label class="mt-1 font-weight-bold text-azul-sena">
-                                                            Resultados
-                                                            </label>
-                                                            <h4 class="mt-1">
-
-                                                            </h4>
-                                                        </div>
-                                        
-                                                        <div class="col-sm-6 col-md-4 col-lg-4 p-2 offset-2">
-                                                            <label class="mt-1 font-weight-bold text-azul-sena">
-                                                            Calificación
-                                                            </label>
-                                                            <h4 class="mt-1">
-
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                        
-                                                    <div class="row justify-content-around">
-                                                        <div class="col-sm-6 col-md-4 col-lg-4 p-2">
-                                                            <label class="mt-1 font-weight-bold text-azul-sena">
-                                                                Teléfono del aprendiz
-                                                            </label>
-                                                            <h4 class="mt-1">
-
-                                                            </h4>
-                                                        </div>
-                                        
-                                                        <div class="col-sm-6 col-md-4 col-lg-4 p-2 offset-2">
-                                                            <label class="mt-1 font-weight-bold text-azul-sena">
-                                                                Ficha del aprendiz
-                                                            </label>
-                                                            <h4 class="mt-1">
-
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer"></div>
-                                        </ng-template>
                                     </tr>
                                     
                                     <tr>
