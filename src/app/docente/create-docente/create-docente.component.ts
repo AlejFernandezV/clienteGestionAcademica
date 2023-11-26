@@ -14,16 +14,18 @@ export class CreateDocenteComponent implements OnInit {
 
   loading: any = true;
   generos = ["Masculino", "Femenino"];
+  tiposId = ["CC", "Pasaporte"];
+  estados = ["Activo", "Inactivo"];
   tipoDocentes = ["Planta tiempo completo", "Planta medio tiempo", "Catedra tiempo completo", "Catedra medio tiempo"];
-  id_rol: number 
+  id_rol: number
 
-  constructor(private UsuarioService: UsuariosService, private router:Router) { }
+  constructor(private UsuarioService: UsuariosService, private router: Router) { }
 
   createDocenteForm = new FormGroup({
-    usu_num_doc: new FormControl('', Validators.required),
+    usu_num_doc: new FormControl('', [Validators.required, Validators.min(0)]),
     usu_tipo_doc: new FormControl('', Validators.required),
     usu_email: new FormControl('', [Validators.required, Validators.email]),
-    usu_password: new FormControl('', Validators.required),
+    usu_password: new FormControl('', [Validators.required, Validators.maxLength(8), Validators.minLength(3)]),
     rol_descripcion: new FormControl('', Validators.required),
     usu_nombre: new FormControl('', Validators.required),
     usu_apellido: new FormControl('', Validators.required),
@@ -35,19 +37,19 @@ export class CreateDocenteComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async createDocente(form: any){
+  async createDocente(form: any) {
     this.getIdRol(form.rol_descripcion)
-    
-    let docente:  UsuarioI = {
+
+    let docente: UsuarioI = {
       usu_num_doc: form.usu_num_doc,
-      usu_tipo_doc: 'C.C',
+      usu_tipo_doc: form.usu_tipo_doc,
       usu_email: form.usu_email,
       usu_password: form.usu_password,
       rol_id: this.id_rol,
       usu_nombre: form.usu_nombre,
       usu_apellido: form.usu_apellido,
       usu_genero: form.usu_genero,
-      usu_estudio: form.usu_estudio, 
+      usu_estudio: form.usu_estudio,
       usu_estado: 'Activo',
     }
     this.getGenero(docente)
@@ -61,7 +63,7 @@ export class CreateDocenteComponent implements OnInit {
           timer: 2000,
         })
         this.router.navigate(['/list-docentes']);
-      }else {
+      } else {
         Swal.fire({
           position: 'center',
           icon: 'error',
@@ -70,11 +72,11 @@ export class CreateDocenteComponent implements OnInit {
           showConfirmButton: true,
         })
       }
-    });    
+    });
   }
 
   getIdRol(rolDescripcion: string) {
-    switch(rolDescripcion){
+    switch (rolDescripcion) {
       case 'Planta tiempo completo':
         this.id_rol = 1;
         break;
@@ -90,10 +92,41 @@ export class CreateDocenteComponent implements OnInit {
   }
 
   getGenero(docente: UsuarioI) {
-    if (docente.usu_genero == 'Masculino'){
-      docente.usu_genero = docente.usu_genero.substring(0,1)
-    }else{
-      docente.usu_genero = docente.usu_genero.substring(0,1)
+    if (docente.usu_genero == 'Masculino') {
+      docente.usu_genero = docente.usu_genero.substring(0, 1)
+    } else {
+      docente.usu_genero = docente.usu_genero.substring(0, 1)
     }
+  }
+  //get
+  get tipoIde() {
+    return this.createDocenteForm.get('usu_tipo_doc') as FormControl;
+  }
+  get ide() {
+    return this.createDocenteForm.get('usu_num_doc') as FormControl;
+  }
+  get email() {
+    return this.createDocenteForm.get('usu_email') as FormControl;
+  }
+  get pass() {
+    return this.createDocenteForm.get('usu_password') as FormControl;
+  }
+  get nombre() {
+    return this.createDocenteForm.get('usu_nombre') as FormControl;
+  }
+  get apellido() {
+    return this.createDocenteForm.get('usu_apellido') as FormControl;
+  }
+  get genero() {
+    return this.createDocenteForm.get('usu_genero') as FormControl;
+  }
+  get estudio() {
+    return this.createDocenteForm.get('usu_estudio') as FormControl;
+  }
+  get estado() {
+    return this.createDocenteForm.get('usu_estado') as FormControl;
+  }
+  get tipoDoc() {
+    return this.createDocenteForm.get('rol_descripcion') as FormControl;
   }
 }

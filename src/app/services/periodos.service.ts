@@ -4,6 +4,7 @@ import { PeriodoI } from 'app/models/periodo/periodo.interface';
 import { ResponseI } from 'app/models/response.interface';
 import { Observable, throwError, Subject } from "rxjs";
 import { API_BASE_URL } from 'app/api-constants/api-constants.component';
+import { PeriodoUpdateI } from 'app/models/periodo/periodoUpdate.interface';
 
 @Injectable({
   providedIn: 'root'

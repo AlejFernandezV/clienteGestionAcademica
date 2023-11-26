@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { PeriodoI } from 'app/models/periodo/periodo.interface';
 import { PeriodosService } from 'app/services/periodos.service';
 import Swal from 'sweetalert2';
@@ -33,6 +34,15 @@ export class CrearPeriodoComponent implements OnInit {
   });
 
   constructor(private PeriodoService: PeriodosService, private router:Router) { }
+
+  createPeriodoForm = new FormGroup({
+    per_nombre: new FormControl('', Validators.required),
+    per_anio: new FormControl('', [Validators.required, Validators.min(0)]),
+    per_semestre: new FormControl('', [Validators.required, Validators.min(0)]),
+    per_fecha_inicio: new FormControl('', Validators.required),
+    per_fecha_fin: new FormControl('', Validators.required),
+
+  })
 
   ngOnInit(): void {
   }
@@ -67,6 +77,32 @@ export class CrearPeriodoComponent implements OnInit {
       }
     });
   }
-  
 
+  getFecha(fecha: Date){
+
+    const anio = fecha.getFullYear();
+    const month = ('0' + (fecha.getMonth() + 1)).slice(-2);
+    const day = ('0' + fecha.getDate()).slice(-2);
+    const fechaF = `${anio}-${month}-${day}`;
+    return fechaF;
+  }
+  sacarAnio(fecha: Date){
+    return fecha.getFullYear();
+  } 
+  //get
+  get nombre() {
+    return this.createPeriodoForm.get('per_nombre') as FormControl;
+  }
+  get anio() {
+    return this.createPeriodoForm.get('per_anio') as FormControl;
+  }
+  get semestre() {
+    return this.createPeriodoForm.get('per_semestre') as FormControl;
+  }
+  get fechaI(){
+    return this.createPeriodoForm.get('per_fecha_inicio') as FormControl;
+  }
+  get fechaF(){
+    return this.createPeriodoForm.get('per_fecha_fin') as FormControl;
+  }
 }

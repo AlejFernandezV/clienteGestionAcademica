@@ -17,6 +17,9 @@
                       <option value="" selected></option>
                       <option *ngFor="let tipo of tiposId" [value]="tipo"> {{tipo}}</option>                      
                     </select>
+                    <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="tipoIde.valid || tipoIde.pristine">
+                      El tipo de ID es obligatorio
+                    </div>
                   </mat-form-field>
                 </div>
                 <div class="col-md-3">
@@ -26,6 +29,14 @@
                     placeholder="Identificacion"
                     formControlName="usu_num_doc"
                     id="identificacion_usu"/>
+                    <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="ide.valid || ide.pristine">
+                      <span *ngIf="ide.errors?.['required']">
+                        El ID es obligatorio
+                      </span>
+                      <span *ngIf="ide.errors?.['min']">
+                        El ID debe ser positivo
+                      </span>
+                    </div>
                   </mat-form-field>
                 </div>
                 <div class="col-md-3">
@@ -35,6 +46,9 @@
                       <option value="" selected></option>
                       <option *ngFor="let rols of tipoDocentes" [value]="rols"> {{rols}}</option>                      
                     </select>
+                    <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="tipoDoc.valid || tipoDoc.pristine">
+                      El tipo de documento es obligatorio
+                    </div>
                   </mat-form-field>
                 </div>
                 <div class="col-md-2">
@@ -44,6 +58,9 @@
                       <option value="" selected></option>
                       <option *ngFor="let gens of generos" [value]="gens"> {{gens}}</option>                      
                     </select>
+                    <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="genero.valid || genero.pristine">
+                      El genero es obligatorio
+                    </div>
                   </mat-form-field>
                 </div>
               </div>
@@ -51,11 +68,17 @@
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
                     <input matInput type="string"  placeholder="Nombres" formControlName="usu_nombre">
+                    <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="nombre.valid || nombre.pristine">
+                      El nombre es obligatorio
+                    </div>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
                     <input matInput type="string" placeholder="Apellidos" formControlName="usu_apellido">
+                    <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="apellido.valid || apellido.pristine">
+                      El apellido es obligatorio
+                    </div>
                   </mat-form-field>
                 </div>
               </div>
@@ -63,11 +86,22 @@
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
                     <input matInput type="string" placeholder="Ultimo titulo academico" formControlName="usu_estudio">
+                    <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="estudio.valid || estudio.pristine">
+                      El titulo es obligatorio
+                    </div>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
                     <input matInput type="string"  placeholder="Email" formControlName="usu_email">
+                    <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="email.valid || email.pristine">
+                      <span *ngIf="email.errors?.['required']">
+                        El email es obligatorio
+                      </span>
+                      <span *ngIf="email.errors?.['email']">
+                        El email debe ser valido
+                      </span>
+                    </div>
                   </mat-form-field>
                 </div>
                 <div class="col-md-3">
@@ -77,11 +111,14 @@
                       <option value="" selected></option>
                       <option *ngFor="let estado of estados" [value]="estado"> {{estado}}</option>                      
                     </select>
+                    <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="estado.valid || estado.pristine">
+                      El estado es obligatorio
+                    </div>
                   </mat-form-field>
                 </div>
 
               </div>
-              <button  mat-raised-button type="submit" class="btn btn-danger pull-right">Actualizar Perfil</button>
+              <button  mat-raised-button type="submit" class="btn btn-danger pull-right" [disabled]="actualizarDocenteForm.invalid">Actualizar Perfil</button>
               <div class="clearfix"></div>
             </form>
           </div>

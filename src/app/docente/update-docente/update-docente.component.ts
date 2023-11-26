@@ -21,7 +21,7 @@ export class UpdateDocenteComponent implements OnInit {
   constructor(private UsuarioService: UsuariosService, private router:Router, private route: ActivatedRoute) { }
 
   actualizarDocenteForm = new FormGroup({
-    usu_num_doc: new FormControl('', Validators.required),
+    usu_num_doc: new FormControl('', [Validators.required, , Validators.min(0)]),
     usu_tipo_doc: new FormControl('', Validators.required),
     usu_email: new FormControl('', [Validators.required, Validators.email]),
     rol_descripcion: new FormControl('', Validators.required),
@@ -114,6 +114,36 @@ export class UpdateDocenteComponent implements OnInit {
     }else{
       docente.usu_genero = docente.usu_genero.substring(0,1)
     }
+  }
+
+  //get
+  get tipoIde() {
+    return this.actualizarDocenteForm.get('usu_tipo_doc') as FormControl;
+  }
+  get ide() {
+    return this.actualizarDocenteForm.get('usu_num_doc') as FormControl;
+  }
+  get email() {
+    return this.actualizarDocenteForm.get('usu_email') as FormControl;
+  }
+  
+  get nombre() {
+    return this.actualizarDocenteForm.get('usu_nombre') as FormControl;
+  }
+  get apellido() {
+    return this.actualizarDocenteForm.get('usu_apellido') as FormControl;
+  }
+  get genero() {
+    return this.actualizarDocenteForm.get('usu_genero') as FormControl;
+  }
+  get estudio() {
+    return this.actualizarDocenteForm.get('usu_estudio') as FormControl;
+  }
+  get estado() {
+    return this.actualizarDocenteForm.get('usu_estado') as FormControl;
+  }
+  get tipoDoc() {
+    return this.actualizarDocenteForm.get('rol_descripcion') as FormControl;
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PeriodoI } from 'app/models/periodo/periodo.interface';
 import { PeriodosService } from 'app/services/periodos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listar-periodo',
@@ -10,9 +11,7 @@ import { PeriodosService } from 'app/services/periodos.service';
 })
 export class ListarPeriodoComponent implements OnInit {
 
-  periodos: PeriodoI[] = [];
-  
-  
+  periodos: PeriodoI[] = [];  
 
   constructor(private periodoService: PeriodosService, private router: Router) { }
 
@@ -20,13 +19,7 @@ export class ListarPeriodoComponent implements OnInit {
     this.listPeriodos();
   }
   listPeriodos(){
-    /* this.periodoService.getPeriodos().subscribe(
-      res => {
-        console.log(res);
-        this.periodos =<any>res.results;        
-      },
-      err => console.log(err)
-    ); */
+    
     this.periodoService.getPeriodos().subscribe(
       res => {
         this.periodos = res.results;

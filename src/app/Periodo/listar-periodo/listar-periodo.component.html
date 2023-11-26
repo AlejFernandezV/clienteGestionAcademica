@@ -3,15 +3,17 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          
-          <div class="card-header card-header-danger" style="display: flex; justify-content: space-between; align-items: center;">
+
+          <div class="card-header card-header-danger"
+            style="display: flex; justify-content: space-between; align-items: center;">
             <div>
               <h4 class="card-title ">Lista Periodos</h4>
               <p class="card-category"> Informacion</p>
-            </div> 
-            <button type="submit" class="btn btn-custom" routerLink="/crear-periodo" title="Crear periodo"><mat-icon>add_circle</mat-icon></button>
+            </div>
+            <button type="submit" class="btn btn-custom" routerLink="/crear-periodo"
+              title="Crear periodo"><mat-icon>add_circle</mat-icon></button>
           </div>
-          
+
           <div class="card-body">
             <div class="table-responsive">
               <table class="table ">
@@ -37,12 +39,12 @@
                       <button class="btn btn-danger btn-sm" (click)="deletePeriodo(periodo.per_nombre)" title="Eliminar"><mat-icon>delete</mat-icon></button>
                     </td>
                   </tr>
-  
+
                 </tbody>
               </table>
-  
+
             </div>
-            
+
           </div>
         </div>
       </div>
