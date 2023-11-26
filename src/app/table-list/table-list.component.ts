@@ -6,7 +6,6 @@ import Swal from 'sweetalert2';
 import { UsuariosService } from 'app/services/usuarios.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { InyeccionesService } from 'app/services/inyecciones.service';
-import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-table-list',
@@ -29,7 +28,6 @@ export class TableListComponent implements OnInit {
     private evalutionsService: EvaluationsService, 
     private documentoService: DocumentsService,
     private inyeccion: InyeccionesService,
-    private modalService: NgbModal
   ) { }
 
   autoEvaluacionDocenterForm = new FormGroup({
@@ -297,7 +295,7 @@ export class TableListComponent implements OnInit {
       }
     }
   }
-
+  /*
   open(content: any) {
     this.modalService
       .open(content, {
@@ -324,4 +322,5 @@ export class TableListComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+  */
 }
