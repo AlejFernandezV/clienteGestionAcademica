@@ -5,6 +5,7 @@ import { LoginService } from '../../services/login.service'
 import Swal from 'sweetalert2';
 import { LoginI } from 'app/models/login/login.interface';
 import { log } from 'console';
+import { InyeccionesService } from 'app/services/inyecciones.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private api: LoginService,
     private router: Router,
-    private render2: Renderer2) { }
+    private render2: Renderer2,
+    private inyeccion: InyeccionesService) { }
 
   perfil: any[] = []
 
@@ -30,38 +32,51 @@ export class LoginComponent implements OnInit {
   erroMsg: any = ""
 
   loginForm = new FormGroup({
-    usu_email: new FormControl('', [Validators.required, Validators.email]),
-    usu_password: new FormControl('', Validators.required)
+    usu_email: new FormControl('', [Validators.required, Validators.email, this.inyeccion.sqlInjectionValidator]),
+    usu_password: new FormControl('', [Validators.required, this.inyeccion.sqlInjectionValidator])
   })
 
   ngOnInit(): void {
     this.checkLocalStorage()
   }
 
+ 
   async onLoginUser(form: any) {
     let formdefinitive: LoginI = {
       usu_email: form.usu_email.toString(),
       usu_password: form.usu_password
     }
-    this.api.postLogin(formdefinitive).subscribe(data => {
-      if (data.status == 'success') {
-        this.loading = false//save the id of user in localStorage
-        localStorage.setItem('usu_num_doc', data.results.usu_num_doc)
-        localStorage.setItem('usu_rol', data.results.rol_descripcion)
-        // this.cookies.set('id_user', data.results.id)//save the token in cookie service
-        this.redirectTo(data)
-        //this.functionRedirigido()
-        this.checkUserRole()
-      } else {
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: "Error",
-          text: data.message,
-          showConfirmButton: true,
-        })
-      }
-    })
+    let email = new FormControl(formdefinitive.usu_email, [Validators.required, Validators.email, this.inyeccion.sqlInjectionValidator]);
+    let password = new FormControl(formdefinitive.usu_password, [Validators.required, this.inyeccion.sqlInjectionValidator]);
+    if (!email.valid || !password.valid) {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: "Error",
+        text: "Guau!, Intentas hacer una inyección SQL, hijo de la gran puta :D",
+        showConfirmButton: true,
+      })
+    }else{
+      this.api.postLogin(formdefinitive).subscribe(data => {
+        if (data.status == 'success') {
+          this.loading = false//save the id of user in localStorage
+          localStorage.setItem('usu_num_doc', data.results.usu_num_doc)
+          localStorage.setItem('usu_rol', data.results.rol_descripcion)
+          // this.cookies.set('id_user', data.results.id)//save the token in cookie service
+          this.redirectTo(data)
+          //this.functionRedirigido()
+          this.checkUserRole()
+        } else {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: "Error",
+            text: data.message,
+            showConfirmButton: true,
+          })
+        }
+      })
+    }
   }
 
   checkUserRole(){
