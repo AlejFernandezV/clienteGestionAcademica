@@ -49,7 +49,7 @@ export class SidebarComponent implements OnInit {
       }
       
     } else{
-      this.menuItems[2].status = 1;
+      this.menuItems[1].status = 1;
     }
   }
 }
