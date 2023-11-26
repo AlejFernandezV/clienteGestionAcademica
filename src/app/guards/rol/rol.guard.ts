@@ -11,7 +11,6 @@ export class RolGuard implements CanActivate {
   
   checkPermisos(){
     let rol = localStorage.getItem('usu_rol')
-    console.log("rol del guard principal: ", rol)
     if(rol == 'Coordinador' || rol == 'Decano ' || rol == 'Planta tiempo completo' || rol == 'Planta medio tiempo' || rol == 'Ocasional tiempo completo' || rol == 'Ocasional medio tiempo'){
       return true
     }else{

@@ -8,6 +8,7 @@ import { catchError, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import { UsuariosService } from 'app/services/usuarios.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-table-list',
@@ -19,44 +20,99 @@ export class TableListComponent implements OnInit {
   totalHoras: number = 0 ;
   archivoPDF? ;
   buttonCreateEvaluation: number = 0;
+  buttonBuscar: number = 0;
   buttonFile: number = 0;
   num_doc= localStorage.getItem('usu_num_doc')
+  name: string = ""
+  identificacion: string = ""
 
-  constructor(
-    private usuario: UsuariosService,
+  constructor(private usuario: UsuariosService,
     private evalutionsService: EvaluationsService, 
     private documentoService: DocumentsService
   ) { }
 
+  autoEvaluacionDocenterForm = new FormGroup({
+    eva_resultado: new FormControl('', Validators.required),
+    eva_puntaje: new FormControl('', Validators.required),
+    sugerencia_descripcion: new FormControl('', Validators.required)
+  })
+
+  buscarPorIdentificacionForm = new FormGroup({
+    usu_num_doc: new FormControl('', Validators.required)
+  })
+
+  buscarPorPeriodoForm = new FormGroup({
+    per_nombre: new FormControl('', Validators.required)
+  })
+
+  buscarPorNomPerNumDocForm = new FormGroup({
+    per_nombre_doc: new FormControl('', Validators.required)
+  })
+
   ngOnInit() {
-    this.getEvaluation()
+    this.getEvaluation() 
   }
 
+  getUsuario(){
+    this.usuario.getUsuarioPorId(this.num_doc).subscribe(data => {
+      if(data.status== 'success'){
+        this.name = data.results.usu_nombre + " " + data.results.usu_apellido
+      }
+    })
+  }
   getEvaluation() {
-    console.log("num_doc para evaluacion: ", this.num_doc)
-    this.evalutionsService.getEvaluation(this.num_doc).subscribe((data: any) => {
-      if (data.results && data.results.length > 0){
-        this.evaluaciones = data.results;
-        console.log(this.evaluaciones)
-      } else{
-        Swal.fire({
-          position: 'center',
-          icon: 'warning',
-          title: 'Oops...',
-          text: 'No hay evaluaciones disponibles',
-          showConfirmButton: true,
-        })
-      } console.log('No hay evaluaciones disponibles');
-    });
+    this.getUsuario()
+    let rol = localStorage.getItem('usu_rol')
+    if(rol === 'Coordinador' || rol === 'Decano'){
+      this.evalutionsService.getEvaluation().subscribe((data: any) => {
+        if (data.results && data.results.length > 0){
+          this.evaluaciones = data.results;
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Evaluaciones disponibles.',
+            showConfirmButton: true,
+          })
+        } else{
+          Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'No hay evaluaciones disponibles.',
+            showConfirmButton: true,
+          })
+        }
+      });
+    }else{
+      this.evalutionsService.getEvaluationPorNumDoc(Number(this.num_doc)).subscribe((data: any) => {
+        if (data.results && data.results.length > 0){
+          this.evaluaciones = data.results;
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Evaluaciones disponibles, por favor completelas.',
+            showConfirmButton: true,
+          })
+        } else{
+          Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'No hay evaluaciones disponibles.',
+            showConfirmButton: true,
+          })
+        }
+      });
+    }
+    
     this.getTotalHours()
   }
 
   getTotalHours(){
-    this.evalutionsService.getEvaluation(this.num_doc).subscribe(() =>{
+    this.evalutionsService.getEvaluationPorNumDoc(Number(this.num_doc)).subscribe(() =>{
       for (let i = 0; i < this.evaluaciones.length; i++) { 
         this.totalHoras += this.evaluaciones[i].lab_horas; 
       }
-      console.log(this.totalHoras)
     });
   }
 
@@ -71,7 +127,7 @@ export class TableListComponent implements OnInit {
 
       formData.append("file", file);
 
-      this.documentoService.uploadFile(formData).subscribe(response => {
+      this.documentoService.uploadFile(27,5,formData).subscribe(response => {
         console.log(response);
       }, error => {
         console.log(error);
@@ -84,26 +140,94 @@ export class TableListComponent implements OnInit {
     if(rol === 'Coordinador' || rol === 'Decano'){
       return this.buttonCreateEvaluation = 1;
     } else{
-      console.log("no se muestra el boton de crear evaluacion");
       return this.buttonCreateEvaluation = 0;
     }
   }
-  
+
+  getUserRolDocente(){
+    let rol = localStorage.getItem('usu_rol')
+    if(rol === 'Planta tiempo completo' || rol == 'Planta medio tiempo' ||rol === 'Ocasional tiempo completo' || rol == 'Ocasional medio tiempo'){
+      return this.buttonCreateEvaluation = 1;
+    } else{
+      return this.buttonCreateEvaluation = 0;
+    }
+  }
   getUserTipoDocente(){
     let rol = localStorage.getItem('usu_rol')
     if(rol === 'Ocasional tiempo completo' || rol == 'Ocasional medio tiempo'){
-      console.log("se muestra el boton enviar archivo");
       return this.buttonFile = 1;
     } else{
-      console.log("no se muestra el boton");
       return this.buttonFile = 0;
     }
   }
-  /*searchByIdentification(id: string){
-    this.evalutionsService.getEvaluation().subscribe((data: any) => {
-      this.evaluaciones = data.results.filter(evaluacion => evaluacion.lab_nombre === id);
-      console.log(this.evaluaciones)
-      console.log(this.identificacion)
+  searchByIdentification(form: any){
+    this.evalutionsService.getEvaluationPorNumDoc(form.usu_num_doc).subscribe(data => {
+      if(data.results && data.results.length > 0){
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'El docente tiene evaluaciones',
+          showConfirmButton: true,
+        })
+        this.evaluaciones = data.results;
+      }else{
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: "Error",
+          text: data.message,
+          showConfirmButton: true,
+        })
+      }
     });
-  }*/
+  }
+
+  getEvaluacionPorPeriodo(form: any){
+    this.evalutionsService.getEvaluationPorPeriodo(form.per_nombre_doc).subscribe(data =>{
+      if(data.results && data.results.length > 0){
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Evaluaciones encontradas',
+          showConfirmButton: true,
+        })
+        this.evaluaciones = data.results;
+      }else{
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: "Error",
+          text: data.message,
+          showConfirmButton: true,
+        })
+      }
+    })
+  }
+
+  getEvaluationPorNomPerNumDoc(form:any){
+    console.log("datos de busqueda: ", form.per_nombre_doc+" "+this.num_doc)
+    if(form.per_nombre_doc){
+      this.evalutionsService.getEvaluationPorNomPerNumDoc(form.per_nombre_doc, Number(this.num_doc)).subscribe(data => {
+        console.log("data: ", data)
+        if(data.results && data.results.length > 0){
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Evaluaciones encontradas',
+            showConfirmButton: true,
+          })
+          this.evaluaciones = data.results;
+        }else{
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: "Error",
+            text: data.message,
+            showConfirmButton: true,
+          })
+        }
+      })
+    }
+    
+  }
 }

@@ -68,9 +68,7 @@ export class UpdateDocenteComponent implements OnInit {
       usu_estado: 'Activo',
     }
     this.getGenero(docente)
-    console.log("datos antes de Update: ",docente)
     this.UsuarioService.updateUsuario(docente).subscribe(data =>{
-      console.log("estado de data: ", data.status)
       if(data.status == 'Success'){
         this.loading = false
         Swal.fire({
@@ -81,7 +79,6 @@ export class UpdateDocenteComponent implements OnInit {
         })
         this.router.navigate(['/list-docentes']);
       }else {
-        console.log("error: ", data.message)
         Swal.fire({
           position: 'center',
           icon: 'error',
