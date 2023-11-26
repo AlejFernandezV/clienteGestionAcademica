@@ -101,6 +101,9 @@
                         <div class="table-responsive">
                             <table class="table ">
                                 <thead class="">
+                                    <th *ngIf="getUserRol()">
+                                        Ver
+                                    </th>
                                     <th>
                                         N°
                                     </th>
@@ -128,16 +131,20 @@
                                     <th>
                                         Estado
                                     </th>
-                                    <th>
+                                    <th *ngIf="getUserRol()==0">
                                         Resultados
                                     </th>
-                                    <th>
+                                    <th *ngIf="getUserRol()==0">
                                         Evaluación
                                     </th>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let evaluacion of evaluaciones; let i = index">
-
+                                        <td *ngIf="getUserRol()" class="d-flex justify-content-center">
+                                            <button class="btn btn-info btn btn-outline-primary btn-sm" (click)="pendiente" title="Ver">
+                                                <mat-icon>visibility</mat-icon>
+                                            </button>
+                                        </td>
                                         <td>{{ i + 1 }}</td>
                                         <td>{{ evaluacion.lab_nombre }}</td>
                                         <td>{{ evaluacion.tl_descripcion }}</td>
@@ -149,7 +156,7 @@
                                         <td>{{ evaluacion.per_fecha_inicio | date:'yyyy-MM-dd'}}</td>
                                         <td>{{ evaluacion.per_fecha_fin | date:'yyyy-MM-dd' }}</td>
                                         <td>{{ evaluacion.eva_estado }}</td>
-                                        <td>
+                                        <td *ngIf="getUserRol()==0">
                                             <div>
                                                 <mat-form-field class="example-full-width">
                                                     <input matInput type="string">
@@ -163,19 +170,21 @@
                                           <button mat-raised-button type="submit" class="btn btn-danger pull-right">Subir Archivo</button>
                                           <div class="clearfix"></div>-->
                                         </td>
-                                        <td><div>
-                                            <mat-form-field class="example-full-width">
-                                              <input 
-                                              matInput
-                                              type="number"
-                                              id="identificacion_usu"/>
-                                            </mat-form-field>
+                                        <td *ngIf="getUserRol()==0">
+                                            <div>
+                                                <mat-form-field class="example-full-width">
+                                                <input 
+                                                matInput
+                                                type="number"
+                                                id="identificacion_usu"/>
+                                                </mat-form-field>
                                               
-                                          </div></td>
+                                            </div>
+                                        </td>
                                     </tr>
                                     
                                     <tr>
-                                        <td colspan="3" style="text-align: right;"> TOTAL</td>
+                                        <td colspan="4" style="text-align: right;"> TOTAL</td>
                                         <td> {{ totalHoras }}</td>
                                     </tr>
                                 </tbody>
