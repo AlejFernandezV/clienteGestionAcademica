@@ -1,23 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { l_autoevaluacion } from 'app/models/autoevaluacion/autoevaluacion';
+import { ResponseI } from 'app/models/response.interface';
+import { Observable } from 'rxjs';
+import { API_BASE_URL } from 'app/api-constants/api-constants.component';
 
-const listAutoevaluacion =[
-  { 
 
-    "a_periodo": 1,
-    "a_NombreD": "juan",
-    "a_NombreL": "este",
-    "a_TipoL" :"fy",
-    "a_horas" :33,
-    "a_Descripcion" :"pedro",
-    "a_Acto" :"carlos",
-    "a_Estado" :"manu",
-    "a_Evaluacion" :34,
-    "a_fechaInicio" :45,
-    "a_fechaFin" :56,
-},
-   
-]
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,18 +15,15 @@ const listAutoevaluacion =[
 
 
 export class LAutoevaluacionService {
+  private apiUrl = `${API_BASE_URL}`;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
 
-  obtenerAutoevaluacion() {
-    return listAutoevaluacion;
+  createlAutoevaluacion(L_autoevaluacion: l_autoevaluacion):Observable<ResponseI>{
+    return this.http.post<ResponseI>(`${this.apiUrl}/evaluaciones/crear`, L_autoevaluacion);
   }
-
-  agregarAutoevaluacion(L_Autoevaluacion: l_autoevaluacion) {
-    listAutoevaluacion.push(L_Autoevaluacion);
+  getlAutoevaluacion():Observable<ResponseI> {
+    return this.http.get<ResponseI>(`${this.apiUrl}/evaluaciones/listar`);
   }
-
-  
-
 }

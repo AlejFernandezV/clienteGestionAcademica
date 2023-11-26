@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LDocenteService } from '../../services/l-docente.service';
+import { L_docente } from 'app/models/l_docente/docente';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-crear',
   templateUrl: './crear.component.html',
@@ -7,32 +10,30 @@ import { LDocenteService } from '../../services/l-docente.service';
 })
 export class CrearComponent {
 
-  myId=3
-  newDocente={
-    id:this.myId,
-    lb_Tipo: '',
-    lb_Nombre: '',
-    lb_Horas:0,
+  newDocente:L_docente ={
+    lab_id:0,
+    lab_horas: 0,
+    tl_descripcion: 'ninguna',
+    lab_nombre: '',
+    tl_codigo:'',
+    tl_id:0,
   }
   constructor(
     private listService : LDocenteService,
+    private router:Router
   ){
 
   }
 
   ngOnInit(): void {
   }
-  agregarLabor()
-{
-  // console.log('hola desde adddocente',this.newDocente);
-  this.listService.agregarDocente(this.newDocente)
-  this.myId ++;
-  this.newDocente={
-    id:0 ,
-    lb_Tipo: '',
-    lb_Nombre: '',
-    lb_Horas: 0,
-}
-}
+  newLdocente(){
+    this.listService.createldocente(this.newDocente).subscribe();
+    this.router.navigate(['/listar-labor']);
+  console.log(
+    this.newDocente
+  )
+
+  }
 
 }

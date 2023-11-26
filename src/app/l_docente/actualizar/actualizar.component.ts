@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { l_docente } from '../../models/l_docente/docente';
+import { L_docente } from '../../models/l_docente/docente';
 import { LDocenteService } from '../../services/l-docente.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup,FormControl,Validator } from '@angular/forms';
 
 @Component({
   selector: 'app-actualizar',
@@ -8,25 +10,32 @@ import { LDocenteService } from '../../services/l-docente.service';
   styleUrls: ['./actualizar.component.css']
 })
 export class ActualizarComponent  {
+ 
 
-  nuevoLaborDocente:l_docente ={
-   
-      id:0,
-      lb_Tipo: '',
-      lb_Nombre: '',
-      lb_Horas:0,
-    
-  }
+  datosDocente:L_docente;
+  newLdocente = new FormGroup({
+    lab_nombre: new FormControl(''),
+    lab_horas: new FormControl(''),
+    tl_id: new FormControl(''),
+})
+
   constructor(
-    private listService : LDocenteService
-
+    private listService : LDocenteService,
+    private router: Router,
+    private activeRoute: ActivatedRoute
   ){
 
   }
 
-  ngOnInit(): void {
-  
+
+  ngOnInit() {
+   let Ldocenteid = this.activeRoute.snapshot.paramMap.get('nombre')
+   this.listService.updateldocente(Ldocenteid,this.datosDocente).subscribe(data=>{
+    
+    console.log(data)
+   })
+   console.log(Ldocenteid)
   }
 
- 
+
 }

@@ -1,54 +1,34 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { l_docente } from '../models/l_docente/docente';
+import { L_docente } from '../models/l_docente/docente';
+import { ResponseI } from 'app/models/response.interface';
+import { Observable } from 'rxjs';
+import { API_BASE_URL } from 'app/api-constants/api-constants.component';
 
-
-const listDocente =[
-  { "id": 1, 
-    "lb_Tipo": "Tiempo completo", 
-    "lb_Nombre": "Juan Pérez", 
-    "lb_Horas": 40 
-  },
-  { "id": 2, 
-    "lb_Tipo": "Tiempo ", 
-    "lb_Nombre": "Juan ", 
-    "lb_Horas": 6 
-  },
-   
-]
 @Injectable({
   providedIn: 'root'
 })
-
-
-
-
 export class LDocenteService {
 
-  constructor() { }
+  private apiUrl = `${API_BASE_URL}`;
 
 
-  obtenerDocentes() {
-    return listDocente;
+  constructor(private http: HttpClient) { }
+
+  getldocente():Observable<ResponseI> {
+    return this.http.get<ResponseI>(`${this.apiUrl}/labores/listar`);
   }
 
-  agregarDocente(L_docente: l_docente) {
-    listDocente.push(L_docente);
+  getldocentes(lab_id: string):Observable<ResponseI> {
+    return this.http.get<ResponseI>(`${this.apiUrl}/labores/${lab_id}`);
   }
-
-  editDocente(docenteEditado :l_docente){
-    const index =listDocente.findIndex(L_docente =>L_docente.id ===docenteEditado.id)
-    listDocente[index] = docenteEditado;
+  createldocente(l_docente: L_docente):Observable<ResponseI>{
+    return this.http.post<ResponseI>(`${this.apiUrl}/labores/crear`, l_docente);
   }
-
- 
-  
-
-  eliminarLaborDocente(id: number) {
-    const indice = listDocente.findIndex(docente => docente.id === id);
-  
-    if (indice !== -1) {
-      listDocente.splice(indice, 1);
-    }
+  deleteldocente(lab_nombre: string):Observable<ResponseI>{
+    return this.http.delete<ResponseI>(`${this.apiUrl}/labores/eliminar?nombre=${lab_nombre}`);
   }
-
+  updateldocente(nombre: string, updatePeriodo: L_docente): Observable<ResponseI>{
+    return this.http.put<ResponseI>(`${this.apiUrl}/labores/actualizar${nombre}`, updatePeriodo);
+  }
 }

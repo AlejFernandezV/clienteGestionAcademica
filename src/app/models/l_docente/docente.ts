@@ -1,6 +1,8 @@
-export interface l_docente{
-    id:number;
-    lb_Tipo: string;
-    lb_Nombre: string;
-    lb_Horas: number;
+export interface L_docente{
+    lab_nombre: string;
+    lab_id:number,
+    lab_horas: number;
+    tl_descripcion: string;
+    tl_codigo:string;
+    tl_id:number;
 }

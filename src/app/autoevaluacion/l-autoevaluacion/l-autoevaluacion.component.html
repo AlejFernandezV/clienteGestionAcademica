@@ -1,8 +1,4 @@
-<div class="main-content">
-  <div class="container-fluid">
-    <!-- Button trigger modal -->
 
-    <!-- Modal -->
 
     <div class="main-content">
       <div class="container-fluid">
@@ -26,17 +22,14 @@
                 <div class="table-responsive">
                   <table class="table">
                     <thead class="text-primary">
-                      <th>Periodo</th>
-                      <th>Nombre Docente</th>
-                      <th>Nombre Labor</th>
-                      <th>Tipo Labor</th>
-                      <th>Horas</th>
+                      <th>nombre labor</th>
                       <th>Descripcion</th>
-                      <th>Acto</th>
-                      <th>Estado</th>
-                      <th>Evaluacion</th>
+                      <th>Horas</th>
                       <th>Fecha Inicio</th>
                       <th>Fecha Fin</th>
+                      <th>Estado</th>
+                      <th>resultado</th>
+                      <th>puntaje</th>
                     </thead>
                     <tbody>
                       <tr
@@ -46,39 +39,30 @@
                         "
                       >
                         <td>
-                          {{ autoevaluacion.a_periodo }}
+                          {{ autoevaluacion.lab_nombre }}
                         </td>
                         <td>
-                          {{ autoevaluacion.a_NombreD }}
+                          {{ autoevaluacion.tl_descripcion }}
                         </td>
                         <td>
-                          {{ autoevaluacion.a_NombreL }}
+                          {{ autoevaluacion.lab_horas }}
                         </td>
                         <td>
-                          {{ autoevaluacion.a_TipoL }}
+                          {{ autoevaluacion.per_fecha_inicio }}
                         </td>
                         <td>
-                          {{ autoevaluacion.a_horas }}
+                          {{ autoevaluacion.per_fecha_fin }}
                         </td>
                         <td>
-                          {{ autoevaluacion.a_Descripcion }}
+                          {{ autoevaluacion.eva_estado }}
                         </td>
                         <td>
-                          {{ autoevaluacion.a_Acto }}
+                          {{ autoevaluacion.eva_resultado }}
                         </td>
                         <td>
-                          {{ autoevaluacion.a_Estado }}
+                          {{ autoevaluacion.eva_puntaje }}
                         </td>
-                        <td>
-                          {{ autoevaluacion.a_Evaluacion }}
-                        </td>
-                        <td>
-                          {{ autoevaluacion.a_fechaInicio }}
-                        </td>
-                        <td>
-                          {{ autoevaluacion.a_fechaFin }}
-                        </td>
-
+                        
                       </tr>
                     </tbody>
                   </table>
@@ -89,6 +73,4 @@
         </div>
       </div>
     </div>
-    <!-- Button trigger modal -->
-  </div>
-</div>
+ 

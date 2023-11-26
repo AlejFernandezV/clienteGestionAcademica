@@ -7,20 +7,7 @@ import { l_autoevaluacion } from 'app/models/autoevaluacion/autoevaluacion';
   styleUrls: ['./l-autoevaluacion.component.css']
 })
 export class LAutoevaluacionComponent implements OnInit {
-  autoevaluacion: l_autoevaluacion = {
-    a_periodo: 0,
-    a_NombreD: '',
-    a_NombreL: '',
-    a_TipoL :'',
-    a_horas :0,
-    a_Descripcion :'',
-    a_Acto :'',
-    a_Estado :'',
-    a_Evaluacion :0,
-    a_fechaInicio :0,
-    a_fechaFin :0,
-
-  };
+ 
   
 lautoevaluacion: l_autoevaluacion[] = [];
 
@@ -28,13 +15,18 @@ lautoevaluacion: l_autoevaluacion[] = [];
 
 
   ngOnInit(): void {
-    // const myLaborDocente =this.docenteService.obtenerDocentes()
-    this.obtenerAutoevaluacion();
-
+this.listAutoevaluaciones();
   }
 
-  obtenerAutoevaluacion() {
-    this.lautoevaluacion = this.autoevaluacionService.obtenerAutoevaluacion();
+  listAutoevaluaciones(){
+    this.autoevaluacionService.getlAutoevaluacion().subscribe(
+      res => {
+        this.lautoevaluacion = res.results;
+        console.log(this.lautoevaluacion)
+      },
+      err => console.log(err)
+    );
+
   }
 
 

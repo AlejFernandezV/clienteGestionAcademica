@@ -1,7 +1,7 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-danger">
             <h4 class="card-title">Gestionar Autoevaluación</h4>
@@ -13,33 +13,31 @@
                 <div class="col-md-6">
                   <mat-form-field>
                     <mat-label>Periodo Academico</mat-label>
-                    <select matNativeControl required name="a_periodo"  [(ngModel)]="newAutoevaluacion.a_periodo">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
+                    <select matNativeControl required name="a_periodo"  [(ngModel)]="newAutoevaluacion.per_id">
+                      <option value="" disabled selected>Seleccione</option>
+                      <option *ngFor="let periodo of periodos" [value]="periodo.per_nombre">{{ periodo.per_nombre }}</option>
                     </select>
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field>
                     <mat-label>Nombre Docente</mat-label>
-                    <select matNativeControl required name="a_NombreD"  [(ngModel)]="newAutoevaluacion.a_NombreD">
-                      <option selected>seleccione</option>
-                      <option value="pepito">pepito</option>
-                      <option value="Perez">perez</option>
+                    <select matNativeControl required name="NombreD" [(ngModel)]="newAutoevaluacion.usa_id">
+                      <option value="" disabled selected>Seleccione</option>
+                      <option *ngFor="let usuario of usuarios" [value]="usuario.usu_nombre">{{ usuario.usu_nombre }}</option>
                     </select>
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field>
                     <mat-label>Nombre Labor</mat-label>
-                    <select matNativeControl required name="a_NombreL"  [(ngModel)]="newAutoevaluacion.a_NombreL">
-                      <option value="Tesis">Tesis</option>
-                      <option value="Maestría">MaestrIa</option>
-                      <option value="Trabajo de Grado">Trabajo</option>
+                    <select matNativeControl required name="NombreL"  [(ngModel)]="newAutoevaluacion.lab_id">
+                      <option value="" disabled selected>Seleccione</option>
+                      <option *ngFor="let item of docentes" [value]="item.lab_nombre">{{ item.lab_nombre }}</option>
                     </select>
                   </mat-form-field>
                 </div>
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                   <mat-form-field>
                     <mat-label>Tipo Labor</mat-label>
                     <select matNativeControl required name="a_TipoL"  [(ngModel)]="newAutoevaluacion.a_TipoL">
@@ -78,8 +76,8 @@
                     [(ngModel)]="newAutoevaluacion.a_Descripcion"
 
                   />
-                </div>
-                <div class="col-md-6">
+                </div> -->
+                <!-- <div class="col-md-6">
                   <mat-form-field>
                     <mat-label>Acto</mat-label>
                     <select matNativeControl required name="a_Acto"  [(ngModel)]="newAutoevaluacion.a_Acto">
@@ -87,12 +85,12 @@
                       <option value="no">no</option>
                     </select>
                   </mat-form-field>
-                </div>
+                </div> -->
 
                 <div class="col-md-6">
                   <mat-form-field>
                     <mat-label>Estado</mat-label>
-                    <select matNativeControl required name="a_Estado"  [(ngModel)]="newAutoevaluacion.a_Estado">
+                    <select matNativeControl required name="a_Estado"  [(ngModel)]="newAutoevaluacion.eva_estado">
                       <option value="En ejecución">En ejecución</option>
                       <option value="Terminado">Terminado</option>
                       <option value="Suspendido">Suspendido</option>
@@ -100,18 +98,38 @@
                   </mat-form-field>
                 </div>
 
-                <div class="col-md-6">
-                  <h6>Evaluación</h6>
+                <div class="col-md-4">
+                  <h6>estado</h6>
+                  <input
+                    type="text"
+                    class="form-control"
+                    arial-describedby="a_Evaluacion"
+                    name="estado"
+                    [(ngModel)]="newAutoevaluacion.eva_estado"
+                  />
+                </div>
+                <div class="col-md-4">
+                  <h6>puntaje</h6>
                   <input
                     type="number"
                     class="form-control"
-                    arial-describedby="a_Evaluacion"
-                    name="a_Evaluacion"
-                    [(ngModel)]="newAutoevaluacion.a_Evaluacion"
+                    arial-describedby="puntaje"
+                    name="puntaje"
+                    [(ngModel)]="newAutoevaluacion.eva_puntaje"
+                  />
+                </div>
+                <div class="col-md-4">
+                  <h6>resultado</h6>
+                  <input
+                    type="number"
+                    class="form-control"
+                    arial-describedby=""
+                    name="resultado"
+                    [(ngModel)]="newAutoevaluacion.eva_resultado"
                   />
                 </div>
 
-                <div class="col-md-6">
+                <!-- <div class="col-md-4">
                   <h6>Fecha Inicio</h6>
                   <input
                     type="number"
@@ -121,9 +139,9 @@
                     [(ngModel)]="newAutoevaluacion.a_fechaInicio"
 
                   />
-                </div>
+                </div> -->
 
-                <div class="col-md-6">
+                <!-- <div class="col-md-4">
                     <h6>Fecha Fin</h6>
                     <input
                       type="number"
@@ -132,9 +150,9 @@
                       arial-describedby="a_fechaFin"
                       [(ngModel)]="newAutoevaluacion.a_fechaFin"
                     />
-                  </div>
+                  </div> -->
               </div>
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="agregarAutoevaluacion()" routerLink="/l-autoevaluacion">Crear Autoevaluacion</button>
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="agregarAutoevaluacion()">Crear Autoevaluacion</button>
             </form>
           </div>
         </div>

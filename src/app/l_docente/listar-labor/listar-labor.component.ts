@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { LDocenteService } from '../../services/l-docente.service';
-import { l_docente } from '../../models/l_docente/docente';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { L_docente } from 'app/models/l_docente/docente';
+import { LDocenteService } from 'app/services/l-docente.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listar-labor',
@@ -10,45 +10,64 @@ import { l_docente } from '../../models/l_docente/docente';
   styleUrls: ['./listar-labor.component.css']
 })
 export class ListarLaborComponent implements OnInit {
-  docenteAEditar: l_docente = {
-    id: 0, // ID del docente que quieres editar
-     
-    lb_Tipo:''  , 
-    lb_Nombre: '' , 
-    lb_Horas:0  ,
-  };
-docentes: l_docente[] = [];
+  docentes: L_docente[] = [];
 
-  constructor(private docenteService: LDocenteService,) {}
+  constructor(private lDocenteService: LDocenteService, 
+    private router: Router) { }
 
   ngOnInit(): void {
-    // const myLaborDocente =this.docenteService.obtenerDocentes()
-    this.obtenerDocentes();
+    this.listLdocentes();
   }
-
-  obtenerDocentes() {
-    this.docentes = this.docenteService.obtenerDocentes();
+  listLdocentes(){
+    this.lDocenteService.getldocente().subscribe(
+      (res: any) => {
+        console.log(res);
+        this.docentes = res.results; // Acceder a la propiedad 'results' para asignarla a la variable 'docentes'
+      },
+      err => console.log(err)
+    );
   }
+  deleteLdocente(lab_nombre: string){
+    this.lDocenteService.deleteldocente(lab_nombre).subscribe(
+      res=>{
+        if(res.code === 200){
+          Swal.fire({
+            title: 'Labor Docente se  eliminado corectamente',
+            icon: 'success',
+            timer: 2000,
+          });
 
-  editarDocente(): void {
-    this.docenteService.editDocente(this.docenteAEditar);
+          this.listLdocentes();
+        }else{
+          Swal.fire({
+            title: 'Error al eliminar Labor docente',
+            icon: 'error',
+            text: res.message,
+            timer: 2000,
+          });
+
+          this.listLdocentes();
+        }
+      },
+      err=> console.log(err)
+    );
   }
-
-  agregarDocente() {
-    
-    
-    // console.log(nuevoDocente);
-    // this.docenteService.agregarDocente(nuevoDocente);
-    
-    // this.obtenerDocentes();
+  // updateLdocente(lab_nombre: string){
+  //   this.router.navigate(['/actualizar', lab_nombre]);
+  //   console.log(this.router.navigate(['/actualizar', lab_nombre]))
+  // }
+  
+  updateLdocente(nombre: string): void {
+    console.log('Antes de la navegación'); // Mensaje antes de la navegación
+    this.router.navigate(['/actualizar', nombre])
+      .then(() => {
+        console.log('Navegación completada'); // Mensaje después de la navegación exitosa
+      })
+      .catch(error => {
+        console.error('Error en la navegación:', error); // Manejo de errores en la navegación
+      });
   }
- 
-
-  eliminarDocente(id:number) {
-    this.docenteService.eliminarLaborDocente(id);
-    //  this.obtenerDocentes();
-  }
-
-
+  
+  
 }
 

@@ -74,7 +74,6 @@ import { MatMenuModule } from '@angular/material/menu';
     UpdateDocenteComponent,
     ListDocentesComponent,
     CreateDocenteComponent,
-
     CrearComponent,
     ActualizarComponent,
     LAutoevaluacionComponent,
