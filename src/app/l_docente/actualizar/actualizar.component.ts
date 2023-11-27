@@ -27,7 +27,6 @@ export class ActualizarComponent  {
 
   }
 
-
   ngOnInit() {
    let Ldocenteid = this.activeRoute.snapshot.paramMap.get('nombre')
    this.listService.updateldocente(Ldocenteid,this.datosDocente).subscribe(data=>{

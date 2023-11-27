@@ -32,7 +32,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'update-docente/:usu_num_doc', component: UpdateDocenteComponent, canActivate:[AuthGuard, RolDecanoGuard],},
     { path: 'listar-periodo', component: ListarPeriodoComponent},
     { path: 'crear-periodo',  component: CrearPeriodoComponent, canActivate:[AuthGuard, RolDecanoGuard],},
-    { path: 'actualizar-periodo', component: ActualizarPeriodoComponent, canActivate:[AuthGuard, RolDecanoGuard],},
+    { path: 'actualizar-periodo/:per_nombre', component: ActualizarPeriodoComponent, canActivate:[AuthGuard, RolDecanoGuard],},
     { path: 'listar-labor', component: ListarLaborComponent},
     { path: 'crear', component: CrearComponent},
     { path: 'consultar', component: ConsultarComponent, canActivate:[AuthGuard, RolDecanoGuard], },
