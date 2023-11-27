@@ -38,9 +38,9 @@ export class ListarPeriodoComponent implements OnInit {
     );
   }
   
-  updatePeriodo(id: string){
+  /* updatePeriodo(id: string){
     this.router.navigate(['/actualizar-periodo'+id]);
-  }
+  } */
   
 
 
