@@ -1,0 +1,8 @@
+.ancho-personalizado {
+    width: 200px; /* Ajusta el valor según tus necesidades */
+    display: block; /* Hace que el enlace ocupe toda la anchura disponible */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden; /* Oculta cualquier contenido que desborde del ancho especificado */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos (...) si el texto es demasiado largo */
+  }
+  

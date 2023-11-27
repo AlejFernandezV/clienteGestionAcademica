@@ -12,9 +12,9 @@ export default class Publicador {
     }
   }
 
-  notificarSubscriptores(data: any): void {
+  notificarSubscriptores(): void {
     for (const subscriptor of this.subscriptores) {
-      subscriptor.actualizar(data);
+      subscriptor.actualizar();
     }
   }
 }

@@ -10,6 +10,8 @@ import { Router } from "@angular/router";
 import { l_autoevaluacion } from "app/models/autoevaluacion/autoevaluacion";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import Swal from "sweetalert2";
+import { NotificacionService } from "app/services/notificacion/notificacion.service";
+import { notificacionI } from "app/models/notificacion/notificacion.interface";
 
 @Component({
   selector: "app-autoevaluacion",
@@ -29,6 +31,7 @@ export class AutoevaluacionComponent {
   usuarios: UsuarioI[] = [];
   labores: L_docente[] = [];
   periodos: PeriodoI[] = [];
+  lab_nombre_selec: string;
 
   formEva = new FormGroup({
     per_id: new FormControl('', Validators.required),
@@ -41,6 +44,7 @@ export class AutoevaluacionComponent {
     private usuarioService: UsuariosService,
     private lDocenteService: LDocenteService,
     private periodoService: PeriodosService,
+    private notiService: NotificacionService,
     private router: Router
   ) {}
 
@@ -55,6 +59,8 @@ export class AutoevaluacionComponent {
     this.newAutoevaluacion.usu_id = form.usu_id
     this.newAutoevaluacion.per_id = form.per_id
 
+    this.crearNotificacion(this.newAutoevaluacion.usu_id,this.lab_nombre_selec)
+    /*
     this.listService.createlAutoevaluacion(this.newAutoevaluacion).subscribe(data => {
       if(data.status == 'success'){
         Swal.fire({
@@ -73,8 +79,7 @@ export class AutoevaluacionComponent {
           showConfirmButton: true,
         })
       }
-    });
-    
+    });*/
   }
 
   listDocentes() {
@@ -101,5 +106,46 @@ export class AutoevaluacionComponent {
       },
       (err) => console.log(err)
     );
+  }
+
+  seleccionarLabor(event: any): void {
+    // Obtén el índice de la opción seleccionada
+    const selectedIndex = event.target.selectedIndex - 1;
+
+    // Verifica si labores está definido y no es nulo
+    if (this.labores && this.labores.length > selectedIndex) {
+      // Usa el índice para obtener el objeto correspondiente de tu arreglo
+      const laborSeleccionada = this.labores[selectedIndex];
+
+      // Verifica si laborSeleccionada está definido y no es nulo
+      if (laborSeleccionada) {
+        // Extrae el nombre y guárdalo en la variable
+        this.lab_nombre_selec = laborSeleccionada.lab_nombre;
+        
+      } else {
+        console.error('El objeto laborSeleccionada está indefinido o nulo.');
+      }
+    } else {
+      console.error('Labores no está definido o no contiene suficientes elementos.');
+    }
+  }
+
+  crearNotificacion(_usu_id:number, _lab_nombre:string){
+    let noti: notificacionI = {
+      usu_id: _usu_id,
+      noti_contenido: `Se le asignó una nueva autoevaluación para ${_lab_nombre}`,
+      noti_ruta: "/table-list",
+      noti_estado: "Pendiente",
+    }
+    console.log(noti);
+
+    this.notiService.postNotification(noti).subscribe(data =>{
+      if(data.status == "success"){
+        console.log("Se creó la notificación");
+      }
+      else{
+        console.log(data.message);
+      }
+    })
   }
 }

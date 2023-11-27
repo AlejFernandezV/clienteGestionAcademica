@@ -24,12 +24,15 @@
                     </span>
                 </button>
                 <mat-menu #notificacion="matMenu">
-                    <div *ngFor="let notificacion of notificaciones">
-                        <button mat-menu-item>{{ notificacion.mensaje }}</button>
+                    <div mat-menu-item *ngFor="let notificacion of notificaciones">
+                        <a mat-menu-item [routerLink]="notificacion.noti_ruta" class="ancho-personalizado" [title]="notificacion.noti_contenido"> 
+                            {{ notificacion.noti_contenido }}
+                        </a>
                     </div>
-                    <div *ngIf="cant_notis==0">
+                    <div mat-menu-item *ngIf="cant_notis==0">
                         <label>No tienes notificaciones</label>
                     </div>
+
                 </mat-menu>
                 <!---- Notificaciones-->
                 
