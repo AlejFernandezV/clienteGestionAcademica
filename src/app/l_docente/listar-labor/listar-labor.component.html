@@ -40,7 +40,7 @@
                                         <td class="left">
                                             <button (click)="deleteLdocente(docente.lab_nombre)"
                                                 class="btn btn-danger pull-right"><mat-icon>delete</mat-icon></button>
-                                            <button (click)="updateLdocente(docente.lab_nombre)"
+                                            <button  [routerLink]="['/actualizar/', docente.lab_nombre]"
                                                 class="btn btn-warning pull-right"><mat-icon>edit</mat-icon></button>
                                             <!-- <button mat-raised-button  class="btn btn-danger pull-right" [routerLink]="['/actualizar,docente.lab_nombre']">editar</button> -->
 

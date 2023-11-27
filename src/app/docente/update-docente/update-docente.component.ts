@@ -18,7 +18,10 @@ export class UpdateDocenteComponent implements OnInit {
   id = this.route.snapshot.paramMap.get('usu_num_doc')
   num_doc_old:number;
 
-  constructor(private UsuarioService: UsuariosService, private router:Router, private route: ActivatedRoute) { }
+  constructor(
+    private UsuarioService: UsuariosService, 
+    private router:Router, 
+    private route: ActivatedRoute) { }
 
   actualizarDocenteForm = new FormGroup({
     usu_num_doc: new FormControl('', Validators.required),
