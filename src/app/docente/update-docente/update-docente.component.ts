@@ -13,9 +13,10 @@ import Swal from 'sweetalert2';
 export class UpdateDocenteComponent implements OnInit {
   loading: any = true;
   generos = ["Masculino", "Femenino"];
-  tipoDocentes = ["Planta tiempo completo", "Planta medio tiempo", "Catedra tiempo completo", "Catedra tiempo completo"];
+  tipoDocentes = ["Planta tiempo completo", "Planta medio tiempo", "Catedra tiempo completo", "Catedra medio tiempo"];
   id_rol: number 
   id = this.route.snapshot.paramMap.get('usu_num_doc')
+  num_doc_old:number;
 
   constructor(private UsuarioService: UsuariosService, private router:Router, private route: ActivatedRoute) { }
 
@@ -48,6 +49,8 @@ export class UpdateDocenteComponent implements OnInit {
         usu_estudio: data.results.usu_estudio,
         usu_estado: data.results.usu_estado,
       })
+
+      this.num_doc_old = data.results.usu_num_doc;
     })
   }
 
@@ -55,7 +58,7 @@ export class UpdateDocenteComponent implements OnInit {
     this.getIdRol(form.rol_descripcion)
     
     let docente:  UsuarioUpdateI = {
-      usu_num_doc_old: form.usu_num_doc,
+      usu_num_doc_old: this.num_doc_old,
       usu_num_doc_new: form.usu_num_doc,
       usu_tipo_doc: 'C.C',
       usu_email: form.usu_email,
@@ -68,7 +71,7 @@ export class UpdateDocenteComponent implements OnInit {
     }
     this.getGenero(docente)
     this.UsuarioService.updateUsuario(docente).subscribe(data =>{
-      if(data.status == 'Success'){
+      if(data.code == 200){
         this.loading = false
         Swal.fire({
           position: 'center',

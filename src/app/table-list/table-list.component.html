@@ -129,15 +129,11 @@
                                         Estado
                                     </th>
                                     <th>
-                                        Resultados
-                                    </th>
-                                    <th>
-                                        Evaluación
+                                        Acciones
                                     </th>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let evaluacion of evaluaciones; let i = index">
-
                                         <td>{{ i + 1 }}</td>
                                         <td>{{ evaluacion.lab_nombre }}</td>
                                         <td>{{ evaluacion.tl_descripcion }}</td>
@@ -150,28 +146,34 @@
                                         <td>{{ evaluacion.per_fecha_fin | date:'yyyy-MM-dd' }}</td>
                                         <td>{{ evaluacion.eva_estado }}</td>
                                         <td>
-                                            <div>
-                                                <mat-form-field class="example-full-width">
-                                                    <input matInput type="string">
-                                                  </mat-form-field>
-                                            </div>
-                                            <div *ngIf="getUserTipoDocente()" class="col-md-12">
-                                                <label for="pdfFile"> </label>
-                                                <input type="file" id="pdfFile" name="pdfFile" accept=".jpg .png .pdf ">
-                                            </div>                        
-                                          <!--<div class="clearfix"></div>
-                                          <button mat-raised-button type="submit" class="btn btn-danger pull-right">Subir Archivo</button>
-                                          <div class="clearfix"></div>-->
+                                            <button *ngIf="getUserRol()==0 && evaluacion.eva_estado!='Terminado'" class="btn btn-success btn-sm" 
+                                            (click)="openDialogSolved(evaluacion.eva_id,rol,evaluacion.lab_nombre,evaluacion.tl_descripcion)" title="Realizar">
+                                                Realizar
+                                            </button>
+                                            <button *ngIf="getUserRol()==0 && evaluacion.eva_estado==='Terminado'" class="btn btn-secondary btn-sm" 
+                                            (click)="openAdv('Usted ya realizó la evaluación, no se puede modificar')" title="Realizar">
+                                                Realizar
+                                            </button>
+
+                                            <button *ngIf="getUserRol() && evaluacion.eva_estado === 'En ejecución'" class="btn btn-secondary btn-sm" 
+                                            (click)="openAdv('El docente aún no ha hecho su autoevaluación')" title="Ver">
+                                                <mat-icon>visibility</mat-icon>
+                                            </button>
+
+                                            <button *ngIf="getUserRol() && evaluacion.eva_estado === 'Terminado'" class="btn btn-info btn-sm" 
+                                            (click)="openDialogReview(evaluacion.eva_id,evaluacion.lab_nombre)" title="Ver">
+                                                <mat-icon>visibility</mat-icon>
+                                            </button>
+
+                                            <button *ngIf="getUserRol() && evaluacion.eva_estado === 'Suspendido'" class="btn btn-danger btn-sm" 
+                                            (click)="openDialogReview(evaluacion.eva_id,evaluacion.lab_nombre)" title="Ver">
+                                                <mat-icon>visibility</mat-icon>
+                                            </button>
+
+                                            <label *ngIf="getUserRol() && evaluacion.eva_estado === 'Revisado'" class="btn btn-success btn-sm" title="Revisado">
+                                                <mat-icon>done</mat-icon>
+                                            </label>
                                         </td>
-                                        <td><div>
-                                            <mat-form-field class="example-full-width">
-                                              <input 
-                                              matInput
-                                              type="number"
-                                              id="identificacion_usu"/>
-                                            </mat-form-field>
-                                              
-                                          </div></td>
                                     </tr>
                                     
                                     <tr>
@@ -182,43 +184,7 @@
                             </table>
                         </div>
                     </div>
-                                     
-                   <!-- <div class="clearfix"></div>
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title mt-0" style="text-align: center;"> Sugerencias y recomendaciones para
-                            mejorar el funcionamiento y proyección de nuestro Departamento: </h4>
-                    </div>-->
                 </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header card-header-danger">
-                    <h4 class="card-title " style="text-align: center;">Sugerencias y recomendaciones para
-                        mejorar el funcionamiento y proyección de nuestro Departamento:</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead class="">
-                                <tr>
-                                    <td>
-                                        <div class="input-group no-border example-full-width">
-                                            <input type="text" value="" class="form-control" matInput placeholder="Escriba aquí sus sugerencias.">
-                                            <!--<button mat-raised-button class="btn btn-white btn-round btn-just-icon">
-                                              <i class="material-icons">search</i>
-                                              <div class="ripple-container"></div>
-                                            </button>-->
-                                        </div>
-                                    </td>
-                                </tr>
-
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button mat-raised-button (click)="onFileSelected($event)" class="btn btn-danger pull-left">Enviar Autoevaluación</button>
             </div>
         </div>
     </div>

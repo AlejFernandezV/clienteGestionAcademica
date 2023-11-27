@@ -14,20 +14,20 @@ export class PeriodosService {
 
   constructor(private http: HttpClient) { }
 
-  getPeriodo(id: string): Observable<ResponseI> {
-    return this.http.get<ResponseI>(`${this.apiUrl}/periodos/${id}`);
+  getPeriodo(nombre: string): Observable<ResponseI> {
+    return this.http.get<ResponseI>(`${this.apiUrl}/periodos/buscar_por_nombre?nombre=${nombre}`);
   }
   getPeriodos():Observable<ResponseI>{
-    return this.http.get<ResponseI>(`${this.apiUrl}/periodos/listar_nombres`);
+    return this.http.get<ResponseI>(`${this.apiUrl}/periodos/listar`);
   }
-  deletePeriodo(id: string):Observable<ResponseI>{
-    return this.http.delete<ResponseI>(`${this.apiUrl}/periodos/${id}`);
+  deletePeriodo(nombre: string):Observable<ResponseI>{
+    return this.http.delete<ResponseI>(`${this.apiUrl}/periodos/eliminar?nombre=${nombre}`);
   }
 
   createPeriodo(periodo: PeriodoI):Observable<ResponseI>{
-    return this.http.post<ResponseI>(`${this.apiUrl}/periodos`, periodo);
+    return this.http.post<ResponseI>(`${this.apiUrl}/periodos/crear`, periodo);
   }
-  updatePeriodo(id: string, updatePeriodo: PeriodoI): Observable<ResponseI>{
-    return this.http.put<ResponseI>(`${this.apiUrl}/periodos/${id}`, updatePeriodo);
+  updatePeriodo(updatePeriodo: PeriodoI): Observable<ResponseI>{
+    return this.http.put<ResponseI>(`${this.apiUrl}/periodos/actualizar`, updatePeriodo);
   }
 }

@@ -31,4 +31,8 @@ export class LDocenteService {
   updateldocente(updatePeriodo: L_docente): Observable<ResponseI>{
     return this.http.put<ResponseI>(`${this.apiUrl}/labores/actualizar`, updatePeriodo);
   }
+
+  getTipoLabores():Observable<ResponseI>{
+    return this.http.get<ResponseI>(`${this.apiUrl}/labores/listar_tl_nombres`)
+  }
 }

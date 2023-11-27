@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
+import { L_docente } from '../../models/l_docente/docente';
 import { LDocenteService } from '../../services/l-docente.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup,FormControl,Validator, Validators } from '@angular/forms';
-import { L_docenteUpdate } from 'app/models/l_docente/updateLdocente';
+import { FormGroup,FormControl} from '@angular/forms';
 import Swal from 'sweetalert2';
-
 
 @Component({
   selector: 'app-actualizar',
@@ -25,13 +24,6 @@ export class ActualizarComponent  {
   ){
 
   }
-
-  actualizarLdocente = new FormGroup({
-    lab_nombre: new FormControl('',Validators.required),
-    lab_horas: new FormControl('',Validators.required),
-    tl_id: new FormControl('',Validators.required),
-})
-
 
   ngOnInit() {
   

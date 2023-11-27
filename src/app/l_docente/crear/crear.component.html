@@ -8,7 +8,7 @@
             <p class="card-category">Ingrese los datos</p>
           </div>
           <div class="card-body">
-            <form>
+            <form [formGroup]="formLabor" (ngSubmit)="sendLabor(formLabor.value)">
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field>
@@ -17,33 +17,33 @@
                       matNativeControl
                       required
                       name="nombre"
-                      [(ngModel)]="newDocente.lab_nombre">
+                      [(ngModel)]="newLabor.lab_nombre">
                       <option value="Tesis">Tesis</option>
                       <option value="Maestría">MaestrIa</option>
                       <option value="Trabajo de Grado">Trabajo</option>
                     </select>
                   </mat-form-field>
                 </div>
-                <!-- <div class="col-md-6">
+                <div class="col-md-6">
                   <mat-form-field class="example-full-width">
                     <mat-label>Descripcion</mat-label>
                     <textarea
                       matInput
                       name="codigo"
-                      [(ngModel)]="newDocente.tl_descripcion"
+                      [(ngModel)]="newLabor.tl_descripcion"
                     ></textarea>
                   </mat-form-field>
-                </div> -->
-                <!-- <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
                   <mat-form-field class="example-full-width">
                     <mat-label>codigo</mat-label>
                     <textarea
                       matInput
                       name="codigo"
-                      [(ngModel)]="newDocente.tl_codigo"
+                      [(ngModel)]="newLabor.tl_codigo"
                     ></textarea>
                   </mat-form-field>
-                </div> -->
+                </div> 
                 <div class="col-md-6">
                   <mat-form-field>
                     <mat-label>tl_id</mat-label>
@@ -51,7 +51,7 @@
                       matNativeControl
                       required
                       name="tl_id"
-                      [(ngModel)]="newDocente.tl_id">
+                      [(ngModel)]="newLabor.tl_id">
                       <option value="1">Docencia</option>
                       <option value="2">Trabajos Docencia</option>
                       <option value="3">Proyectos Investigación</option>
@@ -69,31 +69,52 @@
                   <input
                     type="number"
                     class="form-control"
+                    min="12"
+                    max="64"
                     name="horas"
                     arial-describedby="Horas"
-                    [(ngModel)]="newDocente.lab_horas"
+                    formControlName="lab_horas"
                   />
                 </div>
                 
-                <!-- <div class="col-md-4">
+                <div class="col-md-4">
                   <h6>tl_id</h6>
                   <input
                     type="number"
                     class="form-control"
                     name="horas"
                     arial-describedby="Horas"
-                    [(ngModel)]="newDocente.tl_id"
+                    [(ngModel)]="newLabor.tl_id"
                   />
-                </div> -->
+                </div>
                 
 
-              
+                <!-- <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>tl_id</mat-label>
+                    <select
+                      matNativeControl
+                      required
+                      name="tl_id"
+                      [(ngModel)]="newLabor.tl_id">
+                      <option value="Docencia">Docencia</option>
+                      <option value="Trabajos Docencia">Trabajos Docencia</option>
+                      <option value="Proyectos Investigación">Proyectos Investigación</option>
+                      <option value="Administración">Administración</option>
+                      <option value="Asesoría">Trabajo</option>
+                      <option value="Servicios">Servicios</option>
+                      <option value="Extensión">Extensión</option>
+                      <option value="Capacitación">Capacitación</option>
+                      <option value="Capacitación">Otros Servcicios</option>
+                    </select>
+                  </mat-form-field>
+                </div> -->
               </div>
               <button
                 mat-raised-button
                 type="submit"
                 class="btn btn-danger pull-right"
-                (click)="newLdocente()">
+              >
                 Crear Labor Docente
               </button>
             </form>

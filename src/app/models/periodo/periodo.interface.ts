@@ -1,5 +1,7 @@
 export interface PeriodoI{
     per_nombre: string;
-    per_fechainicio: Date;
-    per_fechafin: Date;
+    per_anio: number;
+    per_semestre: number;
+    per_fecha_inicio: Date;
+    per_fecha_fin: Date;
 }
