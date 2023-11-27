@@ -21,7 +21,7 @@
                                     <th>Nombre</th>
                                     <th>Tipo</th>
                                     <th>Horas</th>
-                                    <th>Acciones</th>
+                                    <th class="left">Acciones</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -37,7 +37,7 @@
                                             {{ docente.lab_horas }}
                                         </td>
 
-                                        <td>
+                                        <td class="left">
                                             <button (click)="deleteLdocente(docente.lab_nombre)"
                                                 class="btn btn-danger pull-right"><mat-icon>delete</mat-icon></button>
                                             <button (click)="updateLdocente(docente.lab_nombre)"

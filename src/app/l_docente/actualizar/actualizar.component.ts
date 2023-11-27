@@ -52,12 +52,12 @@ this.listService.getldocentes(nombre).subscribe(data=>{
 async actualizarDocente(form: any){
   
   let laboresD:  L_docenteUpdate = {
-    lab_nombre:form.results.lab_nombre,
-    lab_horas:form.results.lab_nombre,
-    tl_id:form.results.lab_horas,
-    tl_descripcion:form.results.tl_descripcion,
-    tl_codigo:form.results.tl_codigo,
-   lab_id:form.results.lab_id,
+    lab_nombre: form.value.lab_nombre, // Asigna el valor del campo lab_nombre del formulario
+    lab_horas: form.value.lab_horas, // Asigna el valor del campo lab_horas del formulario
+    tl_id: form.value.tl_id, // Asigna el valor del campo tl_id del formulario
+    tl_descripcion: form.value.tl_descripcion, // Asigna el valor del campo tl_descripcion del formulario
+    tl_codigo: form.value.tl_codigo, // Asigna el valor del campo tl_codigo del formulario
+    lab_id: form.value.lab_id, // Asigna el valor del campo lab_id del formulario
    
   }
   this.listService.updateldocente(laboresD).subscribe(data =>{

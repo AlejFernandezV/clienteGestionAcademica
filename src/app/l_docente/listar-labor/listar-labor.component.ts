@@ -18,6 +18,7 @@ export class ListarLaborComponent implements OnInit {
   ngOnInit(): void {
     this.listLdocentes();
   }
+
   listLdocentes(){
     this.lDocenteService.getldocente().subscribe(
       (res: any) => {
@@ -26,6 +27,8 @@ export class ListarLaborComponent implements OnInit {
       },
       err => console.log(err)
     );
+    // this.listLdocentes()
+
   }
   deleteLdocente(lab_nombre: string){
     this.lDocenteService.deleteldocente(lab_nombre).subscribe(
