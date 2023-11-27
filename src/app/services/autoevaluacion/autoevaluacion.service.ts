@@ -11,9 +11,6 @@ import { API_BASE_URL } from 'app/api-constants/api-constants.component';
   providedIn: 'root'
 })
 
-
-
-
 export class LAutoevaluacionService {
   private apiUrl = `${API_BASE_URL}`;
 
