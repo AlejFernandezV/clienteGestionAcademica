@@ -58,6 +58,7 @@ export class TableListComponent implements OnInit {
       }
     })
   }
+
   getEvaluation() {
     this.getUsuario()
     let rol = localStorage.getItem('usu_rol')
@@ -163,12 +164,20 @@ export class TableListComponent implements OnInit {
       usu_num_doc: form.usu_num_doc
     }
     let num_doc = new FormControl(formDefinitive.usu_num_doc, [Validators.required, this.inyeccion.sqlInjectionValidator])
-    if(!num_doc.valid){
+    if (num_doc.value == ''){
+      Swal.fire({
+        position: 'center',
+        icon: 'info',
+        title: "Oops...",
+        text: "Por favor ingrese un periodo",
+        showConfirmButton: true,
+      })
+    }else if(!num_doc.valid){
       Swal.fire({
         position: 'center',
         icon: 'error',
         title: "Error",
-        text: "Guau!, Intentas hacer una inyección SQL, hijo de la gran puta :D",
+        text: "Guau!, Intentas hacer una inyección SQL, hijo de la gran puta! 🤬🖕🏽🤡",
         showConfirmButton: true,
       })
     }else{
@@ -196,38 +205,48 @@ export class TableListComponent implements OnInit {
 
   getEvaluacionPorPeriodo(form: any){
     let formDefinitive = {
-      per_nombre: form.per_nombre_doc
+      per_nombre: form.per_nombre
     }
     let per_nombre = new FormControl(formDefinitive.per_nombre, [Validators.required, this.inyeccion.sqlInjectionValidator])
-    if(!per_nombre.valid){
+    if (per_nombre.value == ''){
+
       Swal.fire({
         position: 'center',
-        icon: 'error',
-        title: "Error",
-        text: "Guau!, Intentas hacer una inyección SQL, hijo de la gran puta :D",
+        icon: 'info',
+        title: "Oops...",
+        text: "Por favor ingrese un periodo",
         showConfirmButton: true,
       })
-    }else{
-      this.evalutionsService.getEvaluationPorPeriodo(form.per_nombre_doc).subscribe(data =>{
-        if(data.results && data.results.length > 0){
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Evaluaciones encontradas',
-            showConfirmButton: true,
-          })
-          this.evaluaciones = data.results;
-        }else{
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: "Error",
-            text: data.message,
-            showConfirmButton: true,
-          })
-        }
-      })
-    }
+    }else if(!per_nombre.valid){
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: "Error",
+          text: "Guau!, Intentas hacer una inyección SQL, hijo de la gran puta! 🤬🖕🏽🤡",
+          showConfirmButton: true,
+        })
+      }else{
+        this.evalutionsService.getEvaluationPorPeriodo(form.per_nombre).subscribe(data =>{
+          if(data.results && data.results.length > 0){
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Evaluaciones encontradas',
+              showConfirmButton: true,
+            })
+            this.evaluaciones = data.results;
+          }else{
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: "Error",
+              text: data.message,
+              showConfirmButton: true,
+            })
+          }
+        })
+      }
+    
   }
 
   getEvaluationPorNomPerNumDoc(form:any){
@@ -235,12 +254,20 @@ export class TableListComponent implements OnInit {
       per_nombre_doc: form.per_nombre_doc
     }
     let per_nombre_doc = new FormControl(formDefinitive.per_nombre_doc, [Validators.required, this.inyeccion.sqlInjectionValidator])
-    if(!per_nombre_doc.valid){
+    if (per_nombre_doc.value == ''){
+      Swal.fire({
+        position: 'center',
+        icon: 'info',
+        title: "Oops...",
+        text: "Por favor ingrese un periodo",
+        showConfirmButton: true,
+      })
+    }else if(!per_nombre_doc.valid){
       Swal.fire({
         position: 'center',
         icon: 'error',
         title: "Error",
-        text: "Guau!, Intentas hacer una inyección SQL, hijo de la gran puta :D",
+        text: "Guau!, Intentas hacer una inyección SQL, hijo de la gran puta! 🤬🖕🏽🤡",
         showConfirmButton: true,
       })
     }else {
