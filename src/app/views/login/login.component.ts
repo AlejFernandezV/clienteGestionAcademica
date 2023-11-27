@@ -4,7 +4,6 @@ import { Router } from '@angular/router'
 import { LoginService } from '../../services/login.service'
 import Swal from 'sweetalert2';
 import { LoginI } from 'app/models/login/login.interface';
-import { log } from 'console';
 import { InyeccionesService } from 'app/services/inyecciones.service';
 
 @Component({
@@ -53,7 +52,7 @@ export class LoginComponent implements OnInit {
         position: 'center',
         icon: 'error',
         title: "Error",
-        text: "Guau!, Intentas hacer una inyección SQL, hijo de la gran puta :D",
+        text: "Guau!, Intentas hacer una inyección SQL, hijo de la gran puta! 🤬🖕🏽🤡",
         showConfirmButton: true,
       })
     }else{
