@@ -20,15 +20,14 @@ export class ListarPeriodoComponent implements OnInit {
   listPeriodos(){
     this.periodoService.getPeriodos().subscribe(
       res => {
-        console.log(res);
-        this.periodos =<any>res;
+        this.periodos = res.results;
       },
       err => console.log(err)
     );
 
   }
-  deletePeriodo(id: string){
-    this.periodoService.deletePeriodo(id).subscribe(
+  deletePeriodo(nombre: string){
+    this.periodoService.deletePeriodo(nombre).subscribe(
       res=>{
         console.log('Periodo eliminado');
         this.listPeriodos();

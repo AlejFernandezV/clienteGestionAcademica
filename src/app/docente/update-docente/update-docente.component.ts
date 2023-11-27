@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class UpdateDocenteComponent implements OnInit {
   loading: any = true;
   generos = ["Masculino", "Femenino"];
-  tipoDocentes = ["Planta tiempo completo", "Planta medio tiempo", "Catedra tiempo completo", "Catedra tiempo completo"];
+  tipoDocentes = ["Planta tiempo completo", "Planta medio tiempo", "Catedra tiempo completo", "Catedra medio tiempo"];
   id_rol: number 
   id = this.route.snapshot.paramMap.get('usu_num_doc')
   num_doc_old:number;

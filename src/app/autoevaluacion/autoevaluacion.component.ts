@@ -8,33 +8,33 @@ import { PeriodoI } from "app/models/periodo/periodo.interface";
 import { PeriodosService } from "app/services/periodos.service";
 import { Router } from "@angular/router";
 import { l_autoevaluacion } from "app/models/autoevaluacion/autoevaluacion";
-import Publicador from "app/Observer/publicador";
-import { NotificacionService } from "app/services/notificacion/notificacion.service";
-import { notificacionI } from "app/models/notificacion/notificacion.interface";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import Swal from "sweetalert2";
-import Notificacion from "app/models/notificacion/notificacionCrear";
-import { NOTIFIACIONLIST } from "app/api-constants/api-constants.component";
 
 @Component({
   selector: "app-autoevaluacion",
   templateUrl: "./autoevaluacion.component.html",
   styleUrls: ["./autoevaluacion.component.css"],
 })
-export class AutoevaluacionComponent extends Publicador {
+export class AutoevaluacionComponent {
   newAutoevaluacion: l_autoevaluacion = {
-    eva_id: 0,
     lab_id: 0,
     per_id: 0,
-    usa_id: 0,
-    eva_estado: "",
+    usu_id: 0,
+    eva_estado: "En ejecución",
     eva_puntaje: 0,
-    eva_resultado: "",
+    eva_resultado: "Pendiente",
   };
 
-  lab_nombre: string = '';
   usuarios: UsuarioI[] = [];
-  docentes: L_docente[] = [];
+  labores: L_docente[] = [];
   periodos: PeriodoI[] = [];
+
+  formEva = new FormGroup({
+    per_id: new FormControl('', Validators.required),
+    usu_id: new FormControl('', Validators.required),
+    lab_id: new FormControl('', Validators.required)
+  });
 
   constructor(
     private listService: LAutoevaluacionService,
@@ -42,9 +42,7 @@ export class AutoevaluacionComponent extends Publicador {
     private lDocenteService: LDocenteService,
     private periodoService: PeriodosService,
     private router: Router
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.listDocentes();
@@ -52,28 +50,21 @@ export class AutoevaluacionComponent extends Publicador {
     this.listPeriodos();
   }
 
-  agregarAutoevaluacion() {
-    this.listService.createlAutoevaluacion(this.newAutoevaluacion).subscribe(data => {
-      if(data.status === "success"){
-        let dataNoti: notificacionI = {
-          usu_id: this.newAutoevaluacion.usa_id,
-          noti_content: `Se le asignó una evaluación para ${this.lab_nombre}`,
-          noti_ruta: '/table-list',
-          noti_estado: 'Pendiente'
-        }
-        const notificacion = new Notificacion(dataNoti)
-        
-        super.agregarSubscriptor(notificacion)
-        super.agregarSubscriptor(NOTIFIACIONLIST)
-        super.notificarSubscriptores({usu_id: this.newAutoevaluacion.usa_id, lab_nombre:this.lab_nombre})        
+  createEvaluation(form:any) {
+    this.newAutoevaluacion.lab_id = form.lab_id
+    this.newAutoevaluacion.usu_id = form.usu_id
+    this.newAutoevaluacion.per_id = form.per_id
 
+    this.listService.createlAutoevaluacion(this.newAutoevaluacion).subscribe(data => {
+      if(data.status == 'success'){
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: "¡Evaluación creada correctamente!",
+          title: "¡Evaluación asignada correctamente!",
           timer: 2000,
         })
-      }else{
+        this.router.navigate(["/table-list"]);
+      }else {
         Swal.fire({
           position: 'center',
           icon: 'error',
@@ -83,9 +74,9 @@ export class AutoevaluacionComponent extends Publicador {
         })
       }
     });
-    this.router.navigate(["/lautoevaluacion"]);
+    
   }
-  
+
   listDocentes() {
     this.usuarioService.getUsuarios().subscribe(
       (res) => {
@@ -98,7 +89,7 @@ export class AutoevaluacionComponent extends Publicador {
   listLdocentes() {
     this.lDocenteService.getldocente().subscribe(
       (res: any) => {
-        this.docentes = res.results;
+        this.labores = res.results;
       },
       (err) => console.log(err)
     );
@@ -110,9 +101,5 @@ export class AutoevaluacionComponent extends Publicador {
       },
       (err) => console.log(err)
     );
-  }
-
-  seleccionarLabNombre(event: any): void {
-    this.lab_nombre = event.target.value;
   }
 }

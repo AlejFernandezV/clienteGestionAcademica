@@ -16,7 +16,6 @@ export class LAutoevaluacionService {
 
   constructor(private http: HttpClient) { }
 
-
   createlAutoevaluacion(L_autoevaluacion: l_autoevaluacion):Observable<ResponseI>{
     return this.http.post<ResponseI>(`${this.apiUrl}/evaluaciones/crear`, L_autoevaluacion);
   }
