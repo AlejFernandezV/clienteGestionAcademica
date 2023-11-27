@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PeriodoI } from '../../models/periodo/periodo.interface';
 import { PeriodosService } from '../../services/periodos.service';
 import Swal from 'sweetalert2';
 
