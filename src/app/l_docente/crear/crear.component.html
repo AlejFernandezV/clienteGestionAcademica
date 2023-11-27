@@ -24,7 +24,7 @@
                     </select>
                   </mat-form-field>
                 </div>
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                   <mat-form-field class="example-full-width">
                     <mat-label>Descripcion</mat-label>
                     <textarea
@@ -33,8 +33,8 @@
                       [(ngModel)]="newDocente.tl_descripcion"
                     ></textarea>
                   </mat-form-field>
-                </div>
-                <div class="col-md-4">
+                </div> -->
+                <!-- <div class="col-md-4">
                   <mat-form-field class="example-full-width">
                     <mat-label>codigo</mat-label>
                     <textarea
@@ -43,8 +43,28 @@
                       [(ngModel)]="newDocente.tl_codigo"
                     ></textarea>
                   </mat-form-field>
+                </div> -->
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>tl_id</mat-label>
+                    <select
+                      matNativeControl
+                      required
+                      name="tl_id"
+                      [(ngModel)]="newDocente.tl_id">
+                      <option value="1">Docencia</option>
+                      <option value="2">Trabajos Docencia</option>
+                      <option value="3">Proyectos Investigación</option>
+                      <option value="5">Administración</option>
+                      <option value="6">Trabajo</option>
+                      <option value="7">Servicios</option>
+                      <option value="8">Extensión</option>
+                      <option value="9">Capacitación</option>
+                      <option value="10">Otros Servcicios</option>
+                    </select>
+                  </mat-form-field>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <h6>Horas</h6>
                   <input
                     type="number"
@@ -55,7 +75,7 @@
                   />
                 </div>
                 
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <h6>tl_id</h6>
                   <input
                     type="number"
@@ -64,29 +84,10 @@
                     arial-describedby="Horas"
                     [(ngModel)]="newDocente.tl_id"
                   />
-                </div>
+                </div> -->
                 
 
-                <!-- <div class="col-md-6">
-                  <mat-form-field>
-                    <mat-label>tl_id</mat-label>
-                    <select
-                      matNativeControl
-                      required
-                      name="tl_id"
-                      [(ngModel)]="newDocente.tl_id">
-                      <option value="Docencia">Docencia</option>
-                      <option value="Trabajos Docencia">Trabajos Docencia</option>
-                      <option value="Proyectos Investigación">Proyectos Investigación</option>
-                      <option value="Administración">Administración</option>
-                      <option value="Asesoría">Trabajo</option>
-                      <option value="Servicios">Servicios</option>
-                      <option value="Extensión">Extensión</option>
-                      <option value="Capacitación">Capacitación</option>
-                      <option value="Capacitación">Otros Servcicios</option>
-                    </select>
-                  </mat-form-field>
-                </div> -->
+              
               </div>
               <button
                 mat-raised-button

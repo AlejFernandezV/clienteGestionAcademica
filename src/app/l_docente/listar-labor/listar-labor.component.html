@@ -49,7 +49,7 @@
                                           <td>
                                            
                                               <button mat-raised-button (click)="deleteLdocente(docente.lab_nombre)" class="btn btn-danger pull-right">Eliminar</button>
-                                              <button mat-raised-button (click)="updateLdocente(docente.lab_nombre)" class="btn btn-danger pull-right">Actualizar</button>
+                                              <button mat-raised-button [routerLink]="['/actualizar/', docente.lab_nombre]" class="btn btn-danger pull-right">Actualizar</button>
                                              <!-- <button mat-raised-button  class="btn btn-danger pull-right" [routerLink]="['/actualizar,docente.lab_nombre']">editar</button> -->
                                               
                                           </td>

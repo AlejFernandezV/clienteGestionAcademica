@@ -57,16 +57,16 @@ export class ListarLaborComponent implements OnInit {
   //   console.log(this.router.navigate(['/actualizar', lab_nombre]))
   // }
   
-  updateLdocente(nombre: string): void {
-    console.log('Antes de la navegación'); // Mensaje antes de la navegación
-    this.router.navigate(['/actualizar', nombre])
-      .then(() => {
-        console.log('Navegación completada'); // Mensaje después de la navegación exitosa
-      })
-      .catch(error => {
-        console.error('Error en la navegación:', error); // Manejo de errores en la navegación
-      });
-  }
+  // updateLdocente(nombre: string): void {
+  //   console.log('Antes de la navegación'); // Mensaje antes de la navegación
+  //   this.router.navigate(['/actualizar', nombre])
+  //     .then(() => {
+  //       console.log('Navegación completada'); // Mensaje después de la navegación exitosa
+  //     })
+  //     .catch(error => {
+  //       console.error('Error en la navegación:', error); // Manejo de errores en la navegación
+  //     });
+  // }
   
   
 }

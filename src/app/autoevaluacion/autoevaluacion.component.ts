@@ -22,7 +22,7 @@ export class AutoevaluacionComponent  {
     eva_id:0,
     lab_id:0,
     per_id:0,
-    usa_id:0,
+    usu_id:0,
     eva_estado:'',
     eva_puntaje:0,
     eva_resultado:'',
@@ -58,6 +58,8 @@ export class AutoevaluacionComponent  {
     )
     
     }
+
+
     listDocentes(){
       this.usuarioService.getUsuarios().subscribe(
         res => {

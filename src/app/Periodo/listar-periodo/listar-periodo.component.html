@@ -25,12 +25,12 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let periodo of periodos">
-                    <td>{{ periodo.nombre }}</td>
-                    <td>{{ periodo.fechaInicio}}</td>
-                    <td>{{ periodo.fechaFin }}</td>
+                    <td>{{ periodo.per_nombre }}</td>
+                    <td>{{ periodo.per_fecha_inicio}}</td>
+                    <td>{{ periodo.per_fecha_fin }}</td>
                     <td>
-                      <button class="btn btn-warning btn-sm" (click)="updatePeriodo(periodo.nombre)" title="Editar"><mat-icon>edit</mat-icon></button>
-                      <button class="btn btn-danger btn-sm" (click)="deletePeriodo(periodo.nombre)" title="Eliminar"><mat-icon>delete</mat-icon></button>
+                      <button class="btn btn-warning btn-sm" (click)="updatePeriodo(periodo.per_nombre)" title="Editar"><mat-icon>edit</mat-icon></button>
+                      <button class="btn btn-danger btn-sm" (click)="deletePeriodo(periodo.per_nombre)" title="Eliminar"><mat-icon>delete</mat-icon></button>
                     </td>
                   </tr>
   

@@ -1,1 +1,67 @@
-<h1>ss</h1>
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Actualizar Perfil Docente</h4>
+              <p class="card-category">Complete su perfil</p>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="actualizarLdocente" (ngSubmit)="actualizarDocente(actualizarLdocente.value)">
+                <div class="row">
+                  
+                  <!-- <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Tipo Docente</mat-label>
+                      <select matNativeControl type="string" formControlName="rol_descripcion">
+                        <option value="" selected></option>
+                        <option *ngFor="let rols of tipoDocentes" [value]="rols"> {{rols}}</option>                      
+                      </select>
+                    </mat-form-field>
+                  </div> -->
+                  <!-- <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Genero</mat-label>
+                      <select matNativeControl  type="string" formControlName="usu_genero" name="gen">
+                        <option value="" selected></option>
+                        <option *ngFor="let gens of generos" [value]="gens"> {{gens}}</option>                      
+                      </select>
+                    </mat-form-field>
+                  </div> -->
+                </div>
+                <div class="row">
+                  <!--<div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                      <input   matInput type="string" placeholder="Contraseña" formControlName="usu_password">
+                    </mat-form-field>
+                  </div>-->
+                  <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                      <input matInput type="string"  placeholder="Nombres" formControlName="lab_nombre">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                      <input matInput type="string" placeholder="Apellidos" formControlName="lab_horas">
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput type="string" placeholder="Ultimo titulo academico" formControlName="tl_id">
+                    </mat-form-field>
+                  </div>
+                 
+  
+                </div>
+                <button  mat-raised-button type="submit" class="btn btn-danger pull-right">Actualizar Perfil</button>
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

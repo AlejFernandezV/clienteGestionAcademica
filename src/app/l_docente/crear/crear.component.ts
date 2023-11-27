@@ -13,7 +13,7 @@ export class CrearComponent {
   newDocente:L_docente ={
     lab_id:0,
     lab_horas: 0,
-    tl_descripcion: 'ninguna',
+    tl_descripcion: '',
     lab_nombre: '',
     tl_codigo:'',
     tl_id:0,
@@ -26,7 +26,9 @@ export class CrearComponent {
   }
 
   ngOnInit(): void {
+    this.newLdocente()
   }
+  
   newLdocente(){
     this.listService.createldocente(this.newDocente).subscribe();
     this.router.navigate(['/listar-labor']);
