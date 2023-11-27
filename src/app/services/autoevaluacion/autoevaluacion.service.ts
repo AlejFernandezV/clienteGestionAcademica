@@ -11,14 +11,10 @@ import { API_BASE_URL } from 'app/api-constants/api-constants.component';
   providedIn: 'root'
 })
 
-
-
-
 export class LAutoevaluacionService {
   private apiUrl = `${API_BASE_URL}`;
 
   constructor(private http: HttpClient) { }
-
 
   createlAutoevaluacion(L_autoevaluacion: l_autoevaluacion):Observable<ResponseI>{
     return this.http.post<ResponseI>(`${this.apiUrl}/evaluaciones/crear`, L_autoevaluacion);

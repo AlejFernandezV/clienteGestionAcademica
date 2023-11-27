@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { L_docente } from '../../models/l_docente/docente';
 import { LDocenteService } from '../../services/l-docente.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup,FormControl,Validator } from '@angular/forms';
+import { FormGroup,FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-actualizar',
