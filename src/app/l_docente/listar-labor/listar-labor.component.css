@@ -1,3 +1,7 @@
-table {
-    width: 100%;
-  }
+.btn-custom {
+  background-color: #0e008a;
+  color: #fff; 
+  border: 1px solid darkblue; 
+  padding: 5px 10px; 
+  font-size: 12px;
+}

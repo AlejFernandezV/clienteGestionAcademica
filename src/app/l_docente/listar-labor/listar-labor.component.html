@@ -1,72 +1,58 @@
 <div class="main-content">
-  <div class="container-fluid">
- <!-- Button trigger modal -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger"
+                        style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 class="card-title ">Lista Labores</h4>
+                            <p class="card-category"> Informacion</p>
+                        </div>
+                        <button class="btn btn-custom pull-right" routerLink="/crear" title="Crear labor">
+                            <mat-icon>add</mat-icon></button>
+                    </div>
 
-  <!-- Modal -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th>Nombre</th>
+                                    <th>Tipo</th>
+                                    <th>Horas</th>
+                                    <th>Acciones</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
 
-
-    <div class="main-content">
-      <div class="container-fluid">
-          <div class="row">
-              <div class="col-md-12">
-                  <div class="card">
-                      <div class="card-header card-header-danger">
-                          <h4 class="card-title ">Lista Labores</h4>
-                          <p class="card-category"> Informacion</p>
-                          
-                      </div>
-                      <div class="card-body">
-                          <!-- <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/crear">Crear Labor</button> -->
-                          <button mat-raised-button  class="btn btn-danger pull-right" routerLink="/crear">Crear Labor</button>
-                          
-                          <div class="table-responsive">
-                              <table class="table">
-                                  <thead class=" text-primary">
-                                      <th>
-                                        Nombre labor
-                                      </th>
-                                      <th>
-                                          descripcion
-                                      </th>
-                                      <th>
-                                          Horas
-                                      </th>
-                                      
-                                  </thead>
-                                  <tbody> 
-                                    
                                     <tr *ngFor="let docente of docentes;">
                                         <td>
                                             {{ docente.lab_nombre }}
-                                          </td>
-                                          <td>
+                                        </td>
+                                        <td>
                                             {{ docente.tl_descripcion }}
-                                          </td>
-                                          <td>
+                                        </td>
+                                        <td>
                                             {{ docente.lab_horas }}
-                                          </td>
-                                          
-                                          <td>
-                                           
-                                              <button mat-raised-button (click)="deleteLdocente(docente.lab_nombre)" class="btn btn-danger pull-right">Eliminar</button>
-                                              <button mat-raised-button [routerLink]="['/actualizar/', docente.lab_nombre]" class="btn btn-danger pull-right">Actualizar</button>
-                                             <!-- <button mat-raised-button  class="btn btn-danger pull-right" [routerLink]="['/actualizar,docente.lab_nombre']">editar</button> -->
-                                              
-                                          </td>
-                                          
-                                      </tr>
-                                      
+                                        </td>
 
-                                    
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+                                        <td>
+                                            <button (click)="deleteLdocente(docente.lab_nombre)"
+                                                class="btn btn-danger pull-right"><mat-icon>delete</mat-icon></button>
+                                            <button (click)="updateLdocente(docente.lab_nombre)"
+                                                class="btn btn-warning pull-right"><mat-icon>edit</mat-icon></button>
+                                            <!-- <button mat-raised-button  class="btn btn-danger pull-right" [routerLink]="['/actualizar,docente.lab_nombre']">editar</button> -->
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Button trigger modal -->
-
-  
+</div>
+<!-- Button trigger modal -->

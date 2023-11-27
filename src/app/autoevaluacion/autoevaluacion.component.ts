@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { LAutoevaluacionService } from 'app/services/autoevaluacion/autoevaluacion.service';
 import { UsuariosService } from '../services/usuarios.service';
 import { UsuarioI } from 'app/models/usuario/usuario.interface';

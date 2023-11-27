@@ -2,13 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { EvaluationsService } from 'app/services/evaluations.service';
 import { EvaluationI } from 'app/models/evaluations/evaluations.interface';
 import { DocumentsService } from 'app/services/documents.service';
-import { data } from 'jquery';
-import { log } from 'console';
-import { catchError, throwError } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import { UsuariosService } from 'app/services/usuarios.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { InyeccionesService } from 'app/services/inyecciones.service';
 
 @Component({
   selector: 'app-table-list',
@@ -28,7 +25,8 @@ export class TableListComponent implements OnInit {
 
   constructor(private usuario: UsuariosService,
     private evalutionsService: EvaluationsService, 
-    private documentoService: DocumentsService
+    private documentoService: DocumentsService,
+    private inyeccion: InyeccionesService,
   ) { }
 
   autoEvaluacionDocenterForm = new FormGroup({
@@ -38,15 +36,15 @@ export class TableListComponent implements OnInit {
   })
 
   buscarPorIdentificacionForm = new FormGroup({
-    usu_num_doc: new FormControl('', Validators.required)
+    usu_num_doc: new FormControl('', [Validators.required, this.inyeccion.sqlInjectionValidator])
   })
 
   buscarPorPeriodoForm = new FormGroup({
-    per_nombre: new FormControl('', Validators.required)
+    per_nombre: new FormControl('', [Validators.required, this.inyeccion.sqlInjectionValidator])
   })
 
   buscarPorNomPerNumDocForm = new FormGroup({
-    per_nombre_doc: new FormControl('', Validators.required)
+    per_nombre_doc: new FormControl('', [Validators.required, this.inyeccion.sqlInjectionValidator])
   })
 
   ngOnInit() {
@@ -60,6 +58,7 @@ export class TableListComponent implements OnInit {
       }
     })
   }
+
   getEvaluation() {
     this.getUsuario()
     let rol = localStorage.getItem('usu_rol')
@@ -161,59 +160,33 @@ export class TableListComponent implements OnInit {
     }
   }
   searchByIdentification(form: any){
-    this.evalutionsService.getEvaluationPorNumDoc(form.usu_num_doc).subscribe(data => {
-      if(data.results && data.results.length > 0){
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'El docente tiene evaluaciones',
-          showConfirmButton: true,
-        })
-        this.evaluaciones = data.results;
-      }else{
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: "Error",
-          text: data.message,
-          showConfirmButton: true,
-        })
-      }
-    });
-  }
-
-  getEvaluacionPorPeriodo(form: any){
-    this.evalutionsService.getEvaluationPorPeriodo(form.per_nombre_doc).subscribe(data =>{
-      if(data.results && data.results.length > 0){
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Evaluaciones encontradas',
-          showConfirmButton: true,
-        })
-        this.evaluaciones = data.results;
-      }else{
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: "Error",
-          text: data.message,
-          showConfirmButton: true,
-        })
-      }
-    })
-  }
-
-  getEvaluationPorNomPerNumDoc(form:any){
-    console.log("datos de busqueda: ", form.per_nombre_doc+" "+this.num_doc)
-    if(form.per_nombre_doc){
-      this.evalutionsService.getEvaluationPorNomPerNumDoc(form.per_nombre_doc, Number(this.num_doc)).subscribe(data => {
-        console.log("data: ", data)
+    let formDefinitive = {
+      usu_num_doc: form.usu_num_doc
+    }
+    let num_doc = new FormControl(formDefinitive.usu_num_doc, [Validators.required, this.inyeccion.sqlInjectionValidator])
+    if (num_doc.value == ''){
+      Swal.fire({
+        position: 'center',
+        icon: 'info',
+        title: "Oops...",
+        text: "Por favor ingrese un periodo",
+        showConfirmButton: true,
+      })
+    }else if(!num_doc.valid){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: "Error",
+        text: "Guau!, Intentas hacer una inyección SQL, hijo de la gran puta! 🤬🖕🏽🤡",
+        showConfirmButton: true,
+      })
+    }else{
+      this.evalutionsService.getEvaluationPorNumDoc(form.usu_num_doc).subscribe(data => {
         if(data.results && data.results.length > 0){
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Evaluaciones encontradas',
+            title: 'El docente tiene evaluaciones',
             showConfirmButton: true,
           })
           this.evaluaciones = data.results;
@@ -226,8 +199,99 @@ export class TableListComponent implements OnInit {
             showConfirmButton: true,
           })
         }
-      })
+      });
     }
+  }
+
+  getEvaluacionPorPeriodo(form: any){
+    let formDefinitive = {
+      per_nombre: form.per_nombre
+    }
+    let per_nombre = new FormControl(formDefinitive.per_nombre, [Validators.required, this.inyeccion.sqlInjectionValidator])
+    if (per_nombre.value == ''){
+
+      Swal.fire({
+        position: 'center',
+        icon: 'info',
+        title: "Oops...",
+        text: "Por favor ingrese un periodo",
+        showConfirmButton: true,
+      })
+    }else if(!per_nombre.valid){
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: "Error",
+          text: "Guau!, Intentas hacer una inyección SQL, hijo de la gran puta! 🤬🖕🏽🤡",
+          showConfirmButton: true,
+        })
+      }else{
+        this.evalutionsService.getEvaluationPorPeriodo(form.per_nombre).subscribe(data =>{
+          if(data.results && data.results.length > 0){
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Evaluaciones encontradas',
+              showConfirmButton: true,
+            })
+            this.evaluaciones = data.results;
+          }else{
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: "Error",
+              text: data.message,
+              showConfirmButton: true,
+            })
+          }
+        })
+      }
     
+  }
+
+  getEvaluationPorNomPerNumDoc(form:any){
+    let formDefinitive = {
+      per_nombre_doc: form.per_nombre_doc
+    }
+    let per_nombre_doc = new FormControl(formDefinitive.per_nombre_doc, [Validators.required, this.inyeccion.sqlInjectionValidator])
+    if (per_nombre_doc.value == ''){
+      Swal.fire({
+        position: 'center',
+        icon: 'info',
+        title: "Oops...",
+        text: "Por favor ingrese un periodo",
+        showConfirmButton: true,
+      })
+    }else if(!per_nombre_doc.valid){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: "Error",
+        text: "Guau!, Intentas hacer una inyección SQL, hijo de la gran puta! 🤬🖕🏽🤡",
+        showConfirmButton: true,
+      })
+    }else {
+      if(form.per_nombre_doc){
+        this.evalutionsService.getEvaluationPorNomPerNumDoc(form.per_nombre_doc, Number(this.num_doc)).subscribe(data => {
+          if(data.results && data.results.length > 0){
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Evaluaciones encontradas',
+              showConfirmButton: true,
+            })
+            this.evaluaciones = data.results;
+          }else{
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: "Error",
+              text: data.message,
+              showConfirmButton: true,
+            })
+          }
+        })
+      }
+    }
   }
 }
