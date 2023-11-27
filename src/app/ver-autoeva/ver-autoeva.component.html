@@ -1,0 +1,40 @@
+<mat-dialog-content>
+    <form (ngSubmit)="updateStateEvaluation()">
+        <h1>Revisando autoevaluación</h1>
+
+        <div class="mb-3">
+            <label>Resultados de la evaluación</label>
+            <br>
+            <mat-label>{{eva_resultado}}</mat-label>
+        </div>
+
+        <div class="mb-3">
+            <label>Archivos adjuntos</label>
+            <br>
+        </div>
+
+        <div class="mb-3">
+            <label>Calificación</label>
+            <br>
+            <mat-label>{{eva_puntaje}}</mat-label>
+        </div>    
+
+        <div class="mb-3">
+            <button mat-button mat-dialog-close class="btn gap-3 btn-danger float-end ms-2 pull-left">
+                <mat-icon>close</mat-icon>
+            </button>
+
+            <button mat-button mat-dialog-close class="btn gap-3 btn-success float-end pull-right" type="submit"
+            (click)="stateFinished()">
+                <mat-icon>done</mat-icon>
+            </button>
+
+            <button mat-button mat-dialog-close class="btn gap-3 btn-secondary float-end pull-right" type="submit"
+            (click)="stateSuspended()">
+                <mat-icon>block</mat-icon>
+            </button>
+            
+        </div>
+    </form>
+
+</mat-dialog-content>

@@ -146,12 +146,33 @@
                                         <td>{{ evaluacion.per_fecha_fin | date:'yyyy-MM-dd' }}</td>
                                         <td>{{ evaluacion.eva_estado }}</td>
                                         <td>
-                                            <button *ngIf="getUserRol()==0" class="btn btn-success btn-sm" (click)="pendiente" title="Realizar">
+                                            <button *ngIf="getUserRol()==0 && evaluacion.eva_estado!='Terminado'" class="btn btn-success btn-sm" 
+                                            (click)="openDialogSolved(evaluacion.eva_id,rol,evaluacion.lab_nombre,evaluacion.tl_descripcion)" title="Realizar">
                                                 Realizar
                                             </button>
-                                            <button *ngIf="getUserRol()" class="btn btn-info btn-sm" (click)="pendiente" title="Ver">
+                                            <button *ngIf="getUserRol()==0 && evaluacion.eva_estado==='Terminado'" class="btn btn-secondary btn-sm" 
+                                            (click)="openAdv('Usted ya realizó la evaluación, no se puede modificar')" title="Realizar">
+                                                Realizar
+                                            </button>
+
+                                            <button *ngIf="getUserRol() && evaluacion.eva_estado === 'En ejecución'" class="btn btn-secondary btn-sm" 
+                                            (click)="openAdv('El docente aún no ha hecho su autoevaluación')" title="Ver">
                                                 <mat-icon>visibility</mat-icon>
                                             </button>
+
+                                            <button *ngIf="getUserRol() && evaluacion.eva_estado === 'Terminado'" class="btn btn-info btn-sm" 
+                                            (click)="openDialogReview(evaluacion.eva_id,evaluacion.lab_nombre)" title="Ver">
+                                                <mat-icon>visibility</mat-icon>
+                                            </button>
+
+                                            <button *ngIf="getUserRol() && evaluacion.eva_estado === 'Suspendido'" class="btn btn-danger btn-sm" 
+                                            (click)="openDialogReview(evaluacion.eva_id,evaluacion.lab_nombre)" title="Ver">
+                                                <mat-icon>visibility</mat-icon>
+                                            </button>
+
+                                            <label *ngIf="getUserRol() && evaluacion.eva_estado === 'Revisado'" class="btn btn-success btn-sm" title="Revisado">
+                                                <mat-icon>done</mat-icon>
+                                            </label>
                                         </td>
                                     </tr>
                                     
@@ -163,12 +184,6 @@
                             </table>
                         </div>
                     </div>
-                                     
-                   <!-- <div class="clearfix"></div>
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title mt-0" style="text-align: center;"> Sugerencias y recomendaciones para
-                            mejorar el funcionamiento y proyección de nuestro Departamento: </h4>
-                    </div>-->
                 </div>
             </div>
         </div>

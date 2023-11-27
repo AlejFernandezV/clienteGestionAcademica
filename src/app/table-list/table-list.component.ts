@@ -6,7 +6,9 @@ import Swal from 'sweetalert2';
 import { UsuariosService } from 'app/services/usuarios.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { InyeccionesService } from 'app/services/inyecciones.service';
-
+import {EnviarAutoevaComponent} from 'app/enviar-autoeva/enviar-autoeva.component';
+import { VerAutoevaComponent } from 'app/ver-autoeva/ver-autoeva.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-table-list',
   templateUrl: './table-list.component.html',
@@ -14,6 +16,7 @@ import { InyeccionesService } from 'app/services/inyecciones.service';
 })
 export class TableListComponent implements OnInit {
   evaluaciones: EvaluationI [] = [];
+  rol: string = localStorage.getItem('usu_rol');
   totalHoras: number = 0 ;
   archivoPDF? ;
   buttonCreateEvaluation: number = 0;
@@ -23,10 +26,13 @@ export class TableListComponent implements OnInit {
   name: string = ""
   identificacion: string = ""
 
-  constructor(private usuario: UsuariosService,
+  constructor(
+    private usuario: UsuariosService,
     private evalutionsService: EvaluationsService, 
     private documentoService: DocumentsService,
     private inyeccion: InyeccionesService,
+    private matDialogSol: MatDialog,
+    private matDialogRev: MatDialog,
   ) { }
 
   autoEvaluacionDocenterForm = new FormGroup({
@@ -61,8 +67,7 @@ export class TableListComponent implements OnInit {
 
   getEvaluation() {
     this.getUsuario()
-    let rol = localStorage.getItem('usu_rol')
-    if(rol === 'Coordinador' || rol === 'Decano'){
+    if(this.rol === 'Coordinador' || this.rol === 'Decano'){
       this.evalutionsService.getEvaluation().subscribe((data: any) => {
         if (data.results && data.results.length > 0){
           this.evaluaciones = data.results;
@@ -108,6 +113,7 @@ export class TableListComponent implements OnInit {
   }
 
   getTotalHours(){
+    this.totalHoras = 0
     this.evalutionsService.getEvaluationPorNumDoc(Number(this.num_doc)).subscribe(() =>{
       for (let i = 0; i < this.evaluaciones.length; i++) { 
         this.totalHoras += this.evaluaciones[i].lab_horas; 
@@ -135,8 +141,7 @@ export class TableListComponent implements OnInit {
   }
 
   getUserRol(){
-    let rol = localStorage.getItem('usu_rol')
-    if(rol === 'Coordinador' || rol === 'Decano'){
+    if(this.rol === 'Coordinador' || this.rol === 'Decano'){
       return this.buttonCreateEvaluation = 1;
     } else{
       return this.buttonCreateEvaluation = 0;
@@ -144,16 +149,14 @@ export class TableListComponent implements OnInit {
   }
 
   getUserRolDocente(){
-    let rol = localStorage.getItem('usu_rol')
-    if(rol === 'Planta tiempo completo' || rol == 'Planta medio tiempo' ||rol === 'Ocasional tiempo completo' || rol == 'Ocasional medio tiempo'){
+    if(this.rol === 'Planta tiempo completo' || this.rol == 'Planta medio tiempo' ||this.rol === 'Ocasional tiempo completo' || this.rol == 'Ocasional medio tiempo'){
       return this.buttonCreateEvaluation = 1;
     } else{
       return this.buttonCreateEvaluation = 0;
     }
   }
   getUserTipoDocente(){
-    let rol = localStorage.getItem('usu_rol')
-    if(rol === 'Ocasional tiempo completo' || rol == 'Ocasional medio tiempo'){
+    if(this.rol === 'Ocasional tiempo completo' || this.rol == 'Ocasional medio tiempo'){
       return this.buttonFile = 1;
     } else{
       return this.buttonFile = 0;
@@ -293,5 +296,49 @@ export class TableListComponent implements OnInit {
         })
       }
     }
+  }
+
+  openDialogSolved(eva_id : number,usu_rol:string,labor:string,tipo_labor:string){
+    const dialogRef = this.matDialogSol.open(EnviarAutoevaComponent, {
+      width: '800px',
+      height: '450px',
+      data: {
+        eva_id,
+        usu_rol,
+        labor,
+        tipo_labor
+      }
+    });
+  
+    this.aftClosed(dialogRef)
+  }
+
+  openDialogReview(eva_id : number,labor:string){
+    this.matDialogRev.open(VerAutoevaComponent, {
+      width: '450px',
+      height: '320px',
+      data: {
+        eva_id,
+        labor
+      }
+    });
+  }
+
+  async aftClosed(dialogRef:any){
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        setTimeout(() => this.getEvaluation(),2000);
+      }
+    })
+  }
+
+  openAdv(message:string){
+    Swal.fire({
+      position: 'center',
+      icon: 'warning',
+      title: "Advertencia",
+      text: message,
+      showConfirmButton: true,
+    })
   }
 }

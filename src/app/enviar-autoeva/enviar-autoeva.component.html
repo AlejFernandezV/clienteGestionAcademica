@@ -1,0 +1,49 @@
+<mat-dialog-content>
+    <form [formGroup]="formResults" (ngSubmit)="sendEvaluation(formResults.value)">
+        <h1>Realizando evaluación de la labor {{labor}}</h1>
+
+        <div *ngIf="uploadFilesPermition == 0" class="mb-3">
+            <mat-form-field class="example-full-width">
+                <mat-label>Ingrese los resultados de la autoevaluacion</mat-label>
+                <textarea formControlName="eva_resultado" type="string" matInput placeholder="La labor fue..."></textarea>
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="uploadFilesPermition == 1" class="mb-3">
+            <label for="pdfFile">Adjuntar archivo</label>
+            <input type="file" id="pdfFile" name="pdfFile" accept=".jpg; .png; .pdf" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Ingrese su calificación para esta labor:</label>
+            <input
+                type="number"
+                placeholder="10"
+                step="0.1"
+                min="0"
+                max="100"
+                class="form-control"
+                name="Calificacion"
+                arial-describedby="Calificación"
+                formControlName="eva_puntaje"
+            >
+        </div>
+
+        <div class="mb-3">
+            <mat-form-field class="example-full-width">
+                <mat-label>Ingrese aquí las sugerencias</mat-label>
+                <textarea matInput placeholder="Mi sugerencia es..."></textarea>
+            </mat-form-field>
+        </div>     
+
+        <div class="mb-3">
+            <button mat-button mat-dialog-close class="btn gap-3 btn-success float-end pull-right" type="submit">
+                <mat-icon>done</mat-icon>
+            </button>
+            <button mat-button mat-dialog-close class="btn gap-3 btn-danger float-end ms-2 pull-right">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </form>
+
+</mat-dialog-content>
