@@ -18,11 +18,7 @@ export class PeriodosService {
     return this.http.get<ResponseI>(`${this.apiUrl}/periodos/buscar_por_nombre?nombre=${nombre}`);
   }
   getPeriodos():Observable<ResponseI>{
-<<<<<<< HEAD
-    return this.http.get<ResponseI>(`${this.apiUrl}/periodos/listar_nombres`);
-=======
     return this.http.get<ResponseI>(`${this.apiUrl}/periodos/listar`);
->>>>>>> main
   }
   deletePeriodo(nombre: string):Observable<ResponseI>{
     return this.http.delete<ResponseI>(`${this.apiUrl}/periodos/eliminar?nombre=${nombre}`);
