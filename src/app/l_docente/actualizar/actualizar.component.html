@@ -1,0 +1,77 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Atualizar Labor Docente</h4>
+              <p class="card-category">Ingrese los datos</p>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="formLabor" (ngSubmit)="updateLabor(formLabor.value)">
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Nombre Labor</mat-label>
+                      <input type="text"
+                        matNativeControl
+                        required
+                        name="nombre"
+                        formControlName="lab_nombre">
+                        <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="nombre.valid || nombre.pristine">
+                          El nombre es obligatorio
+                        </div>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-4">
+                    <mat-form-field>
+                      <mat-label>Horas</mat-label>
+                    <input
+                      matInput
+                      type="number"
+                      min="12"
+                      max="64"
+                      name="horas"                    
+                      formControlName="lab_horas"
+                    />
+                    <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="horas.valid || horas.pristine">
+                      <span *ngIf="horas.errors?.['required']">
+                        Las horas son obligatorias
+                      </span>
+                      <span *ngIf="horas.errors?.['min']">
+                        Las horas deben ser mayores a 12
+                      </span>
+                      <span *ngIf="horas.errors?.['max']">
+                        Las horas deben ser menores a 64
+                      </span>
+                    </div>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Tipo Labor</mat-label>
+                      <select matNativeControl required stype="string" formControlName="tl_descripcion">
+                        <option value="" selected></option>
+                        <option *ngFor="let tl of TiposLabores"> {{tl.tl_descripcion}}</option>                      
+                      </select>
+                      <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="tipoLabor.valid || tipoLabor.pristine">
+                        El tipo de labor es obligatorio
+                      </div>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <button
+                  mat-raised-button
+                  type="submit"
+                  class="btn btn-danger pull-right"
+                  [disabled]="formLabor.invalid"
+                >
+                  Actualizar Labor Docente
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

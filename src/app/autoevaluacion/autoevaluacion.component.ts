@@ -102,4 +102,15 @@ export class AutoevaluacionComponent {
       (err) => console.log(err)
     );
   }
+
+  //get
+  get periodosV() {
+    return this.formEva.get('per_id') as FormControl;
+  }
+  get usuariosV() {
+    return this.formEva.get('usu_id') as FormControl;
+  }
+  get laboresV() {
+    return this.formEva.get('lab_id') as FormControl;
+  }
 }

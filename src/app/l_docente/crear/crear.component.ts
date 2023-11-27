@@ -17,7 +17,7 @@ export class CrearComponent {
 
   formLabor = new FormGroup({
     lab_nombre: new FormControl('',Validators.required),
-    lab_horas: new FormControl('',Validators.required),
+    lab_horas: new FormControl('',[Validators.required, Validators.min(12), Validators.max(64)]),
     tl_descripcion: new FormControl('',Validators.required)
   })
 
@@ -47,7 +47,7 @@ export class CrearComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: "Usuario actualizado correctamente",
+          title: "Labor creada correctamente",
           timer: 2000,
         })
         this.router.navigate(['/listar-labor']);
@@ -91,6 +91,16 @@ export class CrearComponent {
       case "Otros Servicios":
         return 10;
     }
+  }
+  //get
+  get nombre() {
+    return this.formLabor.get('lab_nombre') as FormControl;
+  }
+  get horas() {
+    return this.formLabor.get('lab_horas') as FormControl;
+  }
+  get tipoLabor() {
+    return this.formLabor.get('tl_descripcion') as FormControl;
   }
 
 }

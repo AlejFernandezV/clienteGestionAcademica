@@ -11,34 +11,52 @@
             <form [formGroup]="formLabor" (ngSubmit)="sendLabor(formLabor.value)">
               <div class="row">
                 <div class="col-md-6">
-                  <mat-form-field>
+                  <mat-form-field class="example-full-width">
                     <mat-label>Nombre Labor</mat-label>
                     <input type="text"
                       matNativeControl
                       required
                       name="nombre"
                       formControlName="lab_nombre">
+                      <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="nombre.valid || nombre.pristine">
+                        El nombre es obligatorio
+                      </div>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
-                  <h6>Horas</h6>
+                  <mat-form-field>
+                    <mat-label>Horas</mat-label>
                   <input
+                    matInput
                     type="number"
-                    class="form-control"
                     min="12"
                     max="64"
-                    name="horas"
-                    arial-describedby="Horas"
+                    name="horas"                    
                     formControlName="lab_horas"
                   />
+                  <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="horas.valid || horas.pristine">
+                    <span *ngIf="horas.errors?.['required']">
+                      Las horas son obligatorias
+                    </span>
+                    <span *ngIf="horas.errors?.['min']">
+                      Las horas deben ser mayores a 12
+                    </span>
+                    <span *ngIf="horas.errors?.['max']">
+                      Las horas deben ser menores a 64
+                    </span>
+                  </div>
+                  </mat-form-field>
                 </div>
                 <div class="col-md-4">
-                  <mat-form-field>
-                    <h6>Tipo Labor</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Tipo Labor</mat-label>
                     <select matNativeControl required stype="string" formControlName="tl_descripcion">
                       <option value="" selected></option>
                       <option *ngFor="let tl of TiposLabores"> {{tl.tl_descripcion}}</option>                      
                     </select>
+                    <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="tipoLabor.valid || tipoLabor.pristine">
+                      El tipo de labor es obligatorio
+                    </div>
                   </mat-form-field>
                 </div>
               </div>
@@ -46,6 +64,7 @@
                 mat-raised-button
                 type="submit"
                 class="btn btn-danger pull-right"
+                [disabled]="formLabor.invalid"
               >
                 Crear Labor Docente
               </button>

@@ -15,22 +15,28 @@
                                     <mat-form-field class="example-full-width">
                                         <mat-label>Nombre del periodo</mat-label>
                                         <input formControlName="per_nombre" matInput placeholder="Nombre">
+                                        <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="nombre.valid || nombre.pristine">
+                                            El nombre es obligatorio
+                                        </div>
                                     </mat-form-field>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <mat-form-field>
-                                      <h6>Seleccione el semestre</h6>
+                                    <mat-form-field class="example-full-width">
+                                      <mat-label>Seleccione el semestre</mat-label>
                                       <select matNativeControl required stype="number" formControlName="per_semestre">
                                         <option value="" selected></option>
                                         <option>1</option>  
                                         <option>2</option>                      
                                       </select>
+                                      <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="semestre.valid || semestre.pristine">
+                                        El semestre es obligatorio
+                                      </div>
                                     </mat-form-field>
                                 </div>
 
                                 <div class="col-md-5">
-                                    <mat-form-field>
+                                    <mat-form-field class="example-full-width">
                                         <mat-label>Selecciona un rango de fechas</mat-label>
                                         <mat-date-range-input [formGroup]="fechas" [rangePicker]="picker">
                                             <input matStartDate formControlName="per_fecha_inicio" placeholder="Fecha Inicial">
@@ -42,6 +48,9 @@
 
                                         <mat-error *ngIf="fechas.controls.per_fecha_inicio.hasError('matStartDateInvalid')"> Fecha inicial invalida</mat-error>
                                         <mat-error *ngIf="fechas.controls.per_fecha_fin.hasError('matEndDateInvalid')"> Fecha final invalida</mat-error>
+                                        <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="fechaI.valid || fechaI.pristine || fechaF.valid || fechaF.pristine">
+                                            La fecha es obligatoria
+                                        </div>
                                     </mat-form-field>
                                 </div>
 
@@ -49,13 +58,22 @@
                                     <mat-form-field class="example-full-width">
                                         <mat-label>Año del periodo</mat-label>
                                         <input formControlName="per_anio" matInput placeholder="Año">
+                                        <div class="alert alert-warning mt-2" style="position: absolute;" [hidden]="anio.valid || anio.pristine">
+                                            <span *ngIf="anio.errors?.['required']">
+                                              El año es obligatorio
+                                            </span>
+                                            <span *ngIf="anio.errors?.['min']">
+                                              El año debe ser valido
+                                            </span>
+                                          </div>
                                     </mat-form-field>
                                 </div>
                                 
                                 
                             </div>
                             <div class="pull-right">
-                                <button mat-raised-button type="submit" class="btn btn-danger pull-right">Actualizar Periodo</button>
+                                <button mat-raised-button type="submit" class="btn btn-danger pull-right"  [disabled]="formPeriodo.invalid || fechas.invalid"
+                                >Actualizar Periodo</button>
                                 <div class="clearfix"></div>
                             </div>
                         </form>

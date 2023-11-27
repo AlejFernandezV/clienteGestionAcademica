@@ -19,8 +19,8 @@ export class LDocenteService {
     return this.http.get<ResponseI>(`${this.apiUrl}/labores/listar`);
   }
 
-  getldocentes(lab_id: string):Observable<ResponseI> {
-    return this.http.get<ResponseI>(`${this.apiUrl}/labores/${lab_id}`);
+  getldocentes(nombre: string):Observable<ResponseI> {
+    return this.http.get<ResponseI>(`${this.apiUrl}/labores/listar_por_nombre?nombre=${nombre}`);
   }
   createldocente(l_docente: L_docente):Observable<ResponseI>{
     return this.http.post<ResponseI>(`${this.apiUrl}/labores/crear`, l_docente);
@@ -28,8 +28,8 @@ export class LDocenteService {
   deleteldocente(lab_nombre: string):Observable<ResponseI>{
     return this.http.delete<ResponseI>(`${this.apiUrl}/labores/eliminar?nombre=${lab_nombre}`);
   }
-  updateldocente(nombre: string, updatePeriodo: L_docente): Observable<ResponseI>{
-    return this.http.put<ResponseI>(`${this.apiUrl}/labores/actualizar${nombre}`, updatePeriodo);
+  updateldocente(updateLabor: L_docente): Observable<ResponseI>{
+    return this.http.put<ResponseI>(`${this.apiUrl}/labores/actualizar`, updateLabor);
   }
 
   getTipoLabores():Observable<ResponseI>{

@@ -32,8 +32,8 @@
                     <td>{{ periodo.per_nombre }}</td>
                     <td>{{ periodo.per_anio}}</td>
                     <td>{{ periodo.per_semestre}}</td>
-                    <td>{{ periodo.per_fecha_inicio}}</td>
-                    <td>{{ periodo.per_fecha_fin }}</td>
+                    <td>{{ periodo.per_fecha_inicio | date:'yyyy-MM-dd' }}</td>
+                    <td>{{ periodo.per_fecha_fin | date:'yyyy-MM-dd' }}</td>
                     <td>
                       <button class="btn btn-warning btn-sm" [routerLink]="['/actualizar-periodo/', periodo.per_nombre]" title="Editar"><mat-icon>edit</mat-icon></button>
                       <button class="btn btn-danger btn-sm" (click)="deletePeriodo(periodo.per_nombre)" title="Eliminar"><mat-icon>delete</mat-icon></button>
