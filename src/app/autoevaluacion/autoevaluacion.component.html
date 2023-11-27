@@ -33,7 +33,7 @@
                 <div class="col-md-6">
                   <mat-form-field>
                     <mat-label>Nombre Labor</mat-label>
-                    <select matNativeControl required name="NombreL"  formControlName="lab_id">
+                    <select matNativeControl required name="NombreL"  formControlName="lab_id" (change)="seleccionarLabor($event)">
                       <option value="" disabled selected>Seleccione</option>
                       <option *ngFor="let item of labores" [value]="item.lab_id">{{ item.lab_nombre }}</option>
                     </select>

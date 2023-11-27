@@ -4,7 +4,7 @@ import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 import { LogoutService } from "app/services/logout.service";
 import { NotificacionService } from "app/services/notificacion/notificacion.service";
-import { NOTIFIACIONLIST } from "app/api-constants/api-constants.component";
+import { not } from "ajv/dist/compile/codegen";
 
 @Component({
   selector: "app-navbar",
@@ -17,11 +17,12 @@ export class NavbarComponent implements OnInit{
   mobile_menu_visible: any = 0;
   private toggleButton: any;
   private sidebarVisible: boolean;
-  notificaciones: [] = NOTIFIACIONLIST.notificaciones;
-  cant_notis: number;
+  notificaciones: [] = [];
+  cant_notis: number = 0;
 
   constructor(
     private logoutService: LogoutService,
+    private notiService: NotificacionService,
     location: Location,
     private element: ElementRef,
     private router: Router
@@ -31,6 +32,7 @@ export class NavbarComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.getNotificaciones()
     this.listTitles = ROUTES.filter((listTitle) => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName("navbar-toggler")[0];
@@ -139,5 +141,12 @@ export class NavbarComponent implements OnInit{
 
   goBack() {
     window.history.back();
-  } 
+  }
+  
+  getNotificaciones(): void {
+    this.notiService.getNotification(Number(localStorage.getItem('usu_num_doc'))).subscribe(data =>{
+      this.notificaciones = data.results
+      this.cant_notis = data.results.length
+    })
+  }
 }

@@ -1,3 +1,3 @@
 interface Subscriptor{
-    actualizar(estado:any):void;
+    actualizar():void;
 }
