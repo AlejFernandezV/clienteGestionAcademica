@@ -33,7 +33,9 @@ import { LAutoevaluacionComponent } from 'app/autoevaluacion/l-autoevaluacion/l-
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { EnviarAutoevaComponent } from 'app/enviar-autoeva/enviar-autoeva.component';
+import { VerAutoevaComponent } from 'app/ver-autoeva/ver-autoeva.component';
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMenuModule,    
+    MatMenuModule,
+    MatDialogModule,    
   ],
   declarations: [
     DashboardComponent,
@@ -80,6 +83,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ConsultarComponent,
     ListarLaborComponent,
     AutoevaluacionComponent,
+    EnviarAutoevaComponent,
+    VerAutoevaComponent,
     /*TypographyComponent,
     IconsComponent,
     MapsComponent,
