@@ -23,7 +23,16 @@ export class ListarLaborComponent implements OnInit {
     this.lDocenteService.getldocente().subscribe(
       (res: any) => {
         console.log(res);
-        this.docentes = res.results; // Acceder a la propiedad 'results' para asignarla a la variable 'docentes'
+        this.docentes = res.results; 
+        this.docentes.sort((a, b) => {
+          if (a.lab_nombre > b.lab_nombre) {
+            return 1;
+          } else if (a.lab_nombre < b.lab_nombre) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
       },
       err => console.log(err)
     );

@@ -23,6 +23,15 @@ export class ListDocentesComponent implements OnInit {
     this.usuarioService.getUsuarios().subscribe(
       res => {
         this.usuarios = res.results;
+        this.usuarios.sort((a, b) => {
+          if (a.usu_nombre > b.usu_nombre) {
+            return 1;
+          } else if (a.usu_nombre < b.usu_nombre) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
       },
       err => console.log(err)
     );
