@@ -21,20 +21,22 @@
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
-                  <h6>Horas</h6>
-                  <input
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Horas</mat-label>
+                    <input
                     type="number"
-                    class="form-control"
+                    matInput
                     min="12"
                     max="64"
                     name="horas"
                     arial-describedby="Horas"
                     formControlName="lab_horas"
-                  />
+                    />
+                </mat-form-field>
                 </div>
                 <div class="col-md-4">
-                  <mat-form-field>
-                    <h6>Tipo Labor</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Tipo Labor</mat-label>
                     <select matNativeControl required stype="string" formControlName="tl_descripcion">
                       <option value="" selected></option>
                       <option *ngFor="let tl of TiposLabores"> {{tl.tl_descripcion}}</option>                      
