@@ -21,7 +21,6 @@ export class ListarLaborComponent implements OnInit {
   listLdocentes(){
     this.lDocenteService.getldocente().subscribe(
       (res: any) => {
-        console.log(res);
         this.docentes = res.results; // Acceder a la propiedad 'results' para asignarla a la variable 'docentes'
       },
       err => console.log(err)

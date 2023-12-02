@@ -1,0 +1,63 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Actualizar Labor Docente</h4>
+              <p class="card-category">Ingrese los datos</p>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="newLdocente" (ngSubmit)="updateLaborDocente(newLdocente.value)">
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field>
+                      <mat-label>Nombre Labor</mat-label>
+                      <input type="text"
+                        matNativeControl
+                        required
+                        name="nombre"
+                        formControlName="lab_nombre">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Horas</mat-label>
+                        <input
+                        type="number"
+                        matInput
+                        min="12"
+                        max="64"
+                        name="horas"
+                        arial-describedby="Horas"
+                        formControlName="lab_horas"
+                        />
+                    </mat-form-field>
+                    
+                  </div>
+                  <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Tipo Labor</mat-label>
+                      <select matNativeControl type="string" formControlName="tl_descripcion">
+                        <option value="" selected></option>
+                        <option *ngFor="let tl of TiposLabores"> {{tl.tl_descripcion}}</option>
+                       <!-- <option *ngFor="let tl of TiposLabores"> {{tl.tl_descripcion}}</option>    -->                  
+                      </select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <button
+                  mat-raised-button
+                  type="submit"
+                  class="btn btn-danger pull-right"
+                >
+                  Actualizar Labor Docente
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
