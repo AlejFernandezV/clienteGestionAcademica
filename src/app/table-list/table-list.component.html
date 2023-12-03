@@ -55,7 +55,7 @@
                                             
                                             <div *ngIf="getUserRol()">
                                                 <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/autoevaluacion">Crear Autoevaluación</button>
-                                                
+                                                <button *ngIf="this.rol === 'Coordinador'" mat-raised-button type="submit" class="btn btn-info pull-right" routerLink="/">Mis Autoevaluaciones</button>
                                             </div>
                                             
                                         </td>
@@ -71,7 +71,7 @@
                                     </tr>
                                     <tr *ngIf="getUserRol()">
                                         <th>
-                                            Identificación
+                                            Nombre docente
                                         </th>
                                         <td>
                                             <div>
@@ -105,6 +105,12 @@
                                         N°
                                     </th>
                                     <th>
+                                        Periodo
+                                    </th>
+                                    <th *ngIf="getUserRol()">
+                                        Nombre docente
+                                    </th>
+                                    <th>
                                         Nombre de Labor
                                     </th>
                                     <th>
@@ -135,6 +141,8 @@
                                 <tbody>
                                     <tr *ngFor="let evaluacion of evaluaciones; let i = index">
                                         <td>{{ i + 1 }}</td>
+                                        <td>{{evaluacion.per_nombre}}</td>
+                                        <td *ngIf="getUserRol()">{{ evaluacion.usu_nombre }}<br>{{evaluacion.usu_apellido}}</td>
                                         <td>{{ evaluacion.lab_nombre }}</td>
                                         <td>{{ evaluacion.tl_descripcion }}</td>
                                         <td>{{ evaluacion.lab_horas }}</td>
@@ -176,8 +184,13 @@
                                         </td>
                                     </tr>
                                     
-                                    <tr>
-                                        <td colspan="3" style="text-align: right;"> TOTAL</td>
+                                    <tr *ngIf="getUserRol()==0">
+                                        <td  colspan="4" style="text-align: right;"> TOTAL</td>
+                                        <td> {{ totalHoras }}</td>
+                                    </tr>
+
+                                    <tr *ngIf="getUserRol()" >
+                                        <td colspan="5" style="text-align: right;"> TOTAL</td>
                                         <td> {{ totalHoras }}</td>
                                     </tr>
                                 </tbody>
