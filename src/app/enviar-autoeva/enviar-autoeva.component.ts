@@ -4,6 +4,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { EvaluationsService } from 'app/services/evaluations.service';
 import { EvaluationResolvedI } from 'app/models/evaluations/evaluationsResolved.interface';
 import Swal from 'sweetalert2';
+import { DocumentsService } from 'app/services/documents.service';
 
 @Component({
   selector: 'app-enviar-autoeva',
@@ -17,7 +18,7 @@ export class EnviarAutoevaComponent implements OnInit {
   labor: string;
   tipo_labor: string;
   uploadFilesPermition: number;
-  
+  num_doc = Number(localStorage.getItem('num_doc'))
   
   formResults = new FormGroup({
     eva_puntaje: new FormControl('', Validators.required),
@@ -27,7 +28,8 @@ export class EnviarAutoevaComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<EnviarAutoevaComponent>,
     private evaService: EvaluationsService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any, 
+    private documentoService: DocumentsService
   ) { }
 
   ngOnInit(): void {
@@ -65,6 +67,7 @@ export class EnviarAutoevaComponent implements OnInit {
         showConfirmButton: true,
       })
     }else{
+      this.onFileSelected(this.num_doc, results.eva_id)
       this.evaService.sendEvaluationResults(results).subscribe(data => {
         if(data.status == 'success'){
           Swal.fire({
@@ -84,6 +87,25 @@ export class EnviarAutoevaComponent implements OnInit {
         }
       });
     }
+  }
+
+  onFileSelected(num_doc: number, eva_id: number) {
+    let fileInput = document.getElementById('pdfFile') as HTMLInputElement;
+    let file = fileInput.files;
+    
+    if (file) {
+      const formData = new FormData();
+
+      for (let i = 0; i < file.length; i++) {
+        formData.append("files[]", file[i]);
+      }
+
+      this.documentoService.uploadFile(num_doc, eva_id, formData).subscribe(response => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+      });
+    }    
   }
 
 }

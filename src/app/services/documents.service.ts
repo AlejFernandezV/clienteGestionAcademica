@@ -18,7 +18,7 @@ export class DocumentsService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<ResponseI>( `${this.apiURL}/upload?usu_id=${num_doc}&eva_id=${eva_id}`, data);
+    return this.http.post<ResponseI>( `${this.apiURL}/upload?num_doc=${num_doc}&eva_id=${eva_id}`, data);
   }
 
 }
