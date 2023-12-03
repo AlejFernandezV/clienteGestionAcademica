@@ -30,9 +30,7 @@ export class LogoutService {
           showConfirmButton: true,
         })
       }
-    });
-
-    
+    });    
   }
 }
 

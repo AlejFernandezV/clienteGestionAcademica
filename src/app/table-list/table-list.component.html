@@ -54,8 +54,12 @@
                                             de esta tabla
                                             
                                             <div *ngIf="getUserRol()">
-                                                <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/autoevaluacion">Crear Autoevaluación</button>
-                                                <button *ngIf="this.rol === 'Coordinador'" mat-raised-button type="submit" class="btn btn-info pull-right" routerLink="/">Mis Autoevaluaciones</button>
+                                                <td class="pull-right">
+                                                    <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/autoevaluacion">Crear Autoevaluación</button>
+                                                </td>
+                                                <td class="pull-right">
+                                                    <button *ngIf="this.rol === 'Coordinador'" type="submit" (click)="listCoordEvaluations()" class="btn btn-info pull-right" >Ver mis Autoevaluaciones</button>
+                                                </td>
                                             </div>
                                             
                                         </td>
@@ -77,7 +81,7 @@
                                             <div>
                                                 <form [formGroup]="buscarPorIdentificacionForm" (ngSubmit) = "searchByIdentification(buscarPorIdentificacionForm.value)">
                                                     <div class="input-group no-border example-full-width">
-                                                        <input type="string" formControlName="usu_num_doc" value="" class="form-control" matInput placeholder="Ej: 123456789">
+                                                        <input type="string" formControlName="usu_num_doc" value="" class="form-control" matInput placeholder="Ej: Nombre Apellido">
                                                         <button  mat-raised-button title="Buscar docente por numero documento"  class="btn btn-white btn-round btn-just-icon" type="submit">
                                                             <i class="material-icons">search</i>
                                                             <div class="ripple-container"></div>
@@ -123,7 +127,7 @@
                                         Descripción
                                     </th>
                                     <th>
-                                        ACTO (Si aplica)
+                                        ACTO <br> (Si aplica)
                                     </th>
                                     <th>
                                         Fecha Inicio
@@ -146,7 +150,7 @@
                                         <td>{{ evaluacion.lab_nombre }}</td>
                                         <td>{{ evaluacion.tl_descripcion }}</td>
                                         <td>{{ evaluacion.lab_horas }}</td>
-                                        <td>Ingeniería de sistemas Obligatoria 2023 </td>
+                                        <td>Ingeniería de sistemas<br>Obligatoria 2023 </td>
                                         <center>
                                             <td>X</td>
                                         </center>

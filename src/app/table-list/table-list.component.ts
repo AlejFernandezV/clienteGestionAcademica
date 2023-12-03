@@ -360,4 +360,27 @@ export class TableListComponent implements OnInit {
       showConfirmButton: true,
     })
   }
+
+  listCoordEvaluations(){
+    this.evalutionsService.getEvaluationPorNumDoc(Number(this.num_doc)).subscribe((data: any) => {
+      if (data.results && data.results.length > 0){
+        this.evaluaciones = data.results;
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Evaluaciones disponibles para coordinador, por favor completelas.',
+          showConfirmButton: true,
+        })
+
+      } else{
+        Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: 'Oops...',
+          text: 'No hay evaluaciones disponibles para el coordinador.',
+          showConfirmButton: true,
+        })
+      }
+    });
+  }
 }
