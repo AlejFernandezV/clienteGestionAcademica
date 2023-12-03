@@ -18,7 +18,6 @@ export class TableListComponent implements OnInit {
   evaluaciones: EvaluationI [] = [];
   rol: string = localStorage.getItem('usu_rol');
   totalHoras: number = 0 ;
-  archivoPDF? ;
   buttonCreateEvaluation: number = 0;
   buttonBuscar: number = 0;
   buttonFile: number = 0;
@@ -28,8 +27,7 @@ export class TableListComponent implements OnInit {
 
   constructor(
     private usuario: UsuariosService,
-    private evalutionsService: EvaluationsService, 
-    private documentoService: DocumentsService,
+    private evalutionsService: EvaluationsService,
     private inyeccion: InyeccionesService,
     private matDialogSol: MatDialog,
     private matDialogRev: MatDialog,
@@ -138,25 +136,6 @@ export class TableListComponent implements OnInit {
         this.totalHoras += this.evaluaciones[i].lab_horas; 
       }
     });
-  }
-
-  onFileSelected(event) {
-    console.log("Entrando a la carga de archivos");
-    let fileInput = document.getElementById('pdfFile') as HTMLInputElement;
-    let file = fileInput.files[0];
-    
-    console.log("pasa por aquí", file);
-    if (file) {
-      const formData = new FormData();
-
-      formData.append("file", file);
-
-      this.documentoService.uploadFile(27,5,formData).subscribe(response => {
-        console.log(response);
-      }, error => {
-        console.log(error);
-      });
-    }    
   }
 
   getUserRol(){
