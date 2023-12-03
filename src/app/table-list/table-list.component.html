@@ -54,8 +54,12 @@
                                             de esta tabla
                                             
                                             <div *ngIf="getUserRol()">
-                                                <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/autoevaluacion">Crear Autoevaluación</button>
-                                                
+                                                <td class="pull-right">
+                                                    <button mat-raised-button type="submit" class="btn btn-danger pull-right" routerLink="/autoevaluacion">Crear Autoevaluación</button>
+                                                </td>
+                                                <td class="pull-right">
+                                                    <button *ngIf="this.rol === 'Coordinador'" type="submit" (click)="listCoordEvaluations()" class="btn btn-info pull-right" >Ver mis Autoevaluaciones</button>
+                                                </td>
                                             </div>
                                             
                                         </td>
@@ -71,13 +75,13 @@
                                     </tr>
                                     <tr *ngIf="getUserRol()">
                                         <th>
-                                            Identificación
+                                            Nombre docente
                                         </th>
                                         <td>
                                             <div>
                                                 <form [formGroup]="buscarPorIdentificacionForm" (ngSubmit) = "searchByIdentification(buscarPorIdentificacionForm.value)">
                                                     <div class="input-group no-border example-full-width">
-                                                        <input type="string" formControlName="usu_num_doc" value="" class="form-control" matInput placeholder="Ej: 123456789">
+                                                        <input type="string" formControlName="usu_num_doc" value="" class="form-control" matInput placeholder="Ej: Nombre Apellido">
                                                         <button  mat-raised-button title="Buscar docente por numero documento"  class="btn btn-white btn-round btn-just-icon" type="submit">
                                                             <i class="material-icons">search</i>
                                                             <div class="ripple-container"></div>
@@ -105,6 +109,12 @@
                                         N°
                                     </th>
                                     <th>
+                                        Periodo
+                                    </th>
+                                    <th *ngIf="getUserRol()">
+                                        Nombre docente
+                                    </th>
+                                    <th>
                                         Nombre de Labor
                                     </th>
                                     <th>
@@ -117,7 +127,7 @@
                                         Descripción
                                     </th>
                                     <th>
-                                        ACTO (Si aplica)
+                                        ACTO <br> (Si aplica)
                                     </th>
                                     <th>
                                         Fecha Inicio
@@ -135,10 +145,12 @@
                                 <tbody>
                                     <tr *ngFor="let evaluacion of evaluaciones; let i = index">
                                         <td>{{ i + 1 }}</td>
+                                        <td>{{evaluacion.per_nombre}}</td>
+                                        <td *ngIf="getUserRol()">{{ evaluacion.usu_nombre }}<br>{{evaluacion.usu_apellido}}</td>
                                         <td>{{ evaluacion.lab_nombre }}</td>
                                         <td>{{ evaluacion.tl_descripcion }}</td>
                                         <td>{{ evaluacion.lab_horas }}</td>
-                                        <td>Ingeniería de sistemas Obligatoria 2023 </td>
+                                        <td>Ingeniería de sistemas<br>Obligatoria 2023 </td>
                                         <center>
                                             <td>X</td>
                                         </center>
@@ -176,8 +188,13 @@
                                         </td>
                                     </tr>
                                     
-                                    <tr>
-                                        <td colspan="3" style="text-align: right;"> TOTAL</td>
+                                    <tr *ngIf="getUserRol()==0">
+                                        <td  colspan="4" style="text-align: right;"> TOTAL</td>
+                                        <td> {{ totalHoras }}</td>
+                                    </tr>
+
+                                    <tr *ngIf="getUserRol()" >
+                                        <td colspan="5" style="text-align: right;"> TOTAL</td>
                                         <td> {{ totalHoras }}</td>
                                     </tr>
                                 </tbody>

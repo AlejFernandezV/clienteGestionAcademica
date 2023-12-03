@@ -14,13 +14,25 @@ export class EvaluationsService {
   constructor(private http: HttpClient) {}
 
   getEvaluationPorNumDoc(num_doc: number) : Observable<ResponseI> {
-    return this.http.get<ResponseI>(`${this.apiURL}/evaluaciones/listar_por_docente?num_doc=${num_doc}`)
+    return this.http.get<ResponseI>(`${this.apiURL}/evaluaciones/listar_por_docente_num_doc?num_doc=${num_doc}`)
+  }
+
+  getEvaluationPorNombApel(nombre:string,apellido:string) : Observable<ResponseI> {
+    return this.http.get<ResponseI>(`${this.apiURL}/evaluaciones/listar_por_docente_nomb_apel?nombre=${nombre}&apellido=${apellido}`)
   }
 
   getEvaluationPorNomPerNumDoc(per_nombre: string, num_doc:number) : Observable<ResponseI>{
     return this.http.get<ResponseI>(`${this.apiURL}/evaluaciones/listar_por_periodo_num_doc?per_nombre=${per_nombre}&num_doc=${num_doc}`)
   }
-  getEvaluation() : Observable<ResponseI>{
+  getEvaluationForDean() : Observable<ResponseI>{
+    return this.http.get<ResponseI>(`${this.apiURL}/evaluaciones/listar_pd`)
+  }
+
+  getEvaluationForCoord() : Observable<ResponseI>{
+    return this.http.get<ResponseI>(`${this.apiURL}/evaluaciones/listar_pc`)
+  }
+
+  getEvaluations() : Observable<ResponseI>{
     return this.http.get<ResponseI>(`${this.apiURL}/evaluaciones/listar`)
   }
 

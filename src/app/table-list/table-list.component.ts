@@ -67,8 +67,28 @@ export class TableListComponent implements OnInit {
 
   getEvaluation() {
     this.getUsuario()
-    if(this.rol === 'Coordinador' || this.rol === 'Decano'){
-      this.evalutionsService.getEvaluation().subscribe((data: any) => {
+    if(this.rol === 'Decano'){
+      this.evalutionsService.getEvaluationForDean().subscribe((data: any) => {
+        if (data.results && data.results.length > 0){
+          this.evaluaciones = data.results;
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Evaluaciones disponibles.',
+            showConfirmButton: true,
+          })
+        } else{
+          Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'No hay evaluaciones disponibles.',
+            showConfirmButton: true,
+          })
+        }
+      });    
+    }else if(this.rol === 'Coordinador'){
+      this.evalutionsService.getEvaluationForCoord().subscribe((data: any) => {
         if (data.results && data.results.length > 0){
           this.evaluaciones = data.results;
           Swal.fire({
@@ -107,8 +127,7 @@ export class TableListComponent implements OnInit {
           })
         }
       });
-    }
-    
+    }  
     this.getTotalHours()
   }
 
@@ -162,7 +181,7 @@ export class TableListComponent implements OnInit {
       return this.buttonFile = 0;
     }
   }
-  searchByIdentification(form: any){
+  searchByNameLN(form: any){
     let formDefinitive = {
       usu_num_doc: form.usu_num_doc
     }
@@ -340,5 +359,28 @@ export class TableListComponent implements OnInit {
       text: message,
       showConfirmButton: true,
     })
+  }
+
+  listCoordEvaluations(){
+    this.evalutionsService.getEvaluationPorNumDoc(Number(this.num_doc)).subscribe((data: any) => {
+      if (data.results && data.results.length > 0){
+        this.evaluaciones = data.results;
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Evaluaciones disponibles para coordinador, por favor completelas.',
+          showConfirmButton: true,
+        })
+
+      } else{
+        Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: 'Oops...',
+          text: 'No hay evaluaciones disponibles para el coordinador.',
+          showConfirmButton: true,
+        })
+      }
+    });
   }
 }
