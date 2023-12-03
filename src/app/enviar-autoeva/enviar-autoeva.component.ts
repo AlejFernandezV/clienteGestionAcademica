@@ -99,7 +99,6 @@ export class EnviarAutoevaComponent implements OnInit {
       for (let i = 0; i < file.length; i++) {
         formData.append("files[]", file[i]);
       }
-      console.log("datos: ", num_doc, eva_id)
 
       this.documentoService.uploadFile(num_doc, eva_id, formData).subscribe(response => {
         console.log(response);
