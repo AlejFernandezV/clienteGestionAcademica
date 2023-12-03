@@ -18,7 +18,7 @@ export class EnviarAutoevaComponent implements OnInit {
   labor: string;
   tipo_labor: string;
   uploadFilesPermition: number;
-  num_doc = localStorage.getItem('num_doc')
+  num_doc = Number(localStorage.getItem('num_doc'))
   
   formResults = new FormGroup({
     eva_puntaje: new FormControl('', Validators.required),
@@ -67,7 +67,7 @@ export class EnviarAutoevaComponent implements OnInit {
         showConfirmButton: true,
       })
     }else{
-      this.onFileSelected(Number(this.num_doc), results.eva_id)
+      this.onFileSelected(this.num_doc, results.eva_id)
       this.evaService.sendEvaluationResults(results).subscribe(data => {
         if(data.status == 'success'){
           Swal.fire({
